@@ -8,7 +8,10 @@
     "@testing-library/user-event": "^13.5.0",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
+    "react-router-dom": "^5.2.0",
     "react-scripts": "5.0.1",
+    "react-social-icons": "^5.13.0",
+    "social-media-icons-react": "^1.1.10",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
@@ -34,5 +37,10 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "concurrently": "^5.3.0",
+    "json-server": "^0.16.1",
+    "nodemon": "^2.0.3"
   }
 }
