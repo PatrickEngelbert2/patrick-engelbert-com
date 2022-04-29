@@ -7,5 +7,5 @@ img {
 }
 
 .max-size {
-    height: 20em;
+    max-height: 20em;
 }
