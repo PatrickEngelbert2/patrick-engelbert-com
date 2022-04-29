@@ -1,6 +1,6 @@
 import React from "react";
 import "./Home.css";
-import selfPic from "../images/EngelbertPatrick.jpg";
+import selfPic from "../images/bluebackground.jpg";
 
 function Home() {
   return (
@@ -18,66 +18,65 @@ function Home() {
       </div>
       <img
         src={selfPic}
-        className="img-thumbnail rounded"
+        className="img-thumbnail rounded max-size"
         alt="Patrick Engelbert"
       />
-      <h3>My Story</h3>
-      <p>Here is some placeholder text for my story.</p>
-      <div>An absurd amount of content</div>
-      <div>An absurd amount of content</div>
-      <div>An absurd amount of content</div>
-      <div>An absurd amount of content</div>
-      <div>An absurd amount of content</div>
-      <div>An absurd amount of content</div>
-      <div>An absurd amount of content</div>
-      <div>An absurd amount of content</div>
-      <div>An absurd amount of content</div>
-      <div>An absurd amount of content</div>
-      <div>An absurd amount of content</div>
-      <div>An absurd amount of content</div>
-      <div>An absurd amount of content</div>
-      <div>An absurd amount of content</div>
-      <div>An absurd amount of content</div>
-      <div>An absurd amount of content</div>
-      <div>An absurd amount of content</div>
-      <div>An absurd amount of content</div>
-      <div>An absurd amount of content</div>
-      <div>An absurd amount of content</div>
-      <div>An absurd amount of content</div>
-      <div>An absurd amount of content</div>
-      <div>An absurd amount of content</div>
-      <div>An absurd amount of content</div>
-      <div>An absurd amount of content</div>
-      <div>An absurd amount of content</div>
-
-      <div>An absurd amount of content</div>
-      <div>An absurd amount of content</div>
-      <div>An absurd amount of content</div>
-      <div>An absurd amount of content</div>
-      <div>An absurd amount of content</div>
-
-      <div>An absurd amount of content</div>
-      <div>An absurd amount of content</div>
-      <div>An absurd amount of content</div>
-      <div>An absurd amount of content</div>
-      <div>An absurd amount of content</div>
-      <div>An absurd amount of content</div>
-      <div>An absurd amount of content</div>
-      <div>An absurd amount of content</div>
-
-      <div>An absurd amount of content</div>
-      <div>An absurd amount of content</div>
-      <div>An absurd amount of content</div>
-      <div>An absurd amount of content</div>
-      <div>An absurd amount of content</div>
-      <div>An absurd amount of content</div>
-      <div>An absurd amount of content</div>
-      <div>An absurd amount of content</div>
-      <div>An absurd amount of content</div>
-      <div>An absurd amount of content</div>
-      <div>An absurd amount of content</div>
-      <div>An absurd amount of content</div>
-      <div>An absurd amount of content</div>
+      <article>
+        <h3>My Story</h3>
+        <p>Here is some placeholder text for my story.</p>
+        <p>An absurd amount of content</p>
+        <p>An absurd amount of content</p>
+        <p>An absurd amount of content</p>
+        <p>An absurd amount of content</p>
+        <p>An absurd amount of content</p>
+        <p>An absurd amount of content</p>
+        <p>An absurd amount of content</p>
+        <p>An absurd amount of content</p>
+        <p>An absurd amount of content</p>
+        <p>An absurd amount of content</p>
+        <p>An absurd amount of content</p>
+        <p>An absurd amount of content</p>
+        <p>An absurd amount of content</p>
+        <p>An absurd amount of content</p>
+        <p>An absurd amount of content</p>
+        <p>An absurd amount of content</p>
+        <p>An absurd amount of content</p>
+        <p>An absurd amount of content</p>
+        <p>An absurd amount of content</p>
+        <p>An absurd amount of content</p>
+        <p>An absurd amount of content</p>
+        <p>An absurd amount of content</p>
+        <p>An absurd amount of content</p>
+        <p>An absurd amount of content</p>
+        <p>An absurd amount of content</p>
+        <p>An absurd amount of content</p>
+        <p>An absurd amount of content</p>
+        <p>An absurd amount of content</p>
+        <p>An absurd amount of content</p>
+        <p>An absurd amount of content</p>
+        <p>An absurd amount of content</p>
+        <p>An absurd amount of content</p>
+        <p>An absurd amount of content</p>
+        <p>An absurd amount of content</p>
+        <p>An absurd amount of content</p>
+        <p>An absurd amount of content</p>
+        <p>An absurd amount of content</p>
+        <p>An absurd amount of content</p>
+        <p>An absurd amount of content</p>
+        <p>An absurd amount of content</p>
+        <p>An absurd amount of content</p>
+        <p>An absurd amount of content</p>
+        <p>An absurd amount of content</p>
+        <p>An absurd amount of content</p>
+        <p>An absurd amount of content</p>
+        <p>An absurd amount of content</p>
+        <p>An absurd amount of content</p>
+        <p>An absurd amount of content</p>
+        <p>An absurd amount of content</p>
+        <p>An absurd amount of content</p>
+        <p>An absurd amount of content</p>
+        <p>An absurd amount of content</p>
+      </article>
     </>
   );
 }
