@@ -26,7 +26,16 @@ function Portfolio() {
                 />
               </div>
             </a>
-            <h3>Periodic Reservations</h3>
+            <h3>
+              Periodic Reservations:
+              <small className="text-muted">
+                {" "}
+                An app that lets you create, edit, view, seat, and cancel
+                reservations. I created the whole application, front, and
+                back-end, and deployed it with React.js, Bootstrap, Git,
+                Node.js, Knex.js, SQL, DBever, Heroku, Jira, and more.{" "}
+              </small>
+            </h3>
           </div>
           <div className="col">
             <a href="https://grubdash-client1.herokuapp.com/dashboard">
@@ -38,7 +47,16 @@ function Portfolio() {
                 />
               </div>
             </a>
-            <h3>Grub Dash</h3>
+            <h3>
+              Grub Dash:
+              <small className="text-muted">
+                {" "}
+                An app that lets you order food and create dishes. I created the
+                back-end to this application, and deployed it with React.js,
+                Bootstrap, Git, Node.js, Knex.js, SQL, DBever, Heroku, Jira, and
+                more.
+              </small>
+            </h3>
           </div>
         </div>
       </div>
