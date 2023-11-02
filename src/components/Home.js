@@ -24,58 +24,22 @@ function Home() {
       <article>
         <h3>My Story</h3>
         <p>Here is some placeholder text for my story.</p>
-        <p>An absurd amount of content</p>
-        <p>An absurd amount of content</p>
-        <p>An absurd amount of content</p>
-        <p>An absurd amount of content</p>
-        <p>An absurd amount of content</p>
-        <p>An absurd amount of content</p>
-        <p>An absurd amount of content</p>
-        <p>An absurd amount of content</p>
-        <p>An absurd amount of content</p>
-        <p>An absurd amount of content</p>
-        <p>An absurd amount of content</p>
-        <p>An absurd amount of content</p>
-        <p>An absurd amount of content</p>
-        <p>An absurd amount of content</p>
-        <p>An absurd amount of content</p>
-        <p>An absurd amount of content</p>
-        <p>An absurd amount of content</p>
-        <p>An absurd amount of content</p>
-        <p>An absurd amount of content</p>
-        <p>An absurd amount of content</p>
-        <p>An absurd amount of content</p>
-        <p>An absurd amount of content</p>
-        <p>An absurd amount of content</p>
-        <p>An absurd amount of content</p>
-        <p>An absurd amount of content</p>
-        <p>An absurd amount of content</p>
-        <p>An absurd amount of content</p>
-        <p>An absurd amount of content</p>
-        <p>An absurd amount of content</p>
-        <p>An absurd amount of content</p>
-        <p>An absurd amount of content</p>
-        <p>An absurd amount of content</p>
-        <p>An absurd amount of content</p>
-        <p>An absurd amount of content</p>
-        <p>An absurd amount of content</p>
-        <p>An absurd amount of content</p>
-        <p>An absurd amount of content</p>
-        <p>An absurd amount of content</p>
-        <p>An absurd amount of content</p>
-        <p>An absurd amount of content</p>
-        <p>An absurd amount of content</p>
-        <p>An absurd amount of content</p>
-        <p>An absurd amount of content</p>
-        <p>An absurd amount of content</p>
-        <p>An absurd amount of content</p>
-        <p>An absurd amount of content</p>
-        <p>An absurd amount of content</p>
-        <p>An absurd amount of content</p>
-        <p>An absurd amount of content</p>
-        <p>An absurd amount of content</p>
-        <p>An absurd amount of content</p>
-        <p>An absurd amount of content</p>
+        <article>
+          <h4>Early Life</h4>
+          <p></p>
+        </article>
+        <article>
+          <h4></h4>
+          <p></p>
+        </article>
+        <article>
+          <h4></h4>
+          <p></p>
+        </article>
+        <article>
+          <h4></h4>
+          <p></p>
+        </article>
       </article>
     </>
   );
