@@ -9,8 +9,6 @@ function Footer() {
         {/* social media */}
         <section className="mb-2">
           <SocialIcon url="www.linkedin.com" network="linkedin" />
-
-          <SocialIcon url="www.github.com" />
         </section>
 
         {/* Additional Info */}
