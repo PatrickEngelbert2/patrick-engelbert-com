@@ -11,36 +11,17 @@ function Home() {
           <small className="text-muted"> A Full-Stack Software Engineer</small>
         </h1>
         <p className="lead">
-          I'm a full-stack Software Engineer, but how I got to where I am is a
-          bit out of the ordinary. Follow me on a journey of how a foggy road
-          took me on more twists and turns than I once thought possible.
+          Welcome! This is my personal website - created using React, and
+          deployed via AWS. 
         </p>
       </div>
+      <div className="container row justify-content-center">
       <img
         src={selfPic}
-        className="img-thumbnail rounded max-size"
-        alt="Patrick Engelbert"
+        className="img-thumbnail rounded max-size col-3"
+        alt="Patrick Engelbert's self portrait"
       />
-      <article>
-        <h3>My Story</h3>
-        <p>Here is some placeholder text for my story.</p>
-        <article>
-          <h4>Early Life</h4>
-          <p></p>
-        </article>
-        <article>
-          <h4></h4>
-          <p></p>
-        </article>
-        <article>
-          <h4></h4>
-          <p></p>
-        </article>
-        <article>
-          <h4></h4>
-          <p></p>
-        </article>
-      </article>
+      </div>
     </>
   );
 }
