@@ -1,4 +1,6 @@
 import React from "react";
+import { ReactComponent as LinkedIn } from "../images/linkedin.svg";
+import { ReactComponent as GitHub } from "../images/github.svg";
 import { Link } from "react-router-dom";
 import "./Header.css";
 
@@ -38,6 +40,31 @@ function Header() {
             </Link>
           </div>
         </div>
+        {/* social media */}
+        <section className="mb-2">
+          <a
+            href="https://www.linkedin.com/in/patrick-engelbert/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <LinkedIn
+              style={{
+                width: "50px",
+                height: "50px",
+                marginRight: "20px",
+                color: "white",
+                backgroundColor: "#0A66C2",
+              }}
+            />
+          </a>
+          <a
+            href="https://github.com/PatrickEngelbert2/PatrickEngelbert2"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <GitHub style={{ width: "50px", height: "50px" }} />
+          </a>
+        </section>
       </nav>
     </header>
   );

@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import periodicReservations from "../images/periodic-reservations.PNG";
 import grubDash from "../images/grub-dash.PNG";
 import "./Portfolio.css";
