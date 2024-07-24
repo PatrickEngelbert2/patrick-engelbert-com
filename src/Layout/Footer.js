@@ -1,16 +1,17 @@
 import React from "react";
-import { SocialIcon } from "react-social-icons/component";
+import { SocialIcon } from 'react-social-icons'
 import { Link } from "react-router-dom";
 
 function Footer() {
+  const LinkedinIcon = <SocialIcon url="www.linkedin.com" network="linkedin" />
   return (
     <footer className="bg-dark text-center text-white">
       <div className="container p-4">
         {/* social media */}
         <section className="mb-2">
-          <SocialIcon url="www.linkedin.com" network="linkedin" />
-
-          <SocialIcon url="www.github.com" />
+        {LinkedinIcon}
+            <div>Heloooooo!!!</div>
+          <SocialIcon url="www.github.com" network="github" />
         </section>
 
         {/* Additional Info */}
