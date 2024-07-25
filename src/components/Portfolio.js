@@ -1,6 +1,8 @@
 import React from "react";
 import periodicReservations from "../images/periodic-reservations.PNG";
 import grubDash from "../images/grub-dash.PNG";
+import pomodoroTimer from "../images/pomodoro-timer.PNG";
+import tikverse from "../images/tikverse.PNG";
 import "./Portfolio.css";
 
 function Portfolio() {
@@ -11,12 +13,101 @@ function Portfolio() {
           Portfolio:
           <small className="text-muted"> Creations worth sharing</small>
         </h1>
-        <p className="lead">lorem ipsum</p>
+        <p className="lead">
+          Checkout some of the apps and websites I've built over the years!
+        </p>
       </div>
       <div className="container">
+        <div className="col">
+          <a
+            href="https://tikverse.vercel.app/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <div className="hover">
+              <img
+                src={tikverse}
+                className="img-thumbnail rounded max-size mx-auto d-block"
+                alt="Dashboard for my Tikverse app"
+              />
+            </div>
+          </a>
+          <h3>
+            <a
+              href="https://tikverse.vercel.app/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Tikverse:
+            </a>
+            <small className="text-muted">
+              {" "}
+              Probably the coolest and most advanced app I’ve made, Tikverse is
+              a social media app taking inspiration from TikTok, Instagram, and
+              Facebook. It features the ability to create an account, log in,
+              and post to your wall for others to see. You can also make
+              comments on, and like, others’ posts. It features a basic
+              recommendation algorithm and a search bar to find people and
+              posts. The app was built with the latest technologies including
+              server-side rendering with Next.js. This means it's extremely
+              quick, secure, and compatible with even the least powerful
+              devices. Checkout the{" "}
+              <a
+                href="https://github.com/Jen-Pat-Multiverse-Backend-Project/tikverse"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                git repo
+              </a>{" "}
+              to see how it works! Made in collaboration with jenperez613.
+            </small>
+          </h3>
+          <div className="row">
+            <div className="col">
+              <a
+                href="https://pomodoro-timer-patrick-engelbert.vercel.app/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <div className="hover">
+                  <img
+                    src={pomodoroTimer}
+                    className="img-thumbnail rounded max-size"
+                    alt="Dashboard for my Timer app"
+                  />
+                </div>
+              </a>
+              <h3>
+                <a
+                  href="https://pomodoro-timer-patrick-engelbert.vercel.app/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Pomodoro Timer:
+                </a>
+                <small className="text-muted">
+                  {" "}
+                  This application enables users to utilize a unique timer
+                  system, inspired by Francesco Cirillo’s productivity method.
+                  The concept involves setting a timer for a focused work period
+                  of 25 minutes, followed by a 5-minute break, automatically
+                  initiated by the timer. This approach is designed to enhance
+                  productivity for tasks demanding high mental effort,
+                  preventing burnout. The application was developed and launched
+                  using a range of technologies including React.js, Bootstrap,
+                  Git, Node.js, Vercel, Jira, and more{" "}
+                </small>
+              </h3>
+            </div>
+          </div>
+        </div>
         <div className="row">
           <div className="col">
-            <a href="https://periodic-reservations.herokuapp.com/dashboard?date=2022-04-30">
+            <a
+              href="https://periodic-reservations.herokuapp.com/dashboard?date=2022-04-30"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <div className="hover">
                 <img
                   src={periodicReservations}
@@ -37,7 +128,11 @@ function Portfolio() {
             </h3>
           </div>
           <div className="col">
-            <a href="https://grubdash-client1.herokuapp.com/dashboard">
+            <a
+              href="https://grubdash-client1.herokuapp.com/dashboard"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <div className="hover">
                 <img
                   src={grubDash}
