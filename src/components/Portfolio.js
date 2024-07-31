@@ -3,6 +3,7 @@ import periodicReservations from "../images/periodic-reservations.PNG";
 import grubDash from "../images/grub-dash.PNG";
 import pomodoroTimer from "../images/pomodoro-timer.PNG";
 import tikverse from "../images/tikverse.PNG";
+import stuffi from "../images/stuffi.PNG";
 import "./Portfolio.css";
 
 function Portfolio() {
@@ -18,52 +19,54 @@ function Portfolio() {
         </p>
       </div>
       <div className="container">
-        <div className="col">
-          <a
-            href="https://tikverse.vercel.app/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <div className="hover">
-              <img
-                src={tikverse}
-                className="img-thumbnail rounded max-size mx-auto d-block"
-                alt="Dashboard for my Tikverse app"
-              />
-            </div>
-          </a>
-          <h3>
+        <div className="row">
+          <div className="col attention-border">
             <a
               href="https://tikverse.vercel.app/"
               target="_blank"
               rel="noopener noreferrer"
             >
-              Tikverse:
+              <div className="hover">
+                <img
+                  src={tikverse}
+                  className="img-thumbnail rounded max-size mx-auto d-block"
+                  alt="Dashboard for my Tikverse app"
+                />
+              </div>
             </a>
-            <small className="text-muted">
-              {" "}
-              Probably the coolest and most advanced app I’ve made, Tikverse is
-              a social media app taking inspiration from TikTok, Instagram, and
-              Facebook. It features the ability to create an account, log in,
-              and post to your wall for others to see. You can also make
-              comments on, and like, others’ posts. It features a basic
-              recommendation algorithm and a search bar to find people and
-              posts. The app was built with the latest technologies including
-              server-side rendering with Next.js. This means it's extremely
-              quick, secure, and compatible with even the least powerful
-              devices. Checkout the{" "}
+            <h3>
               <a
-                href="https://github.com/Jen-Pat-Multiverse-Backend-Project/tikverse"
+                href="https://tikverse.vercel.app/"
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                git repo
-              </a>{" "}
-              to see how it works! Made in collaboration with jenperez613.
-            </small>
-          </h3>
+                Tikverse:
+              </a>
+              <small className="text-muted">
+                {" "}
+                Probably the coolest and most advanced app I’ve made, Tikverse
+                is a social media app taking inspiration from TikTok, Instagram,
+                and Facebook. It features the ability to create an account, log
+                in, and post to your wall for others to see. You can also make
+                comments on, and like, others’ posts. It features a basic
+                recommendation algorithm and a search bar to find people and
+                posts. The app was built with the latest technologies including
+                server-side rendering with Next.js. This means it's extremely
+                quick, secure, and compatible with even the least powerful
+                devices. Checkout the{" "}
+                <a
+                  href="https://github.com/Jen-Pat-Multiverse-Backend-Project/tikverse"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  git repo
+                </a>{" "}
+                to see how it works! Made in collaboration with jenperez613.
+              </small>
+            </h3>
+          </div>
           <div className="row">
-            <div className="col">
+            <div className="col attention-border">
               <a
                 href="https://pomodoro-timer-patrick-engelbert.vercel.app/"
                 target="_blank"
@@ -100,9 +103,61 @@ function Portfolio() {
               </h3>
             </div>
           </div>
+          <div className="row">
+            <div className="col attention-border">
+              <a
+                href="https://www.stuffi.app/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <div className="hover">
+                  <img
+                    src={stuffi}
+                    className="img-thumbnail rounded max-size"
+                    alt="Dashboard for my Stuffi app"
+                  />
+                </div>
+              </a>
+              <h3>
+                <a
+                  href="https://www.stuffi.app/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Stuffi:{" "}
+                </a>
+                <small className="text-muted">
+                  Stuffi is a versatile bulletin app that empowers users to
+                  create accounts (no email required) and post, organize, sort,
+                  and filter ideas. Its open-ended design offers a wide range of
+                  use cases:
+                  <ul class="custom-list">
+                    <li>
+                      <strong>Big Purchases</strong>: Add items, tag them with
+                      key features, and compare them side-by-side.
+                    </li>
+                    <li>
+                      <strong>Recipe Catalog</strong>: Create an easy-to-use
+                      catalog for your favorite recipes, tag them with
+                      ingredients, and filter by what you have on hand.
+                    </li>
+                    <li>
+                      <strong>Home Improvement & Gift Ideas</strong>: From home
+                      improvement projects to gift ideas, the sky is the limit!
+                    </li>
+                  </ul>
+                  Built with Next.js, Knex.js, Git, DBever, MySQL, Elephant SQL,
+                  and more, Stuffi showcases my programming and web development
+                  skills. Want to try it out without creating an account? Use
+                  the test user credentials: <strong>Username: test</strong><br></br>
+                  <strong>Password: Test@123</strong>
+                </small>
+              </h3>
+            </div>
+          </div>
         </div>
-        <div className="row">
-          <div className="col">
+        <div className="flex-container">
+          <div className="flex-item attention-border">
             <a
               href="https://periodic-reservations.herokuapp.com/dashboard?date=2022-04-30"
               target="_blank"
@@ -117,17 +172,16 @@ function Portfolio() {
               </div>
             </a>
             <h3>
-              Periodic Reservations:
+              Periodic Reservations:{" "}
               <small className="text-muted">
-                {" "}
                 An app that lets you create, edit, view, seat, and cancel
                 reservations. I created the whole application, front, and
                 back-end, and deployed it with React.js, Bootstrap, Git,
-                Node.js, Knex.js, SQL, DBever, Heroku, Jira, and more.{" "}
+                Node.js, Knex.js, SQL, DBever, Heroku, Jira, and more.
               </small>
             </h3>
           </div>
-          <div className="col">
+          <div className="flex-item attention-border">
             <a
               href="https://grubdash-client1.herokuapp.com/dashboard"
               target="_blank"
@@ -142,9 +196,8 @@ function Portfolio() {
               </div>
             </a>
             <h3>
-              Grub Dash:
+              Grub Dash:{" "}
               <small className="text-muted">
-                {" "}
                 An app that lets you order food and create dishes. I created the
                 back-end to this application, and deployed it with React.js,
                 Bootstrap, Git, Node.js, Knex.js, SQL, DBever, Heroku, Jira, and

@@ -1,7 +1,34 @@
 .hover {
-    transition: all .2s ease-in-out;
+  transition: all 0.2s ease-in-out;
 }
 
-.hover:hover { 
-    transform: scale(1.025);
+.attention-border {
+    border: 2px solid #007bff; /* Blue border color */
+    border-radius: 10px; /* Rounded corners */
+    padding: 15px; /* Padding inside the border */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    margin-top: 20px; /* Space above the border */
+    margin-bottom: 20px; /* Space below the border */
+  }
+
+.custom-list {
+  margin-top: 5px; /* Adjust this value to increase spacing before the list */
+  margin-bottom: 0px; /* Adjust this value to reduce spacing after the list */
+}
+
+.margin-right {
+    margin-right: 5px;
+}
+
+.flex-container {
+  display: flex;
+  justify-content: space-between;
+}
+.flex-item {
+  flex: 1;
+  margin: 0 10px 20px 0px; /* Add margin between the items and below them*/
+}
+
+.hover:hover {
+  transform: scale(1.025);
 }
