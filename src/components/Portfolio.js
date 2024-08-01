@@ -1,9 +1,4 @@
 import React from "react";
-import periodicReservations from "../images/periodic-reservations.PNG";
-import grubDash from "../images/grub-dash.PNG";
-import pomodoroTimer from "../images/pomodoro-timer.PNG";
-import tikverse from "../images/tikverse.PNG";
-import stuffi from "../images/stuffi.PNG";
 import "./Portfolio.css";
 
 function Portfolio() {
@@ -28,7 +23,7 @@ function Portfolio() {
             >
               <div className="hover">
                 <img
-                  src={tikverse}
+                  src="https://images-patrickengelbert.s3.us-east-2.amazonaws.com/tikverse-better.png"
                   className="img-thumbnail rounded max-size mx-auto d-block"
                   alt="Dashboard for my Tikverse app"
                 />
@@ -74,7 +69,7 @@ function Portfolio() {
               >
                 <div className="hover">
                   <img
-                    src={pomodoroTimer}
+                    src="https://images-patrickengelbert.s3.us-east-2.amazonaws.com/pomodoro-timer-better.png"
                     className="img-thumbnail rounded max-size"
                     alt="Dashboard for my Timer app"
                   />
@@ -112,7 +107,7 @@ function Portfolio() {
               >
                 <div className="hover">
                   <img
-                    src={stuffi}
+                    src="https://images-patrickengelbert.s3.us-east-2.amazonaws.com/stuffi-better.png"
                     className="img-thumbnail rounded max-size"
                     alt="Dashboard for my Stuffi app"
                   />
@@ -165,7 +160,7 @@ function Portfolio() {
             >
               <div className="hover">
                 <img
-                  src={periodicReservations}
+                  src="https://images-patrickengelbert.s3.us-east-2.amazonaws.com/periodic-reservations.png"
                   className="img-thumbnail rounded max-size"
                   alt="Dashboard for my Periodic Reservations app"
                 />
@@ -189,7 +184,7 @@ function Portfolio() {
             >
               <div className="hover">
                 <img
-                  src={grubDash}
+                  src="https://images-patrickengelbert.s3.us-east-2.amazonaws.com/grub-dash-better.png"
                   className="img-thumbnail rounded max-size"
                   alt="Dashboard for my Grub Dash app"
                 />
