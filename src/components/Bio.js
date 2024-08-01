@@ -1,5 +1,4 @@
 import React from "react";
-import forest from "../images/way-in-foggy-forest-861x574.jpg";
 
 function Bio() {
   return (
@@ -14,7 +13,7 @@ function Bio() {
           took me on more twists and turns than I once thought possible.</p>
       </div>
       <img
-        src={forest}
+        src="https://images-patrickengelbert.s3.us-east-2.amazonaws.com/way-in-foggy-forest-better.jpg"
         className="mx-auto d-block img-thumbnail rounded"
         alt="Foggy Forest"
       />
