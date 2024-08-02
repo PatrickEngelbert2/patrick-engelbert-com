@@ -4,12 +4,13 @@ import "./Portfolio.css";
 function Portfolio() {
   return (
     <>
-      <div className="container p-3 my-3 bg-dark text-white">
-        <h1>
+    <div className="container">
+      <div className="header-internal-content">
+        <h1 className="header-title">
           Portfolio:
-          <small className="text-muted"> Creations worth sharing</small>
+          <small className="header-subtitle"> Creations worth sharing</small>
         </h1>
-        <p className="lead">
+        <p className="header-lead">
           Checkout some of the apps and websites I've built over the years!
         </p>
       </div>
@@ -223,6 +224,7 @@ function Portfolio() {
             </h3>
           </div>
         </div>
+      </div>
       </div>
     </>
   );

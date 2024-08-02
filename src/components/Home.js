@@ -14,7 +14,8 @@ function Home() {
 
   return (
     <>
-      <div className="header-content">
+    <div className="container">
+      <div className="header-internal-content">
         <h1 className="header-title">
           Patrick Engelbert:
           <small className="header-subtitle">
@@ -52,6 +53,7 @@ function Home() {
           alt="Patrick Engelbert's self portrait of him wearing a suit and tie"
         />
       </div>
+    </div>
     </>
   );
 }

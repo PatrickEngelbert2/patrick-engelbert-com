@@ -13,19 +13,13 @@
 
 /* Parallax section styles */
 .parallax {
-  background: url('https://images-patrickengelbert.s3.us-east-2.amazonaws.com/Design.png') no-repeat center center/cover; /* Use the new image */
+  background: url('https://images-patrickengelbert.s3.us-east-2.amazonaws.com/Design.png') no-repeat center center/cover;
   height: 100vh;
   background-attachment: fixed;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
   position: relative;
-}
-
-@media (max-width: 783px) {
-  .parallax {
-    transform: rotate(90deg); /* Rotate the background image 90 degrees clockwise */
-  }
 }
 
 .header-content {
@@ -35,8 +29,8 @@
   transform: translate(-50%, -50%);
   color: white;
   text-align: center;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Add shadow effect */
-  width: 80%; /* Make the content box wider */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+  width: 80%;
 }
 
 .header-title {
@@ -60,22 +54,18 @@ footer {
   color: white;
   text-align: center;
   padding: 1rem 0;
-  margin-top: auto; /* Ensure the footer is pushed to the bottom */
-}
-
-#main-content {
-  /* Removed margin-top property */
+  margin-top: auto;
 }
 
 .sticky {
   position: sticky;
   top: 0;
-  z-index: 100; /* this is optional and should be different for every project */
+  z-index: 100;
 }
 
 .sticky-wrapper {
   position: relative;
-  height: 3rem; /* We need to change this value */
+  height: 3rem;
 }
 
 .sticky .sticky-inner {
