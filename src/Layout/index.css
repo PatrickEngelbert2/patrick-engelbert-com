@@ -1,22 +1,87 @@
+/* Ensure the app container takes the full height of the viewport */
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Make the main content area grow to fill the available space */
+.content {
+  flex: 1;
+  padding-top: 5rem;
+}
+
+/* Parallax section styles */
+.parallax {
+  background: url('https://images-patrickengelbert.s3.us-east-2.amazonaws.com/Design.png') no-repeat center center/cover; /* Use the new image */
+  height: 100vh;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}
+
+@media (max-width: 783px) {
+  .parallax {
+    transform: rotate(90deg); /* Rotate the background image 90 degrees clockwise */
+  }
+}
+
+.header-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  text-align: center;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Add shadow effect */
+  width: 80%; /* Make the content box wider */
+}
+
+.header-title {
+  font-size: 3rem;
+  font-weight: bold;
+}
+
+.header-subtitle {
+  font-size: 1.5rem;
+  font-weight: 300;
+}
+
+.header-lead {
+  font-size: 1.25rem;
+  margin-top: 1rem;
+}
+
+/* Footer styles */
+footer {
+  background: linear-gradient(45deg, #6c757d, #343a40);
+  color: white;
+  text-align: center;
+  padding: 1rem 0;
+  margin-top: auto; /* Ensure the footer is pushed to the bottom */
+}
+
 #main-content {
-    margin-top: 55px;
+  /* Removed margin-top property */
 }
 
 .sticky {
-    position: sticky;
-    top: 0;
-    z-index: 100; /* this is optional and should be different for every project */
-  }
+  position: sticky;
+  top: 0;
+  z-index: 100; /* this is optional and should be different for every project */
+}
 
 .sticky-wrapper {
-    position: relative;
-    height: 3rem; /* We need to change this value */
-  }
-  
+  position: relative;
+  height: 3rem; /* We need to change this value */
+}
+
 .sticky .sticky-inner {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 1;
-  }
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
+}

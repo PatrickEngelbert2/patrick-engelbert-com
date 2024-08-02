@@ -1,5 +1,61 @@
+/* Header.css */
+
 header {
-    left: 0;
-    right: 0;
-    top: 0;
+  left: 0;
+  right: 0;
+  top: 0;
+}
+
+/* Add margin-right to the Contact Me button */
+.btn-primary {
+  margin-right: 10px;
+}
+
+.bg-gradient {
+  background: linear-gradient(45deg, #007bff, #0056b3);
+  color: white;
+}
+
+.navbar-brand {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.navbar-nav .nav-link {
+  font-size: 1.1rem;
+  margin-right: 1rem;
+  transition: color 0.3s ease;
+}
+
+.navbar-nav .nav-link:hover {
+  color: #ffdd57;
+}
+
+.social-icons {
+  display: flex;
+  align-items: center;
+}
+
+.social-icon {
+  width: 50px;
+  height: 50px;
+  margin-right: 20px;
+  transition: transform 0.3s ease;
+}
+
+.social-icon:hover {
+  transform: scale(1.1);
+}
+
+.linkedin {
+  background-color: #0a66c2;
+  border-radius: 50%;
+  padding: 5px;
+  color: white; /* Ensure the icon is visible */
+}
+
+.github {
+  background-color: #333;
+  border-radius: 50%;
+  padding: 5px;
 }

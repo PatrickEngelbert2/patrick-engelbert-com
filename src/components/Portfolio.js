@@ -15,7 +15,7 @@ function Portfolio() {
       </div>
       <div className="container">
         <div className="row">
-          <div className="col attention-border">
+          <div className="col attention-border card-background">
             <a
               href="https://tikverse.vercel.app/"
               target="_blank"
@@ -39,7 +39,7 @@ function Portfolio() {
               </a>
               <small className="text-muted">
                 {" "}
-                Probably the coolest and most advanced app I’ve made, Tikverse
+                Probably the coolest and most advanced personal app I’ve made, Tikverse
                 is a social media app taking inspiration from TikTok, Instagram,
                 and Facebook. It features the ability to create an account, log
                 in, and post to your wall for others to see. You can also make
@@ -61,7 +61,7 @@ function Portfolio() {
             </h3>
           </div>
           <div className="row">
-            <div className="col attention-border">
+            <div className="col attention-border card-background">
               <a
                 href="https://pomodoro-timer-patrick-engelbert.vercel.app/"
                 target="_blank"
@@ -99,7 +99,7 @@ function Portfolio() {
             </div>
           </div>
           <div className="row">
-            <div className="col attention-border">
+            <div className="col attention-border card-background">
               <a
                 href="https://www.stuffi.app/"
                 target="_blank"
@@ -150,9 +150,31 @@ function Portfolio() {
               </h3>
             </div>
           </div>
+          <div className="row">
+            <div className="col attention-border card-background">
+              <a
+                href="https://www.bleepingcomputer.com/news/security/heroku-admits-that-customer-credentials-were-stolen-in-cyberattack/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+              </a>
+              <h3>
+                The following apps were hosted on Heroku, which was previously
+                hacked. I am currently working on redeploying them. Please check
+                back soon! You can learn more about the Heroku hack at the link below.<br></br>
+                <a
+                href="https://www.bleepingcomputer.com/news/security/heroku-admits-that-customer-credentials-were-stolen-in-cyberattack/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Learn More
+              </a>
+              </h3>
+            </div>
+          </div>
         </div>
         <div className="flex-container">
-          <div className="flex-item attention-border">
+          <div className="flex-item attention-border card-background">
             <a
               href="https://periodic-reservations.herokuapp.com/dashboard?date=2022-04-30"
               target="_blank"
@@ -176,7 +198,7 @@ function Portfolio() {
               </small>
             </h3>
           </div>
-          <div className="flex-item attention-border">
+          <div className="flex-item attention-border card-background">
             <a
               href="https://grubdash-client1.herokuapp.com/dashboard"
               target="_blank"
