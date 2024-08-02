@@ -1,0 +1,102 @@
+/* UserContactPatrickForm.css */
+
+.my-tooltip {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  margin-right: 2px;
+}
+
+.my-tooltip .tooltiptext {
+  visibility: hidden;
+  width: 20rem;
+  background-color: #1a1a1a;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 5px;
+  position: absolute;
+  z-index: 100;
+  bottom: 100%; /* Position the tooltip above the text */
+  left: 50%;
+  margin-left: -60px; /* Use half of the width to center the tooltip */
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.my-tooltip:hover .tooltiptext {
+  visibility: visible;
+  opacity: 1;
+}
+
+.contact-form {
+  max-width: 600px;
+  margin: 1.5rem auto 2em auto;
+  padding: 1rem;
+  background-color: #f9f9f9;
+  border-radius: 0.5rem;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); /* More prominent shadow */
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2); /* Add subtle text shadow for depth */
+}
+
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2); /* Add subtle text shadow for depth */
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 0.25rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add subtle shadow for depth */
+}
+
+.form-group textarea {
+  resize: vertical;
+}
+
+.button-container {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.btn-primary {
+  background-color: #007bff;
+  border: none;
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add subtle shadow for depth */
+}
+
+.btn-primary:hover {
+  background-color: #0056b3;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* More prominent shadow on hover */
+}
+
+.btn-cancel {
+  background-color: #dc3545;
+  border: none;
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add subtle shadow for depth */
+  margin-left: auto; /* Push the button to the right */
+}
+
+.btn-cancel:hover {
+  background-color: #c82333;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* More prominent shadow on hover */
+}

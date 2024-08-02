@@ -4,12 +4,10 @@ import { ReactComponent as GitHub } from "../images/github.svg";
 import { Link } from "react-router-dom";
 import "./Header.css";
 
-
 function Header() {
-
   return (
     <header className="sticky-inner">
-      <nav className="navbar navbar-default navbar-static-top navbar-expand-lg navbar-light navbar-dark bg-primary">
+      <nav className="navbar navbar-default navbar-static-top navbar-expand-lg navbar-light navbar-dark bg-gradient">
         <Link className="navbar-brand" to="/">
           Patrick Engelbert
         </Link>
@@ -29,42 +27,42 @@ function Header() {
             <Link className="nav-item nav-link active" to="/">
               Home <span className="sr-only">(current)</span>
             </Link>
-            <Link className="nav-item nav-link" to="/bio">
-              Bio
-            </Link>
-            <Link className="nav-item nav-link" to="/experience">
+            {/* <Link className="nav-item nav-link" to="/contact">
+              Contact Me
+            </Link> */}
+            {/* <Link className="nav-item nav-link" to="/experience">
               Experience
-            </Link>
+            </Link> */}
             <Link className="nav-item nav-link" to="/portfolio">
               Portfolio
             </Link>
           </div>
         </div>
-        {/* social media */}
-        <section className="mb-2">
-          <a
-            href="https://www.linkedin.com/in/patrick-engelbert/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <LinkedIn
-              style={{
-                width: "50px",
-                height: "50px",
-                marginRight: "20px",
-                color: "white",
-                backgroundColor: "#0A66C2",
-              }}
-            />
-          </a>
-          <a
-            href="https://github.com/PatrickEngelbert2/PatrickEngelbert2"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <GitHub style={{ width: "50px", height: "50px" }} />
-          </a>
-        </section>
+        <div className="ml-auto d-flex align-items-center">
+          {" "}
+          {/* Added container for alignment */}
+          <Link to="/contact" className="btn btn-primary btn-sm mr-2">
+            {" "}
+            {/* New Contact Me button */}
+            Contact Me
+          </Link>
+          <section className="mb-2 social-icons">
+            <a
+              href="https://www.linkedin.com/in/patrick-engelbert/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <LinkedIn className="social-icon linkedin" />
+            </a>
+            <a
+              href="https://github.com/PatrickEngelbert2/PatrickEngelbert2"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <GitHub className="social-icon github" />
+            </a>
+          </section>
+        </div>
       </nav>
     </header>
   );
