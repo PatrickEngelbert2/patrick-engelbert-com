@@ -105,13 +105,13 @@ function UserContactPatrickForm() {
         ></textarea>
       </div>
       <div className="button-container">
-      <button type="submit" className="btn btn-primary">
-        Send Message
-      </button>
-      <div className="button-container"></div>
-      <button type="button" className="btn btn-cancel" onClick={handleGoBack}>
-        Go Back
-      </button>
+        <button type="submit" className="btn btn-primary">
+          Send Message
+        </button>
+        <div className="button-container"></div>
+        <button type="button" className="btn btn-cancel" onClick={handleGoBack}>
+          Go Back
+        </button>
       </div>
     </form>
   );

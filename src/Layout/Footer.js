@@ -1,13 +1,14 @@
 import React from "react";
 import { ReactComponent as LinkedIn } from "../images/linkedin.svg";
 import { ReactComponent as GitHub } from "../images/github.svg";
+import { Link } from "react-router-dom";
 // import FooterLinks from "../components/FooterLinks";
 import "./Footer.css";
 
 function Footer() {
   return (
-    <footer className="bg-dark text-center text-white">
-      <div className="container p-4">
+    <footer>
+      <div className="container pb-1">
         {/* social media */}
         <section className="mb-2">
           <a
@@ -15,26 +16,19 @@ function Footer() {
             target="_blank"
             rel="noopener noreferrer"
           >
-            <LinkedIn
-              style={{
-                width: "50px",
-                height: "50px",
-                marginRight: "20px",
-                backgroundColor: "white",
-              }}
-            />
+            <LinkedIn className="social-icon linkedin subtle-shadow" />
           </a>
           <a
             href="https://github.com/PatrickEngelbert2/PatrickEngelbert2"
             target="_blank"
             rel="noopener noreferrer"
           >
-            <GitHub style={{ width: "50px", height: "50px" }} />
+            <GitHub className="social-icon github subtle-shadow" />
           </a>
         </section>
 
         {/* Additional Info */}
-        <section className="">
+        <section className="footer-links">
           <p>
             Have a job oportunity, or just want to chat? Contact me via email,
             <a
@@ -70,19 +64,19 @@ function Footer() {
             </a>
             .
           </p>
-        </section>
-        {/* additional links */}
-        <section className="">
-          <p className="lead">
-            Contact: <b>patrickengelbert2@gmail.com</b>
+          <p>
+            You can also send me a message or request my phone number using the
+            form linked below. Just click the button below to get started!
           </p>
-          {/* <FooterLinks /> */}
         </section>
+        <p className="lead">
+          <Link to="/contact" className="btn btn-primary btn-sm mr-2">
+            Contact Me
+          </Link>
+          <b> patrickengelbert2@gmail.com</b>
+        </p>
       </div>
-      {/* copyright */}
-      <div className="text-center pb-3">
-        © 2022 Copyright: Patrick Inc.
-      </div>
+      <div className="text-center">© 2022 Copyright: Patrick Inc.</div>
     </footer>
   );
 }

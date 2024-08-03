@@ -31,7 +31,7 @@ function Home() {
       <div className="container d-flex flex-column flex-md-row justify-content-center align-items-center section-spacing">
         <img
           src={selfImageUrl}
-          className="img-thumbnail rounded max-size d-none d-lg-block"
+          className="img-thumbnail rounded max-size d-none d-lg-block subtle-shadow"
           alt="Patrick Engelbert's self portrait of him wearing a suit and tie"
         />
         <div className="text-center mx-3 my-3 my-md-0">
@@ -49,7 +49,7 @@ function Home() {
         </div>
         <img
           src={selfImageUrl}
-          className="img-thumbnail rounded max-size"
+          className="img-thumbnail rounded max-size subtle-shadow"
           alt="Patrick Engelbert's self portrait of him wearing a suit and tie"
         />
       </div>

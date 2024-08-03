@@ -89,12 +89,14 @@ function ContactInfoRequestForm() {
           required
         />
       </div>
-      <button type="submit" className="btn btn-primary">
-        Request Contact Info
-      </button>
-      <button type="button" className="btn btn-cancel" onClick={handleGoBack}>
-        Go Back
-      </button>
+      <div className="button-container">
+        <button type="submit" className="btn btn-primary">
+          Request Contact Info
+        </button>
+        <button type="button" className="btn btn-cancel" onClick={handleGoBack}>
+          Go Back
+        </button>
+      </div>
     </form>
   );
 }

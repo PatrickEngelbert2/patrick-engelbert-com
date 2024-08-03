@@ -1,0 +1,19 @@
+footer {
+  background-color: #000;
+  color: #fff;
+  position: relative;
+}
+
+.social-icon:hover {
+  transform: rotate(360deg);
+  transition: transform 0.5s ease-in-out;
+}
+
+.footer-links a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.footer-links a:hover {
+  color: #007bff;
+}
