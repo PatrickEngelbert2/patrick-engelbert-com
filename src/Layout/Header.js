@@ -6,7 +6,7 @@ import "./Header.css";
 
 function Header() {
   return (
-    <header className="sticky-inner">
+    <header className="sticky-inner subtle-shadow">
       <nav className="navbar navbar-default navbar-static-top navbar-expand-lg navbar-light navbar-dark bg-gradient">
         <Link className="navbar-brand" to="/">
           Patrick Engelbert
@@ -39,11 +39,7 @@ function Header() {
           </div>
         </div>
         <div className="ml-auto d-flex align-items-center">
-          {" "}
-          {/* Added container for alignment */}
           <Link to="/contact" className="btn btn-primary btn-sm mr-2">
-            {" "}
-            {/* New Contact Me button */}
             Contact Me
           </Link>
           <section className="mb-2 social-icons">
@@ -52,14 +48,14 @@ function Header() {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <LinkedIn className="social-icon linkedin" />
+              <LinkedIn className="social-icon linkedin subtle-shadow" />
             </a>
             <a
               href="https://github.com/PatrickEngelbert2/PatrickEngelbert2"
               target="_blank"
               rel="noopener noreferrer"
             >
-              <GitHub className="social-icon github" />
+              <GitHub className="social-icon github subtle-shadow" />
             </a>
           </section>
         </div>
