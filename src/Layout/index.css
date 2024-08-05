@@ -11,15 +11,29 @@
   padding-top: 5rem;
 }
 
-/* Parallax section styles */
 .parallax {
-  background: url('https://images-patrickengelbert.s3.us-east-2.amazonaws.com/Design.png') no-repeat center center/cover;
-  height: 100vh;
-  background-attachment: fixed;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
   position: relative;
+  height: auto;
+  overflow: hidden;
+}
+
+.parallax::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: url('https://images-patrickengelbert.s3.us-east-2.amazonaws.com/Design.png') no-repeat center center;
+  background-size: cover;
+  will-change: transform; /* Optimize performance */
+  z-index: -1;
+}
+
+@media (max-width: 768px) {
+  .parallax::before {
+    background-attachment: scroll; /* Fallback for better performance on small devices */
+  }
 }
 
 .header-content {
