@@ -140,17 +140,17 @@
   }
 }
 
-.button-container .btn-primary:nth-child(1) {
+.btn-animations-plus:nth-child(1) {
   animation: expand 0.5s ease-in-out forwards, changeColor1 0.5s ease-in-out forwards;
   animation-delay: 0.5s, 0.5s;
 }
 
-.button-container .btn-primary:nth-child(2) {
+.btn-animations-plus:nth-child(2) {
   animation: expand 0.5s ease-in-out forwards, changeColor2 0.5s ease-in-out forwards;
   animation-delay: 1s, 1s;
 }
 
-.button-container .btn-primary:nth-child(3) {
+.btn-animations-plus:nth-child(3) {
   animation: expand 0.5s ease-in-out forwards, changeColor3 0.5s ease-in-out forwards;
   animation-delay: 1.5s, 1.5s;
 }
@@ -205,8 +205,8 @@ img {
   margin-bottom: 2rem;
 }
 
-/* New styles for button container */
-.button-container {
+/* Background for button container */
+.home-btn-background {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -224,4 +224,9 @@ img {
   transform: scale(1.1);
   box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
   animation: bounce 0.5s; /* Add bounce animation */
+}
+
+.recoil-letter {
+  display: inline-block;
+  transition: transform 0.1s ease-out;
 }
