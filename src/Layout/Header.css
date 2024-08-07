@@ -83,10 +83,16 @@ header {
 }
 
 .social-icon {
+  transition: transform 0.3s ease;
+}
+
+.social-icon-large {
   width: 50px;
   height: 50px;
+}
+
+.social-icon-margin {
   margin-right: 20px;
-  transition: transform 0.3s ease;
 }
 
 .social-icon:hover {
@@ -96,14 +102,14 @@ header {
 .linkedin {
   background-color: #0a66c2;
   border-radius: 50%;
-  padding: 5px;
+  padding: 0.1em;
   color: white; /* Ensure the icon is visible */
 }
 
 .github {
   background-color: #333;
   border-radius: 50%;
-  padding: 5px;
+  padding: 0.1em;
   color: white; /* Ensure the icon is visible */
 }
 
