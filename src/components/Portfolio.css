@@ -99,3 +99,8 @@
 .max-size {
   max-height: 20em;
 }
+
+.recoil-letter {
+  display: inline-block;
+  transition: transform 0.1s ease-out;
+}

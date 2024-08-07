@@ -1,0 +1,87 @@
+/* General Styles */
+body {
+  font-family: "Arial", sans-serif;
+  background-color: #f4f4f9;
+  color: #333;
+  margin: 0;
+  padding: 0;
+}
+
+.resume-container {
+  max-width: 800px;
+  margin: 0 auto 2em;
+  padding: 20px;
+  background: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  border-radius: 8px;
+  animation: fadeIn 1s ease-in-out;
+}
+
+.resume-title {
+  text-align: center;
+  font-size: 2.5em;
+  margin-bottom: 20px;
+  color: #007bff;
+}
+
+.resume-button {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.resume-section {
+  margin-bottom: 20px;
+}
+
+.resume-section h2 {
+  font-size: 1.5em;
+  color: #007bff;
+  border-bottom: 2px solid #007bff;
+  padding-bottom: 5px;
+  margin-bottom: 10px;
+}
+
+.resume-section p,
+.resume-section ul {
+  font-size: 1em;
+  line-height: 1.6;
+}
+
+.resume-section ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.resume-section ul li {
+  margin-bottom: 10px;
+}
+
+.resume-section ul li strong {
+  color: #007bff;
+}
+
+.resume-section ul ul {
+  margin-left: 20px;
+}
+
+.resume-section ul ul li {
+  margin-bottom: 5px;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Hover Effects */
+.resume-section ul li:hover {
+  background-color: #f0f8ff;
+  border-radius: 5px;
+  padding: 5px;
+  transition: background-color 0.3s ease;
+}

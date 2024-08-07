@@ -11,6 +11,7 @@ import Portfolio from "../components/Portfolio";
 import ContactMe from "../components/ContactMe";
 import UserContactPatrickForm from "../components/UserContactPatrickForm";
 import ContactInfoRequestForm from "../components/ContactInfoRequestForm";
+import Resume from "../components/Resume";
 
 function Layout() {
   const [isSticky, setSticky] = useState(false);
@@ -58,6 +59,9 @@ function Layout() {
             </Route>
             <Route exact path="/contact/request-contact-info">
               <ContactInfoRequestForm />
+            </Route>
+            <Route exact path="/resume">
+              <Resume />
             </Route>
             <Route>
               <NotFound />
