@@ -68,6 +68,25 @@ body {
   margin-bottom: 5px;
 }
 
+/* Contact Links */
+.contact-link {
+  color: #007bff;
+  text-decoration: none;
+  margin: 0 5px;
+  display: inline-flex;
+  align-items: center;
+}
+
+.contact-link:hover {
+  text-decoration: underline;
+}
+
+.social-icon-resume {
+  width: 16px;
+  height: 16px;
+  margin-left: 5px;
+}
+
 /* Animations */
 @keyframes fadeIn {
   from {
@@ -82,6 +101,9 @@ body {
 .resume-section ul li:hover {
   background-color: #f0f8ff;
   border-radius: 5px;
-  padding: 5px;
   transition: background-color 0.3s ease;
+}
+
+.center-text {
+  text-align: center;
 }

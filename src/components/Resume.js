@@ -1,5 +1,7 @@
 import React from "react";
 import "./Resume.css";
+import { ReactComponent as LinkedIn } from "../images/linkedin.svg";
+import { ReactComponent as GitHub } from "../images/github.svg";
 
 function Resume() {
   const myResume =
@@ -19,7 +21,25 @@ function Resume() {
         <h2>Contact Information</h2>
         <p>
           Ottawa, KS 66067 | patrickengelbert2@gmail.com | (785) 418-1614 |
-          LinkedIn | GitHub
+          <a
+            href="https://www.linkedin.com/in/patrick-engelbert/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="contact-link"
+          >
+            LinkedIn{" "}
+            <LinkedIn className="social-icon social-icon-resume linkedin subtle-shadow" />
+          </a>{" "}
+          |
+          <a
+            href="https://github.com/PatrickEngelbert2/PatrickEngelbert2"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="contact-link"
+          >
+            GitHub{" "}
+            <GitHub className="social-icon social-icon-resume github subtle-shadow" />
+          </a>
         </p>
       </div>
       <div className="resume-section">
@@ -38,11 +58,11 @@ function Resume() {
       </div>
       <div className="resume-section">
         <h2>Tech Skills</h2>
-        <p>
+        <p className="center-text">
           React.js | JavaScript ES6+ | Next.js | Node.js | Angular | TypeScript
           | Python LLM Development | AI Development | Full-Stack Development |
           Cyber Security | HTML & CSS | Bootstrap | Git & GitHub | Jira |
-          Bitbucket | Agile | SQL | Knex.js | .md | .json Data Structures &
+          Bitbucket | Agile | SQL | Knex.js | .md | .json | Data Structures &
           Algorithms | npm & yarn | Windows & Linux | Documentation
         </p>
       </div>

@@ -16,14 +16,14 @@ function Footer() {
             target="_blank"
             rel="noopener noreferrer"
           >
-            <LinkedIn className="social-icon linkedin subtle-shadow" />
+            <LinkedIn className="social-icon social-icon-large social-icon-margin linkedin subtle-shadow" />
           </a>
           <a
             href="https://github.com/PatrickEngelbert2/PatrickEngelbert2"
             target="_blank"
             rel="noopener noreferrer"
           >
-            <GitHub className="social-icon github subtle-shadow" />
+            <GitHub className="social-icon social-icon-large github subtle-shadow" />
           </a>
         </section>
 
