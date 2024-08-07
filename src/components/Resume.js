@@ -1,44 +1,52 @@
 import React from "react";
+import "./Resume.css";
 
 function Resume() {
+  const myResume =
+    "https://images-patrickengelbert.s3.us-east-2.amazonaws.com/Patrick+Engelbert+Resume.pdf";
+
   return (
-    <div>
-      <h1>Resume</h1>
-      <div>
-        <button>Download Resume</button>
+    <div className="resume-container">
+      <div className="resume-button">
+        <a href={myResume} target="_blank" rel="noopener noreferrer">
+          <button className="btn btn-secondary">
+            View as Downloadable PDF
+          </button>
+        </a>
       </div>
-      <div>
+      <h1 className="resume-title">Patrick Engelbert's Resume</h1>
+      <div className="resume-section">
         <h2>Contact Information</h2>
         <p>
           Ottawa, KS 66067 | patrickengelbert2@gmail.com | (785) 418-1614 |
           LinkedIn | GitHub
         </p>
       </div>
-      <div>
+      <div className="resume-section">
         <h2>Summary</h2>
         <p>
           I am a Full-Stack Software Engineer with over 3 years of experience in
-          the field who’s also well-versed in computer hardware and networking.
+          the field who is also well-versed in computer hardware and networking.
           I’ve created advanced algorithms using cutting-edge technologies, and
           am always learning. I've professionally leveraged React, Angular,
           TypeScript, JavaScript ES6+, Node.js, and more, creating responsive
           websites on both front and back ends. I have extensive experience in
           customer service, collaborating as a team, and manipulating complex
-          data structures. My top hobbies are building computers and learning
+          data structures. My main hobbies are building computers and learning
           about the latest in science and technology.
         </p>
       </div>
-      <div>
+      <div className="resume-section">
         <h2>Tech Skills</h2>
         <p>
           React.js | JavaScript ES6+ | Next.js | Node.js | Angular | TypeScript
-          | Python | LLM Development | AI Development | Full-Stack Development |
+          | Python LLM Development | AI Development | Full-Stack Development |
           Cyber Security | HTML & CSS | Bootstrap | Git & GitHub | Jira |
-          Bitbucket | Agile | SQL | Knex.js | .md | .json | Data Structures &
+          Bitbucket | Agile | SQL | Knex.js | .md | .json Data Structures &
           Algorithms | npm & yarn | Windows & Linux | Documentation
         </p>
       </div>
-      <div>
+      <div className="resume-section">
         <h2>Projects</h2>
         <ul>
           <li>
@@ -114,7 +122,7 @@ function Resume() {
           </li>
         </ul>
       </div>
-      <div>
+      <div className="resume-section">
         <h2>Experience</h2>
         <ul>
           <li>
@@ -122,7 +130,7 @@ function Resume() {
             Johnston, RI (Mar 2022 – Nov 2023)
             <ul>
               <li>
-                Leveraged Agular, Typescript, and Node.js to engineer fast,
+                Leveraged Angular, Typescript, and Node.js to engineer fast,
                 reliable web pages.
               </li>
               <li>
@@ -212,7 +220,7 @@ function Resume() {
           </li>
         </ul>
       </div>
-      <div>
+      <div className="resume-section">
         <h2>Education</h2>
         <ul>
           <li>
@@ -234,6 +242,10 @@ function Resume() {
             <ul>
               <li>Associate of Science DEGREE, Philosophy (May 2020)</li>
               <li>Associate of Arts DEGREE, Philosophy (May 2020)</li>
+              <li>
+                Yes. I did earn 2 associate degrees in the same school year.
+                &#x1F60E;
+              </li>
             </ul>
           </li>
         </ul>
