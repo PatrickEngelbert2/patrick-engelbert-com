@@ -30,7 +30,9 @@ function Home() {
         const distance = Math.sqrt(dx * dx + dy * dy);
         const maxDistance = 100;
         const scale = Math.max(0, 1 - distance / maxDistance);
-        letter.style.transform = `translate(${dx * scale}px, ${dy * scale}px)`;
+        letter.style.transform = `translate(${-dx * scale}px, ${
+          -dy * scale
+        }px)`;
       });
     };
 
