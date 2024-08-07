@@ -1,6 +1,6 @@
 /* Header content styles */
 
-.subtle-shadow{
+.subtle-shadow {
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
@@ -71,14 +71,16 @@
   transition: background-color 0.3s ease, transform 0.3s ease,
     box-shadow 0.3s ease;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  animation: pulse 2s infinite;
+  position: relative; /* Needed for shimmer effect */
+  overflow: hidden; /* Hide overflow for shimmer effect */
 }
 
 /* Hover effect */
-.btn-primary:hover {
+.btn:hover {
   background-color: #003d80;
   transform: scale(1.1);
   box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+  animation: bounce 0.5s; /* Add bounce animation */
 }
 
 /* Focus effect */
@@ -87,17 +89,95 @@
   box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.5);
 }
 
-/* Pulse animation */
-@keyframes pulse {
+/* Keyframes for the expand animation */
+@keyframes expand {
   0% {
     transform: scale(1);
   }
   50% {
-    transform: scale(1.05);
+    transform: scale(1.1);
   }
   100% {
     transform: scale(1);
   }
+}
+
+/* Keyframes for the bounce animation */
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-10px);
+  }
+  60% {
+    transform: translateY(-5px);
+  }
+}
+
+/* Change color animation */
+@keyframes changeColor1 {
+  100% {
+    background: linear-gradient(45deg, #ff9a9e 0%, #fad0c4 99%, #fad0c4 100%);
+    color: #000000; /* Change text color to black */
+    text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.5); /* Add white shadow effect */
+  }
+}
+
+@keyframes changeColor2 {
+  100% {
+    background: linear-gradient(45deg, #a18cd1 0%, #fbc2eb 100%);
+    color: #000000; /* Change text color to black */
+    text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.5); /* Add white shadow effect */
+  }
+}
+
+@keyframes changeColor3 {
+  100% {
+    background: linear-gradient(45deg, #fbc2eb 0%, #a6c1ee 100%);
+    color: #000000; /* Change text color to black */
+    text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.5); /* Add white shadow effect */
+  }
+}
+
+.button-container .btn-primary:nth-child(1) {
+  animation: expand 0.5s ease-in-out forwards, changeColor1 0.5s ease-in-out forwards;
+  animation-delay: 0.5s, 0.5s;
+}
+
+.button-container .btn-primary:nth-child(2) {
+  animation: expand 0.5s ease-in-out forwards, changeColor2 0.5s ease-in-out forwards;
+  animation-delay: 1s, 1s;
+}
+
+.button-container .btn-primary:nth-child(3) {
+  animation: expand 0.5s ease-in-out forwards, changeColor3 0.5s ease-in-out forwards;
+  animation-delay: 1.5s, 1.5s;
+}
+
+/* Shimmer effect */
+@keyframes shimmer {
+  0% {
+    left: -150%;
+  }
+  50% {
+    left: 150%;
+  }
+  100% {
+    left: 150%;
+  }
+}
+
+.btn-primary::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -150%;
+  width: 150%;
+  height: 100%;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.5) 50%, rgba(255, 255, 255, 0) 100%);
+  animation: shimmer 2s infinite;
+  animation-iteration-count: 3; /* Stop after 3 iterations */
 }
 
 /* Margin for the icon */
@@ -123,4 +203,25 @@ img {
 .section-spacing {
   margin-top: 2rem;
   margin-bottom: 2rem;
+}
+
+/* New styles for button container */
+.button-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.75); /* White background with slight transparency */
+  padding: 1.5rem; /* Add padding around the buttons */
+  border-radius: 0.5rem; /* Rounded corners */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  max-width: 400px; /* Limit the width of the container */
+  margin: 2rem auto; /* Center the container horizontally */
+}
+
+/* Hover effect for buttons inside button-container */
+.button-container .btn:hover {
+  background-color: #003d80;
+  transform: scale(1.1);
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+  animation: bounce 0.5s; /* Add bounce animation */
 }
