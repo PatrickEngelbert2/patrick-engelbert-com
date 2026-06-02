@@ -1,5 +1,5 @@
 import { React, useEffect, useRef, useState } from "react";
-import { Switch, Route } from "react-router-dom";
+import { Switch, Route, Redirect } from "react-router-dom";
 import "./index.css";
 import Header from "./Header";
 import NotFound from "./NotFound";
@@ -12,6 +12,7 @@ import ContactMe from "../components/ContactMe";
 import UserContactPatrickForm from "../components/UserContactPatrickForm";
 import ContactInfoRequestForm from "../components/ContactInfoRequestForm";
 import Resume from "../components/Resume";
+import RoboticsResume from "../components/RoboticsResume";
 
 function Layout() {
   const [isSticky, setSticky] = useState(false);
@@ -61,7 +62,13 @@ function Layout() {
               <ContactInfoRequestForm />
             </Route>
             <Route exact path="/resume">
+              <Redirect to="/resume/software-engineering" />
+            </Route>
+            <Route exact path="/resume/software-engineering">
               <Resume />
+            </Route>
+            <Route exact path="/resume/robotics-controls">
+              <RoboticsResume />
             </Route>
             <Route>
               <NotFound />

@@ -1,8 +1,21 @@
+html {
+  min-height: 100%;
+  background: #101826;
+}
+
+body {
+  min-height: 100%;
+  background: #101826;
+}
+
 /* Ensure the app container takes the full height of the viewport */
 .app-container {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  position: relative;
+  isolation: isolate;
+  background: rgba(8, 14, 24, 0.28);
 }
 
 /* Make the main content area grow to fill the available space */
@@ -20,19 +33,24 @@
 .parallax::before {
   content: '';
   position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  background: url('https://images-patrickengelbert.s3.us-east-2.amazonaws.com/Design.png') no-repeat center center;
+  inset: 0;
+  background-image: linear-gradient(rgba(8, 14, 24, 0.18), rgba(8, 14, 24, 0.28)), url('../images/Design.png');
+  background-position: center center;
+  background-repeat: no-repeat;
   background-size: cover;
-  will-change: transform; /* Optimize performance */
   z-index: -1;
 }
 
 @media (max-width: 768px) {
   .parallax::before {
-    background-attachment: scroll; /* Fallback for better performance on small devices */
+    position: absolute;
+    height: max(100vh, 100%);
+    height: max(100svh, 100%);
+    background-position: center -13vh;
+    background-position: center -13svh;
+    background-repeat: no-repeat;
+    background-size: auto 150vh;
+    background-size: auto 150svh;
   }
 }
 

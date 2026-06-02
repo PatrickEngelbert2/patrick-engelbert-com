@@ -2,18 +2,22 @@ import React, { useEffect } from "react";
 import "./Home.css";
 import { useHistory } from "react-router-dom";
 import Rocket from "../images/rocket.svg";
+import CowboyHatProfile from "../images/cowboyhat-profile.jpg";
 
 function Home() {
   const history = useHistory();
-  const selfImageUrl =
-    "https://images-patrickengelbert.s3.us-east-2.amazonaws.com/bluebackground-better2.jpg";
+  const selfImageUrl = CowboyHatProfile;
 
   const navigateToPortfolio = () => {
     history.push("/portfolio");
   };
 
   const navigateToResume = () => {
-    history.push("/resume");
+    history.push("/resume/software-engineering");
+  };
+
+  const navigateToRoboticsResume = () => {
+    history.push("/resume/robotics-controls");
   };
 
   const navigateToContactMe = () => {
@@ -44,11 +48,25 @@ function Home() {
   }, []);
 
   const wrapTextInSpans = (text) => {
-    return text.split("").map((char, index) => (
-      <span key={index} className="recoil-letter">
-        {char === " " ? "\u00A0" : char}
-      </span>
-    ));
+    return text.split(/(\s+)/).map((word, wordIndex) => {
+      if (/^\s+$/.test(word)) {
+        return (
+          <span key={wordIndex} className="recoil-space">
+            {word.replace(/ /g, "\u00A0")}
+          </span>
+        );
+      }
+
+      return (
+        <span key={wordIndex} className="recoil-word">
+          {word.split("").map((char, charIndex) => (
+            <span key={charIndex} className="recoil-letter">
+              {char}
+            </span>
+          ))}
+        </span>
+      );
+    });
   };
 
   return (
@@ -70,8 +88,8 @@ function Home() {
         <div className="container d-flex flex-column flex-md-row justify-content-center align-items-center section-spacing">
           <img
             src={selfImageUrl}
-            className="img-thumbnail rounded max-size d-none d-lg-block subtle-shadow"
-            alt="Patrick Engelbert's self portrait of him wearing a suit and tie"
+            className="profile-photo img-thumbnail rounded max-size subtle-shadow"
+            alt="Patrick Engelbert"
           />
           <div className="button-container home-btn-background mx-3">
             <button
@@ -89,7 +107,13 @@ function Home() {
               className="btn btn-primary btn-animations-plus btn-lg mb-3"
               onClick={navigateToResume}
             >
-              Interactive Resume
+              Software Engineering Resume
+            </button>
+            <button
+              className="btn btn-primary btn-animations-plus btn-lg mb-3"
+              onClick={navigateToRoboticsResume}
+            >
+              Robotics & Controls Resume
             </button>
             <button
               className="btn btn-primary btn-animations-plus btn-lg"
@@ -98,11 +122,6 @@ function Home() {
               Contact Me
             </button>
           </div>
-          <img
-            src={selfImageUrl}
-            className="img-thumbnail rounded max-size subtle-shadow"
-            alt="Patrick Engelbert's self portrait of him wearing a suit and tie"
-          />
         </div>
       </div>
     </>

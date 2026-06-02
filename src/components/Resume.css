@@ -29,8 +29,33 @@ body {
   margin-bottom: 10px;
 }
 
+.resume-switcher {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.75rem;
+  margin: 0 0 1.5rem;
+}
+
+.resume-switcher-link {
+  border: 1px solid #007bff;
+  border-radius: 0.5rem;
+  color: #007bff;
+  font-weight: 600;
+  padding: 0.5rem 0.85rem;
+  text-decoration: none;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.resume-switcher-link:hover,
+.resume-switcher-link.active {
+  background-color: #007bff;
+  color: #ffffff;
+  text-decoration: none;
+}
+
 .resume-section {
-  margin-bottom: 20px;
+  margin-bottom: 12px;
 }
 
 .resume-section h2 {
@@ -38,13 +63,28 @@ body {
   color: #007bff;
   border-bottom: 2px solid #007bff;
   padding-bottom: 5px;
-  margin-bottom: 10px;
+  margin-bottom: 6px;
 }
 
 .resume-section p,
 .resume-section ul {
   font-size: 1em;
-  line-height: 1.6;
+  line-height: 1.45;
+  margin-bottom: 0.55rem;
+}
+
+.resume-section p,
+.resume-section > ul > li,
+.resume-section ul ul li {
+  border-radius: 5px;
+  padding: 0.25rem 0.35rem;
+  transition: background-color 0.3s ease;
+}
+
+.resume-section p:hover,
+.resume-section > ul > li:hover:not(:has(ul li:hover)),
+.resume-section ul ul li:hover {
+  background-color: #f0f8ff;
 }
 
 .resume-section ul {
@@ -53,7 +93,7 @@ body {
 }
 
 .resume-section ul li {
-  margin-bottom: 10px;
+  margin-bottom: 7px;
 }
 
 .resume-section ul li strong {
@@ -65,7 +105,7 @@ body {
 }
 
 .resume-section ul ul li {
-  margin-bottom: 5px;
+  margin-bottom: 4px;
 }
 
 /* Contact Links */
@@ -97,13 +137,26 @@ body {
   }
 }
 
-/* Hover Effects */
-.resume-section ul li:hover {
-  background-color: #f0f8ff;
-  border-radius: 5px;
-  transition: background-color 0.3s ease;
-}
-
 .center-text {
   text-align: center;
+}
+
+@media (max-width: 768px) {
+  .resume-container {
+    margin: 0 0.75rem 1.5em;
+    padding: 1rem;
+  }
+
+  .resume-title {
+    font-size: 2rem;
+  }
+
+  .resume-switcher {
+    gap: 0.5rem;
+  }
+
+  .resume-switcher-link {
+    width: 100%;
+    text-align: center;
+  }
 }

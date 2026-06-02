@@ -44,11 +44,24 @@ function Header() {
             </Link>
             <Link
               className={`nav-item nav-link ${
-                location.pathname === "/resume" ? "active" : ""
+                location.pathname === "/resume/software-engineering" ||
+                location.pathname === "/resume"
+                  ? "active"
+                  : ""
               }`}
-              to="/resume"
+              to="/resume/software-engineering"
             >
-              Resume
+              Software Engineering
+            </Link>
+            <Link
+              className={`nav-item nav-link ${
+                location.pathname === "/resume/robotics-controls"
+                  ? "active"
+                  : ""
+              }`}
+              to="/resume/robotics-controls"
+            >
+              Robotics & Controls
             </Link>
           </div>
         </div>

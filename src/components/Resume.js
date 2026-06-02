@@ -2,6 +2,7 @@ import React from "react";
 import "./Resume.css";
 import { ReactComponent as LinkedIn } from "../images/linkedin.svg";
 import { ReactComponent as GitHub } from "../images/github.svg";
+import { Link } from "react-router-dom";
 
 function Resume() {
   const myResume =
@@ -16,11 +17,19 @@ function Resume() {
           </button>
         </a>
       </div>
-      <h1 className="resume-title">Patrick Engelbert's Resume</h1>
+      <h1 className="resume-title">Software Engineering Resume</h1>
+      <div className="resume-switcher">
+        <Link className="resume-switcher-link active" to="/resume/software-engineering">
+          Software Engineering
+        </Link>
+        <Link className="resume-switcher-link" to="/resume/robotics-controls">
+          Robotics & Industrial Controls
+        </Link>
+      </div>
       <div className="resume-section">
         <h2>Contact Information</h2>
         <p>
-          Ottawa, KS 66067 | patrickengelbert2@gmail.com | (785) 418-1614 |
+          Waco, TX | patrickengelbert2@gmail.com | (785) 418-1614 |
           <a
             href="https://www.linkedin.com/in/patrick-engelbert/"
             target="_blank"
@@ -52,8 +61,10 @@ function Resume() {
           TypeScript, JavaScript ES6+, Node.js, and more, creating responsive
           websites on both front and back ends. I have extensive experience in
           customer service, collaborating as a team, and manipulating complex
-          data structures. My main hobbies are building computers and learning
-          about the latest in science and technology.
+          data structures. I am also studying Robotics & Industrial Controls,
+          which adds hands-on perspective with PLCs, sensors, VFDs, computer
+          vision, robot interfacing, and troubleshooting systems that bridge
+          software with physical devices.
         </p>
       </div>
       <div className="resume-section">
@@ -63,7 +74,21 @@ function Resume() {
           | Python LLM Development | AI Development | Full-Stack Development |
           Cyber Security | HTML & CSS | Bootstrap | Git & GitHub | Jira |
           Bitbucket | Agile | SQL | Knex.js | .md | .json | Data Structures &
-          Algorithms | npm & yarn | Windows & Linux | Documentation
+          Algorithms | npm & yarn | Windows & Linux | Documentation | PLC
+          Concepts | Industrial I/O | Sensors | VFDs | Robot Interfacing
+        </p>
+      </div>
+      <div className="resume-section">
+        <h2>Systems & Controls Perspective</h2>
+        <p>
+          Current robotics and industrial controls training strengthens my
+          software work by adding practical experience with physical systems,
+          device behavior, structured troubleshooting, schematics, technical
+          documentation, and logic that must interact reliably with real-world
+          inputs and outputs. That background is especially useful for software
+          roles involving hardware integration, automation, internal tools,
+          manufacturing systems, data collection, IoT-style workflows, or
+          complex operational environments.
         </p>
       </div>
       <div className="resume-section">
@@ -147,7 +172,7 @@ function Resume() {
         <ul>
           <li>
             <strong>Full-Stack Software Engineer</strong>, Citizens Bank.
-            Johnston, RI (Mar 2022 – Nov 2023)
+            Johnston, RI (Mar 2022 – Nov 2024)
             <ul>
               <li>
                 Leveraged Angular, Typescript, and Node.js to engineer fast,
