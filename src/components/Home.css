@@ -15,6 +15,9 @@
   padding: 10px; /* Add some padding for the content against the transparent backgrouns */
   animation: popOut 0.5s ease-out;
   transition: color 0.2s ease-in-out;
+  max-width: 58rem;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .header-internal-content:hover {
@@ -78,9 +81,8 @@
 /* Hover effect */
 .btn:hover {
   background-color: #003d80;
-  transform: scale(1.1);
+  transform: translateY(-2px);
   box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
-  animation: bounce 0.5s; /* Add bounce animation */
 }
 
 /* Focus effect */
@@ -140,6 +142,13 @@
   }
 }
 
+@keyframes changeColor4 {
+  100% {
+    background: linear-gradient(45deg, #007bff, #0056b3);
+    color: #ffffff;
+  }
+}
+
 .btn-animations-plus:nth-child(1) {
   animation: expand 0.5s ease-in-out forwards, changeColor1 0.5s ease-in-out forwards;
   animation-delay: 0.5s, 0.5s;
@@ -153,6 +162,11 @@
 .btn-animations-plus:nth-child(3) {
   animation: expand 0.5s ease-in-out forwards, changeColor3 0.5s ease-in-out forwards;
   animation-delay: 1.5s, 1.5s;
+}
+
+.btn-animations-plus:nth-child(4) {
+  animation: expand 0.5s ease-in-out forwards, changeColor4 0.5s ease-in-out forwards;
+  animation-delay: 2s, 2s;
 }
 
 /* Shimmer effect */
@@ -199,6 +213,13 @@ img {
   max-height: 20em;
 }
 
+.profile-photo {
+  width: min(100%, 20rem);
+  aspect-ratio: 1;
+  object-fit: cover;
+  object-position: center 24%;
+}
+
 /* Adjust spacing for sections */
 .section-spacing {
   margin-top: 2rem;
@@ -221,12 +242,73 @@ img {
 /* Hover effect for buttons inside button-container */
 .button-container .btn:hover {
   background-color: #003d80;
-  transform: scale(1.1);
+  transform: translateY(-2px);
   box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
-  animation: bounce 0.5s; /* Add bounce animation */
 }
 
 .recoil-letter {
   display: inline-block;
   transition: transform 0.1s ease-out;
+}
+
+.recoil-word {
+  display: inline-block;
+  white-space: nowrap;
+}
+
+.recoil-space {
+  display: inline;
+}
+
+@media (max-width: 768px) {
+  .header-internal-content {
+    margin: 0 0.75rem;
+    border-radius: 0.5rem;
+    padding: 0.85rem;
+  }
+
+  .header-title {
+    font-size: 2.15rem;
+    line-height: 1.1;
+  }
+
+  .header-subtitle {
+    display: block;
+    font-size: 1.15rem;
+    margin-top: 0.35rem;
+  }
+
+  .header-lead {
+    font-size: 1rem;
+    line-height: 1.45;
+  }
+
+  .section-spacing {
+    margin-top: 1.25rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .home-btn-background {
+    width: calc(100% - 1.5rem);
+    margin: 1rem auto;
+    padding: 1rem;
+  }
+
+  .home-btn-background .btn {
+    width: 100%;
+    max-width: 19rem;
+    font-size: 1rem;
+  }
+
+  .profile-photo {
+    width: min(72vw, 15rem);
+    max-height: none;
+  }
+}
+
+@media (hover: none), (pointer: coarse) {
+  .recoil-letter {
+    transform: none !important;
+    transition: none;
+  }
 }
