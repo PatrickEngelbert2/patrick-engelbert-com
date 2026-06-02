@@ -1,6 +1,6 @@
 import React from "react";
-import { ReactComponent as LinkedIn } from "../images/linkedin.svg";
-import { ReactComponent as GitHub } from "../images/github.svg";
+import LinkedIn from "../images/linkedin.svg?react";
+import GitHub from "../images/github.svg?react";
 import { Link, useLocation } from "react-router-dom";
 import "./Header.css";
 
