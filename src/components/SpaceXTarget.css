@@ -77,10 +77,24 @@
 .spacex-vehicle {
   align-items: center;
   aspect-ratio: 1;
+  background: transparent;
+  border: 0;
+  border-radius: 50%;
+  color: inherit;
+  cursor: pointer;
   display: flex;
   justify-content: center;
   margin-top: clamp(0.4rem, 3vh, 2rem);
+  padding: 0;
   position: relative;
+}
+
+.spacex-vehicle:focus {
+  outline: none;
+}
+
+.spacex-vehicle:focus-visible {
+  box-shadow: 0 0 0 0.18rem rgba(125, 211, 252, 0.48);
 }
 
 .spacex-vehicle img {
@@ -103,6 +117,18 @@
   border-color: rgba(249, 115, 22, 0.34);
   inset: 25%;
   transform: rotate(34deg);
+}
+
+.spacex-vehicle.orbit-calibrating img {
+  animation: missionVehiclePulse 1.05s ease-in-out 2;
+}
+
+.spacex-vehicle.orbit-calibrating .spacex-orbit {
+  animation: orbitCalibrate 1.05s ease-in-out 2;
+}
+
+.spacex-vehicle.orbit-calibrating .orbit-two {
+  animation-delay: 0.12s;
 }
 
 .spacex-band {
@@ -212,5 +238,29 @@
 @media (max-width: 576px) {
   .spacex-brief {
     padding-top: 2.25rem;
+  }
+}
+
+@keyframes missionVehiclePulse {
+  0%,
+  100% {
+    transform: rotate(-32deg) scale(1);
+  }
+
+  50% {
+    transform: rotate(-25deg) scale(1.12);
+  }
+}
+
+@keyframes orbitCalibrate {
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    border-color: rgba(255, 221, 87, 0.9);
+    opacity: 0.95;
+    transform: rotate(0deg) scale(1.08);
   }
 }

@@ -12,10 +12,13 @@ function Home() {
   const [helmetActive, setHelmetActive] = useState(false);
   const [rocketLaunching, setRocketLaunching] = useState(false);
   const [profileSecretActive, setProfileSecretActive] = useState(false);
+  const [headlineSecretActive, setHeadlineSecretActive] = useState(false);
   const profilePhotoRef = useRef(null);
   const helmetTimerRef = useRef(null);
   const rocketTimerRef = useRef(null);
   const profileSecretTimerRef = useRef(null);
+  const headlineTapRef = useRef({ count: 0, time: 0 });
+  const headlineSecretTimerRef = useRef(null);
   const terminalTriggerRef = useRef({ source: "", time: 0 });
 
   const navigateToPortfolio = () => {
@@ -98,6 +101,30 @@ function Home() {
     }, 7200);
   };
 
+  const revealHeadlineSecret = () => {
+    const now = window.performance.now();
+    const previousTap = headlineTapRef.current;
+    const count = now - previousTap.time < 2200 ? previousTap.count + 1 : 1;
+
+    headlineTapRef.current = { count, time: now };
+
+    if (count < 3) {
+      return;
+    }
+
+    headlineTapRef.current = { count: 0, time: 0 };
+    unlockEgg("headline-tamer");
+    setHeadlineSecretActive(false);
+    window.clearTimeout(headlineSecretTimerRef.current);
+    window.requestAnimationFrame(() => {
+      setHeadlineSecretActive(true);
+    });
+
+    headlineSecretTimerRef.current = window.setTimeout(() => {
+      setHeadlineSecretActive(false);
+    }, 1800);
+  };
+
   useEffect(() => {
     const handleMouseMove = (event) => {
       const letters = document.querySelectorAll(".recoil-letter");
@@ -126,6 +153,7 @@ function Home() {
       window.clearTimeout(helmetTimerRef.current);
       window.clearTimeout(rocketTimerRef.current);
       window.clearTimeout(profileSecretTimerRef.current);
+      window.clearTimeout(headlineSecretTimerRef.current);
     };
   }, []);
 
@@ -154,7 +182,12 @@ function Home() {
   return (
     <>
       <div className="container">
-        <div className="header-internal-content">
+        <div
+          className={`header-internal-content${
+            headlineSecretActive ? " headline-secret-active" : ""
+          }`}
+          onClick={revealHeadlineSecret}
+        >
           <h1 className="header-title">
             {wrapTextInSpans("Patrick Engelbert:")}
             <small className="header-subtitle">

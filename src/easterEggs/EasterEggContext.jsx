@@ -43,6 +43,41 @@ export const EASTER_EGGS = [
     group: "Global",
     hint: "Any page: a classic key pattern starts with two ups.",
   },
+  {
+    id: "nameplate-ping",
+    name: "Nameplate Ping",
+    description: "Tapped the gold nameplate until it answered.",
+    group: "Global",
+    hint: "Any page: the gold name in the navigation bar likes repeated attention.",
+  },
+  {
+    id: "headline-tamer",
+    name: "Headline Tamer",
+    description: "Got the home page headline to settle down.",
+    group: "Home",
+    hint: "Home page: the big intro text reacts when you give it a few taps.",
+  },
+  {
+    id: "portfolio-inspector",
+    name: "Portfolio Inspector",
+    description: "Inspected enough projects to find the pattern.",
+    group: "Portfolio",
+    hint: "Portfolio page: look closely at several project cards.",
+  },
+  {
+    id: "double-degree",
+    name: "Double Degree",
+    description: "Found the fine print in the education section.",
+    group: "Software Resume",
+    hint: "Software resume: one education note is more clickable than it looks.",
+  },
+  {
+    id: "orbit-check",
+    name: "Orbit Check",
+    description: "Calibrated the hidden mission brief vehicle.",
+    group: "SpaceX",
+    hint: "SpaceX brief: the vehicle display is not just a decoration.",
+  },
 ];
 
 const EasterEggContext = createContext(null);

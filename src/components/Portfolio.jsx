@@ -1,7 +1,14 @@
-import React, { useEffect } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import "./Portfolio.css";
+import { useEasterEggs } from "../easterEggs/EasterEggContext";
+
+const PROJECT_INSPECTION_TARGET = 3;
 
 function Portfolio() {
+  const { unlockEgg } = useEasterEggs();
+  const [inspectedProjects, setInspectedProjects] = useState([]);
+  const inspectedProjectsRef = useRef([]);
+
   useEffect(() => {
     const handleMouseMove = (event) => {
       const letters = document.querySelectorAll(".recoil-letter");
@@ -24,6 +31,54 @@ function Portfolio() {
       document.removeEventListener("mousemove", handleMouseMove);
     };
   }, []);
+
+  const inspectProject = useCallback((projectId) => {
+    if (inspectedProjectsRef.current.includes(projectId)) {
+      return;
+    }
+
+    const nextProjects = [...inspectedProjectsRef.current, projectId];
+    inspectedProjectsRef.current = nextProjects;
+    setInspectedProjects(nextProjects);
+
+    if (nextProjects.length >= PROJECT_INSPECTION_TARGET) {
+      unlockEgg("portfolio-inspector");
+    }
+  }, [unlockEgg]);
+
+  useEffect(() => {
+    if (!("IntersectionObserver" in window)) {
+      return undefined;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) {
+            return;
+          }
+
+          const projectId = entry.target.getAttribute("data-project-id");
+          if (projectId) {
+            inspectProject(projectId);
+          }
+        });
+      },
+      { threshold: 0.35 }
+    );
+
+    const projectCards = document.querySelectorAll(".portfolio-project-card");
+    projectCards.forEach((card) => observer.observe(card));
+
+    return () => {
+      observer.disconnect();
+    };
+  }, [inspectProject]);
+
+  const projectCardClass = (projectId, baseClass) =>
+    `${baseClass}${
+      inspectedProjects.includes(projectId) ? " portfolio-inspected" : ""
+    }`;
 
   const wrapTextInSpans = (text) => {
     return text.split("").map((char, index) => (
@@ -51,9 +106,17 @@ function Portfolio() {
         </div>
         <div className="container">
           <div className="row">
-            <div className="col attention-border card-background">
+            <div
+              className={projectCardClass(
+                "tikverse",
+                "col attention-border card-background portfolio-project-card"
+              )}
+              data-project-id="tikverse"
+              onMouseEnter={() => inspectProject("tikverse")}
+            >
               <a
                 href="https://tikverse.vercel.app/"
+                onFocus={() => inspectProject("tikverse")}
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -97,9 +160,17 @@ function Portfolio() {
               </h3>
             </div>
             <div className="row">
-              <div className="col attention-border card-background">
+              <div
+                className={projectCardClass(
+                  "pomodoro",
+                  "col attention-border card-background portfolio-project-card"
+                )}
+                data-project-id="pomodoro"
+                onMouseEnter={() => inspectProject("pomodoro")}
+              >
                 <a
                   href="https://pomodoro-timer-patrick-engelbert.vercel.app/"
+                  onFocus={() => inspectProject("pomodoro")}
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -136,9 +207,17 @@ function Portfolio() {
               </div>
             </div>
             <div className="row">
-              <div className="col attention-border card-background">
+              <div
+                className={projectCardClass(
+                  "stuffi",
+                  "col attention-border card-background portfolio-project-card"
+                )}
+                data-project-id="stuffi"
+                onMouseEnter={() => inspectProject("stuffi")}
+              >
                 <a
                   href="https://www.stuffi.app/"
+                  onFocus={() => inspectProject("stuffi")}
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -209,9 +288,17 @@ function Portfolio() {
             </div>
           </div>
           <div className="flex-container">
-            <div className="flex-item attention-border card-background">
+            <div
+              className={projectCardClass(
+                "periodic-reservations",
+                "flex-item attention-border card-background portfolio-project-card"
+              )}
+              data-project-id="periodic-reservations"
+              onMouseEnter={() => inspectProject("periodic-reservations")}
+            >
               <a
                 href="https://periodic-reservations.herokuapp.com/dashboard?date=2022-04-30"
+                onFocus={() => inspectProject("periodic-reservations")}
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -233,9 +320,17 @@ function Portfolio() {
                 </small>
               </h3>
             </div>
-            <div className="flex-item attention-border card-background">
+            <div
+              className={projectCardClass(
+                "grub-dash",
+                "flex-item attention-border card-background portfolio-project-card"
+              )}
+              data-project-id="grub-dash"
+              onMouseEnter={() => inspectProject("grub-dash")}
+            >
               <a
                 href="https://grubdash-client1.herokuapp.com/dashboard"
+                onFocus={() => inspectProject("grub-dash")}
                 target="_blank"
                 rel="noopener noreferrer"
               >

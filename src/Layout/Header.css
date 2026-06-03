@@ -53,6 +53,10 @@ header {
   transform: scale(1.1);
 }
 
+.navbar-brand.brand-ping {
+  animation: brandPing 1.25s ease-out;
+}
+
 .navbar-nav .nav-link {
   font-size: 1.2rem;
   margin-right: 1.5rem;
@@ -211,4 +215,18 @@ header {
 
 .request-contact-info-btn {
   margin-right: 20px !important;
+}
+
+@keyframes brandPing {
+  0%,
+  100% {
+    text-shadow: none;
+  }
+
+  35% {
+    color: #ffffff;
+    text-shadow: 0 0 0.65rem rgba(255, 221, 87, 0.96),
+      0 0 1.2rem rgba(125, 211, 252, 0.82);
+    transform: scale(1.12);
+  }
 }

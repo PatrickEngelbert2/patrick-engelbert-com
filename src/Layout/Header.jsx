@@ -2,12 +2,17 @@ import React, { useEffect, useRef, useState } from "react";
 import LinkedIn from "../images/linkedin.svg?react";
 import GitHub from "../images/github.svg?react";
 import { Link, useLocation } from "react-router-dom";
+import { useEasterEggs } from "../easterEggs/EasterEggContext";
 import "./Header.css";
 
 function Header() {
   const location = useLocation();
+  const { unlockEgg } = useEasterEggs();
   const [resumeMenuOpen, setResumeMenuOpen] = useState(false);
+  const [brandPingActive, setBrandPingActive] = useState(false);
   const resumeMenuRef = useRef(null);
+  const brandTapRef = useRef({ count: 0, time: 0 });
+  const brandPingTimerRef = useRef(null);
   const resumeActive =
     location.pathname === "/resume/software-engineering" ||
     location.pathname === "/resume/robotics-controls" ||
@@ -15,6 +20,31 @@ function Header() {
 
   const closeResumeMenu = () => {
     setResumeMenuOpen(false);
+  };
+
+  const revealBrandPing = () => {
+    brandTapRef.current = { count: 0, time: 0 };
+    unlockEgg("nameplate-ping");
+    setBrandPingActive(false);
+    window.clearTimeout(brandPingTimerRef.current);
+    window.requestAnimationFrame(() => {
+      setBrandPingActive(true);
+    });
+    brandPingTimerRef.current = window.setTimeout(() => {
+      setBrandPingActive(false);
+    }, 1400);
+  };
+
+  const handleBrandClick = () => {
+    const now = window.performance.now();
+    const previousTap = brandTapRef.current;
+    const count = now - previousTap.time < 1600 ? previousTap.count + 1 : 1;
+
+    brandTapRef.current = { count, time: now };
+
+    if (count >= 2) {
+      revealBrandPing();
+    }
   };
 
   useEffect(() => {
@@ -49,10 +79,21 @@ function Header() {
     };
   }, [resumeMenuOpen]);
 
+  useEffect(() => {
+    return () => {
+      window.clearTimeout(brandPingTimerRef.current);
+    };
+  }, []);
+
   return (
     <header className="sticky-inner subtle-shadow">
       <nav className="navbar navbar-default navbar-static-top navbar-expand-lg navbar-light navbar-dark bg-gradient">
-        <Link className="navbar-brand" to="/">
+        <Link
+          className={`navbar-brand${brandPingActive ? " brand-ping" : ""}`}
+          onClick={handleBrandClick}
+          onDoubleClick={revealBrandPing}
+          to="/"
+        >
           Patrick Engelbert
         </Link>
         <button
