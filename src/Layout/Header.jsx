@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import LinkedIn from "../images/linkedin.svg?react";
 import GitHub from "../images/github.svg?react";
 import { Link, useLocation } from "react-router-dom";
@@ -6,6 +6,48 @@ import "./Header.css";
 
 function Header() {
   const location = useLocation();
+  const [resumeMenuOpen, setResumeMenuOpen] = useState(false);
+  const resumeMenuRef = useRef(null);
+  const resumeActive =
+    location.pathname === "/resume/software-engineering" ||
+    location.pathname === "/resume/robotics-controls" ||
+    location.pathname === "/resume";
+
+  const closeResumeMenu = () => {
+    setResumeMenuOpen(false);
+  };
+
+  useEffect(() => {
+    setResumeMenuOpen(false);
+  }, [location.pathname]);
+
+  useEffect(() => {
+    if (!resumeMenuOpen) {
+      return undefined;
+    }
+
+    const handlePointerDown = (event) => {
+      if (resumeMenuRef.current?.contains(event.target)) {
+        return;
+      }
+
+      setResumeMenuOpen(false);
+    };
+
+    const handleKeyDown = (event) => {
+      if (event.key === "Escape") {
+        setResumeMenuOpen(false);
+      }
+    };
+
+    document.addEventListener("pointerdown", handlePointerDown);
+    document.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      document.removeEventListener("pointerdown", handlePointerDown);
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [resumeMenuOpen]);
 
   return (
     <header className="sticky-inner subtle-shadow">
@@ -42,27 +84,69 @@ function Header() {
             >
               Portfolio
             </Link>
-            <Link
-              className={`nav-item nav-link ${
-                location.pathname === "/resume/software-engineering" ||
-                location.pathname === "/resume"
-                  ? "active"
-                  : ""
-              }`}
-              to="/resume/software-engineering"
+            <div className="resume-nav-direct">
+              <Link
+                className={`nav-item nav-link ${
+                  location.pathname === "/resume/software-engineering" ||
+                  location.pathname === "/resume"
+                    ? "active"
+                    : ""
+                }`}
+                to="/resume/software-engineering"
+              >
+                Software Engineering
+              </Link>
+              <Link
+                className={`nav-item nav-link ${
+                  location.pathname === "/resume/robotics-controls"
+                    ? "active"
+                    : ""
+                }`}
+                to="/resume/robotics-controls"
+              >
+                Robotics & Controls
+              </Link>
+            </div>
+            <div
+              className={`resume-nav-menu${
+                resumeMenuOpen ? " open" : ""
+              }${resumeActive ? " active" : ""}`}
+              ref={resumeMenuRef}
             >
-              Software Engineering
-            </Link>
-            <Link
-              className={`nav-item nav-link ${
-                location.pathname === "/resume/robotics-controls"
-                  ? "active"
-                  : ""
-              }`}
-              to="/resume/robotics-controls"
-            >
-              Robotics & Controls
-            </Link>
+              <button
+                aria-controls="resumeNavDropdown"
+                aria-expanded={resumeMenuOpen}
+                aria-haspopup="true"
+                className="nav-item nav-link resume-nav-toggle"
+                onClick={() => setResumeMenuOpen((current) => !current)}
+                type="button"
+              >
+                Resumes
+                <i className="bi bi-chevron-down" aria-hidden="true" />
+              </button>
+              <div
+                className="resume-nav-dropdown"
+                id="resumeNavDropdown"
+                role="menu"
+              >
+                <Link
+                  className="resume-nav-dropdown-link"
+                  onClick={closeResumeMenu}
+                  role="menuitem"
+                  to="/resume/software-engineering"
+                >
+                  Software Engineering
+                </Link>
+                <Link
+                  className="resume-nav-dropdown-link"
+                  onClick={closeResumeMenu}
+                  role="menuitem"
+                  to="/resume/robotics-controls"
+                >
+                  Robotics & Controls
+                </Link>
+              </div>
+            </div>
           </div>
         </div>
         <div className="ml-auto d-flex align-items-center">
