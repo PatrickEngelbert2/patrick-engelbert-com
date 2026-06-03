@@ -1,0 +1,46 @@
+.spacex-return-button {
+  align-items: center;
+  background: #0b1220;
+  border: 1px solid rgba(125, 211, 252, 0.42);
+  border-radius: 999px;
+  bottom: 1rem;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.28);
+  color: #ffffff;
+  display: inline-flex;
+  font-weight: 800;
+  gap: 0.45rem;
+  left: 1rem;
+  min-height: 2.75rem;
+  padding: 0.5rem 0.75rem;
+  position: fixed;
+  transition: background-color 0.18s ease, border-color 0.18s ease,
+    transform 0.18s ease;
+  z-index: 30;
+}
+
+.spacex-return-button:hover,
+.spacex-return-button:focus {
+  background: #12315a;
+  border-color: #7dd3fc;
+  outline: none;
+  transform: translateY(-1px);
+}
+
+.spacex-return-button i {
+  color: #fb923c;
+  font-size: 1.05rem;
+  line-height: 1;
+}
+
+.spacex-return-button span {
+  line-height: 1;
+}
+
+@media (max-width: 576px) {
+  .spacex-return-button {
+    bottom: 0.75rem;
+    font-size: 0.85rem;
+    left: 0.75rem;
+    min-height: 2.45rem;
+  }
+}

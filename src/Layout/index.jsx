@@ -13,6 +13,11 @@ import UserContactPatrickForm from "../components/UserContactPatrickForm";
 import ContactInfoRequestForm from "../components/ContactInfoRequestForm";
 import Resume from "../components/Resume";
 import RoboticsResume from "../components/RoboticsResume";
+import SpaceXTarget from "../components/SpaceXTarget";
+import { EasterEggProvider } from "../easterEggs/EasterEggContext";
+import SecretTerminal from "../easterEggs/SecretTerminal";
+import SpaceXReturnButton from "../easterEggs/SpaceXReturnButton";
+import TrophyRoom from "../easterEggs/TrophyRoom";
 
 function Layout() {
   const [isSticky, setSticky] = useState(false);
@@ -32,6 +37,7 @@ function Layout() {
   }, []);
 
   return (
+    <EasterEggProvider>
     <div className="app-container parallax">
       {/* Added container for flexbox layout */}
       <div className={`sticky-wrapper${isSticky ? " sticky" : ""}`} ref={ref}>
@@ -70,6 +76,9 @@ function Layout() {
             <Route exact path="/resume/robotics-controls">
               <RoboticsResume />
             </Route>
+            <Route exact path="/spacex">
+              <SpaceXTarget />
+            </Route>
             <Route>
               <NotFound />
             </Route>
@@ -77,6 +86,10 @@ function Layout() {
       </main>
       <Footer />
     </div>
+    <SecretTerminal />
+    <SpaceXReturnButton />
+    <TrophyRoom />
+    </EasterEggProvider>
   );
 }
 

@@ -1,11 +1,60 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./Resume.css";
 import { Link } from "react-router-dom";
 import LinkedIn from "../images/linkedin.svg?react";
 import GitHub from "../images/github.svg?react";
+import { useEasterEggs } from "../easterEggs/EasterEggContext";
+
+const commissioningSteps = [
+  { id: "power", label: "Power", status: "PWR" },
+  { id: "plc", label: "PLC", status: "PLC" },
+  { id: "robot", label: "Robot", status: "ROBOT" },
+  { id: "cycle", label: "Cycle Start", status: "RUN" },
+];
 
 function RoboticsResume() {
   const roboticsResumePdf = "/Patrick_Engelbert_Robotics_Controls_Resume.pdf";
+  const { isUnlocked, unlockEgg } = useEasterEggs();
+  const commissioned = isUnlocked("commissioned");
+  const [panelOpen, setPanelOpen] = useState(false);
+  const [commissioningStep, setCommissioningStep] = useState(0);
+  const [panelStatus, setPanelStatus] = useState(commissioned ? "RUN" : "IDLE");
+
+  useEffect(() => {
+    if (commissioned) {
+      setPanelStatus("RUN");
+      setCommissioningStep(commissioningSteps.length);
+      return;
+    }
+
+    setPanelStatus("IDLE");
+    setCommissioningStep(0);
+  }, [commissioned]);
+
+  const handleCommissioningStep = (stepId, stepIndex) => {
+    if (commissioned) {
+      setPanelStatus("RUN");
+      return;
+    }
+
+    const expectedStep = commissioningSteps[commissioningStep];
+    if (!expectedStep || expectedStep.id !== stepId || stepIndex !== commissioningStep) {
+      setCommissioningStep(0);
+      setPanelStatus("FAULT");
+      return;
+    }
+
+    const nextStep = commissioningStep + 1;
+    setCommissioningStep(nextStep);
+
+    if (nextStep === commissioningSteps.length) {
+      setPanelStatus("RUN");
+      unlockEgg("commissioned");
+      return;
+    }
+
+    setPanelStatus(commissioningSteps[nextStep - 1].status);
+  };
 
   return (
     <div className="resume-container">
@@ -16,7 +65,45 @@ function RoboticsResume() {
           </button>
         </a>
       </div>
-      <h1 className="resume-title">Robotics & Industrial Controls Resume</h1>
+      <div className="resume-title-control">
+        <h1 className="resume-title">Robotics & Industrial Controls Resume</h1>
+        <div className={`commissioning-console${commissioned ? " run" : ""}`}>
+          <button
+            aria-expanded={panelOpen}
+            className="commissioning-trigger"
+            onClick={() => setPanelOpen((current) => !current)}
+            type="button"
+          >
+            <span className="commissioning-light" />
+            <span>{panelStatus}</span>
+          </button>
+          {panelOpen && (
+            <div className="commissioning-panel" aria-label="Commissioning panel">
+              <div className="commissioning-steps">
+                {commissioningSteps.map((step, index) => {
+                  const complete = commissioned || index < commissioningStep;
+                  const armed = !commissioned && index === commissioningStep;
+                  return (
+                    <button
+                      className={`commissioning-step${
+                        complete ? " complete" : ""
+                      }${armed ? " armed" : ""}`}
+                      key={step.id}
+                      onClick={() => handleCommissioningStep(step.id, index)}
+                      type="button"
+                    >
+                      {step.label}
+                    </button>
+                  );
+                })}
+              </div>
+              <div className="commissioning-readout">
+                {commissioned ? "COMMISSIONED" : panelStatus}
+              </div>
+            </div>
+          )}
+        </div>
+      </div>
       <div className="resume-switcher">
         <Link className="resume-switcher-link" to="/resume/software-engineering">
           Software Engineering
