@@ -69,6 +69,12 @@
   margin-bottom: 20px; /* Space below the border */
 }
 
+.attention-border.portfolio-inspected {
+  border-color: #1f9d66;
+  box-shadow: 0 0 0 0.12rem rgba(31, 157, 102, 0.16),
+    0 0 10px rgba(0, 0, 0, 0.1);
+}
+
 .custom-list {
   margin-top: 5px; /* Adjust this value to increase spacing before the list */
   margin-bottom: 0px; /* Adjust this value to reduce spacing after the list */

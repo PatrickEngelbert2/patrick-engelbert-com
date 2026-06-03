@@ -3,8 +3,10 @@ import "./Resume.css";
 import LinkedIn from "../images/linkedin.svg?react";
 import GitHub from "../images/github.svg?react";
 import { Link } from "react-router-dom";
+import { useEasterEggs } from "../easterEggs/EasterEggContext";
 
 function Resume() {
+  const { unlockEgg } = useEasterEggs();
   const myResume =
     "https://images-patrickengelbert.s3.us-east-2.amazonaws.com/Patrick+Engelbert+Resume.pdf";
 
@@ -288,8 +290,14 @@ function Resume() {
               <li>Associate of Science DEGREE, Philosophy (May 2020)</li>
               <li>Associate of Arts DEGREE, Philosophy (May 2020)</li>
               <li>
-                Yes. I did earn 2 associate degrees in the same school year.
-                &#x1F60E;
+                <button
+                  className="resume-inline-secret"
+                  onClick={() => unlockEgg("double-degree")}
+                  type="button"
+                >
+                  Yes. I did earn 2 associate degrees in the same school year.
+                  &#x1F60E;
+                </button>
               </li>
             </ul>
           </li>

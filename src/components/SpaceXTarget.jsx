@@ -1,9 +1,32 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import Rocket from "../images/rocket.svg";
+import { useEasterEggs } from "../easterEggs/EasterEggContext";
 import "./SpaceXTarget.css";
 
 function SpaceXTarget() {
+  const { unlockEgg } = useEasterEggs();
+  const [orbitCalibrating, setOrbitCalibrating] = useState(false);
+  const orbitTimerRef = useRef(null);
+
+  const calibrateOrbit = () => {
+    unlockEgg("orbit-check");
+    setOrbitCalibrating(false);
+    window.clearTimeout(orbitTimerRef.current);
+    window.requestAnimationFrame(() => {
+      setOrbitCalibrating(true);
+    });
+    orbitTimerRef.current = window.setTimeout(() => {
+      setOrbitCalibrating(false);
+    }, 2200);
+  };
+
+  useEffect(() => {
+    return () => {
+      window.clearTimeout(orbitTimerRef.current);
+    };
+  }, []);
+
   return (
     <div className="spacex-brief">
       <section className="spacex-hero">
@@ -27,11 +50,18 @@ function SpaceXTarget() {
             </Link>
           </div>
         </div>
-        <div className="spacex-vehicle" aria-hidden="true">
+        <button
+          aria-label="Calibrate mission vehicle"
+          className={`spacex-vehicle${
+            orbitCalibrating ? " orbit-calibrating" : ""
+          }`}
+          onClick={calibrateOrbit}
+          type="button"
+        >
           <img src={Rocket} alt="" />
           <span className="spacex-orbit orbit-one" />
           <span className="spacex-orbit orbit-two" />
-        </div>
+        </button>
       </section>
 
       <section className="spacex-band">

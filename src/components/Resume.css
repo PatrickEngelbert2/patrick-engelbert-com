@@ -228,6 +228,23 @@ body {
   margin-bottom: 4px;
 }
 
+.resume-inline-secret {
+  background: transparent;
+  border: 0;
+  border-radius: 5px;
+  color: inherit;
+  cursor: pointer;
+  font: inherit;
+  padding: 0;
+  text-align: left;
+}
+
+.resume-inline-secret:hover,
+.resume-inline-secret:focus {
+  background-color: #f0f8ff;
+  outline: none;
+}
+
 /* Contact Links */
 .contact-link {
   color: #007bff;
