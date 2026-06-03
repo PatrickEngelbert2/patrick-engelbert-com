@@ -59,11 +59,13 @@ function TrophyRoom() {
     resetEggs,
     terminalCheatUsed,
     toggleBlueprintMode,
+    unlockEgg,
     unlockedEggs,
   } = useEasterEggs();
   const [isOpen, setIsOpen] = useState(false);
   const [shareStatus, setShareStatus] = useState("");
   const [visibleHints, setVisibleHints] = useState({});
+  const [schematicNoteVisible, setSchematicNoteVisible] = useState(false);
   const latestEgg = eggs.find((egg) => egg.id === latestUnlock);
   const unlockedCount = unlockedEggs.length;
   const totalEggs = eggs.length;
@@ -116,6 +118,7 @@ function TrophyRoom() {
 
   const handleReset = () => {
     resetEggs();
+    setSchematicNoteVisible(false);
     setShareStatus("");
     setVisibleHints({});
     setIsOpen(false);
@@ -155,6 +158,11 @@ function TrophyRoom() {
       document.body.removeChild(textarea);
       setShareStatus("Copied");
     }
+  };
+
+  const revealSchematicNote = () => {
+    setSchematicNoteVisible(true);
+    unlockEgg("blueprint-inspector");
   };
 
   if (unlockedEggs.length === 0 && !latestUnlock) {
@@ -280,6 +288,16 @@ function TrophyRoom() {
                   <h3>Blueprint Mode</h3>
                 </div>
                 <button
+                  aria-label="Inspect schematic note"
+                  className={`schematic-mark${
+                    schematicNoteVisible ? " active" : ""
+                  }`}
+                  onClick={revealSchematicNote}
+                  type="button"
+                >
+                  <span />
+                </button>
+                <button
                   aria-checked={blueprintMode}
                   className={`blueprint-switch${
                     blueprintMode ? " active" : ""
@@ -294,6 +312,12 @@ function TrophyRoom() {
                   <span>{blueprintMode ? "On" : "Off"}</span>
                 </button>
               </div>
+              {schematicNoteVisible && (
+                <p className="schematic-note">
+                  Schematic note: two skill buses meet cleanly at the same
+                  controller.
+                </p>
+              )}
             </section>
           )}
 

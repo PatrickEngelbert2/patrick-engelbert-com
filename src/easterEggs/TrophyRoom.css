@@ -257,6 +257,67 @@
   margin: 0.1rem 0 0;
 }
 
+.schematic-mark {
+  align-items: center;
+  background: #eef6ff;
+  border: 1px solid rgba(16, 93, 153, 0.28);
+  border-radius: 0.3rem;
+  display: inline-flex;
+  flex: 0 0 auto;
+  height: 1.65rem;
+  justify-content: center;
+  padding: 0;
+  position: relative;
+  width: 1.65rem;
+}
+
+.schematic-mark::before,
+.schematic-mark::after,
+.schematic-mark span {
+  background: #0b65ad;
+  content: "";
+  display: block;
+  position: absolute;
+}
+
+.schematic-mark::before {
+  height: 1px;
+  left: 0.32rem;
+  right: 0.32rem;
+  top: 0.78rem;
+}
+
+.schematic-mark::after {
+  bottom: 0.32rem;
+  top: 0.32rem;
+  width: 1px;
+}
+
+.schematic-mark span {
+  border-radius: 999px;
+  height: 0.36rem;
+  width: 0.36rem;
+}
+
+.schematic-mark:hover,
+.schematic-mark:focus,
+.schematic-mark.active {
+  background: #dff0ff;
+  border-color: rgba(16, 93, 153, 0.58);
+  outline: none;
+}
+
+.schematic-note {
+  background: #eef6ff;
+  border-left: 3px solid #0b65ad;
+  border-radius: 0.35rem;
+  color: #26364a;
+  font-size: 0.82rem;
+  line-height: 1.35;
+  margin: 0;
+  padding: 0.55rem 0.65rem;
+}
+
 .blueprint-switch {
   align-items: center;
   background: #e4eef7;

@@ -14,11 +14,15 @@ const commissioningSteps = [
 
 function RoboticsResume() {
   const roboticsResumePdf = "/Patrick_Engelbert_Robotics_Controls_Resume.pdf";
-  const { isUnlocked, unlockEgg } = useEasterEggs();
+  const { isUnlocked, markResumeVisited, unlockEgg } = useEasterEggs();
   const commissioned = isUnlocked("commissioned");
   const [panelOpen, setPanelOpen] = useState(false);
   const [commissioningStep, setCommissioningStep] = useState(0);
   const [panelStatus, setPanelStatus] = useState(commissioned ? "RUN" : "IDLE");
+
+  useEffect(() => {
+    markResumeVisited("robotics");
+  }, [markResumeVisited]);
 
   useEffect(() => {
     if (commissioned) {

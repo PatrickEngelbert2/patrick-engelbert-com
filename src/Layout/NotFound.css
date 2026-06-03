@@ -19,6 +19,62 @@
     font-size: 1.2rem;
     margin-bottom: 20px;
   }
+
+  .lost-signal-panel {
+    background: #111827;
+    border: 1px solid rgba(125, 211, 252, 0.42);
+    border-radius: 0.5rem;
+    box-shadow: 0 12px 26px rgba(0, 0, 0, 0.24);
+    color: #dbeafe;
+    display: grid;
+    gap: 0.55rem;
+    margin-bottom: 1.1rem;
+    max-width: min(22rem, 100%);
+    padding: 0.85rem;
+    width: 22rem;
+  }
+
+  .lost-signal-panel span {
+    color: #7dd3fc;
+    font-size: 0.78rem;
+    font-weight: 900;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .lost-signal-panel input {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    border-radius: 0.35rem;
+    color: #ffffff;
+    padding: 0.55rem 0.65rem;
+  }
+
+  .lost-signal-panel input:focus {
+    border-color: #7dd3fc;
+    outline: none;
+  }
+
+  .lost-signal-actions {
+    display: grid;
+    gap: 0.45rem;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .lost-signal-actions button {
+    background: rgba(125, 211, 252, 0.12);
+    border: 1px solid rgba(125, 211, 252, 0.36);
+    border-radius: 0.35rem;
+    color: #ffffff;
+    font-weight: 800;
+    padding: 0.42rem 0.55rem;
+  }
+
+  .lost-signal-actions button:hover,
+  .lost-signal-actions button:focus {
+    background: rgba(125, 211, 252, 0.2);
+    outline: none;
+  }
   
   .home-link {
     display: inline-block;
@@ -30,8 +86,7 @@
     text-decoration: none;
     transition: background-color 0.3s ease;
   }
-  
+
   .home-link:hover {
     background-color: #0056b3;
   }
-  

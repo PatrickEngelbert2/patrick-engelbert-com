@@ -4,8 +4,15 @@ import Rocket from "../images/rocket.svg";
 import { useEasterEggs } from "../easterEggs/EasterEggContext";
 import "./SpaceXTarget.css";
 
+const flightChecklist = [
+  { id: "controls", label: "Controls" },
+  { id: "software", label: "Software" },
+  { id: "contact", label: "Contact" },
+];
+
 function SpaceXTarget() {
-  const { unlockEgg } = useEasterEggs();
+  const { markSpaceXChecklistStep, spaceXChecklistStep, unlockEgg } =
+    useEasterEggs();
   const [orbitCalibrating, setOrbitCalibrating] = useState(false);
   const orbitTimerRef = useRef(null);
 
@@ -39,15 +46,37 @@ function SpaceXTarget() {
             machines.
           </p>
           <div className="spacex-actions">
-            <Link className="spacex-action primary" to="/resume/robotics-controls">
+            <Link
+              className="spacex-action primary"
+              onClick={() => markSpaceXChecklistStep("controls")}
+              to="/resume/robotics-controls"
+            >
               Controls Resume
             </Link>
-            <Link className="spacex-action" to="/resume/software-engineering">
+            <Link
+              className="spacex-action"
+              onClick={() => markSpaceXChecklistStep("software")}
+              to="/resume/software-engineering"
+            >
               Software Resume
             </Link>
-            <Link className="spacex-action" to="/contact">
+            <Link
+              className="spacex-action"
+              onClick={() => markSpaceXChecklistStep("contact")}
+              to="/contact"
+            >
               Contact
             </Link>
+          </div>
+          <div className="spacex-launch-checklist" aria-label="Launch checklist">
+            {flightChecklist.map((item, index) => (
+              <span
+                className={index < spaceXChecklistStep ? "complete" : ""}
+                key={item.id}
+              >
+                {item.label}
+              </span>
+            ))}
           </div>
         </div>
         <button
