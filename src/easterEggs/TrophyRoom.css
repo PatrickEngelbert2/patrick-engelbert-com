@@ -1,0 +1,345 @@
+.trophy-room-button {
+  align-items: center;
+  background: #172033;
+  border: 1px solid rgba(255, 255, 255, 0.32);
+  border-radius: 999px;
+  bottom: 1rem;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.28);
+  color: #ffffff;
+  display: inline-flex;
+  gap: 0.45rem;
+  min-height: 2.75rem;
+  padding: 0.45rem 0.7rem;
+  position: fixed;
+  right: 1rem;
+  z-index: 30;
+}
+
+.trophy-room-button:hover,
+.trophy-room-button:focus {
+  background: #22375c;
+  outline: none;
+}
+
+.trophy-icon {
+  fill: none;
+  height: 1.45rem;
+  stroke: #ffd45a;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 3.2;
+  width: 1.45rem;
+}
+
+.trophy-room-count {
+  font-size: 0.9rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.egg-toast {
+  animation: eggToastIn 0.25s ease-out;
+  background: #fffef7;
+  border: 2px solid #ffd45a;
+  border-radius: 0.5rem;
+  bottom: 4.25rem;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.22);
+  color: #172033;
+  max-width: min(18rem, calc(100vw - 2rem));
+  padding: 0.75rem 0.9rem;
+  position: fixed;
+  right: 1rem;
+  z-index: 31;
+}
+
+.egg-toast-label {
+  color: #516070;
+  display: block;
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.egg-toast strong {
+  display: block;
+  font-size: 1.05rem;
+  margin-top: 0.1rem;
+}
+
+.trophy-room-panel {
+  background: #f8fafc;
+  border: 1px solid rgba(23, 32, 51, 0.18);
+  border-radius: 0.5rem;
+  bottom: 4.25rem;
+  box-shadow: 0 16px 38px rgba(0, 0, 0, 0.28);
+  color: #172033;
+  max-height: calc(100vh - 5.5rem);
+  max-height: calc(100svh - 5.5rem);
+  max-width: min(23rem, calc(100vw - 2rem));
+  overflow-y: auto;
+  padding: 1rem;
+  position: fixed;
+  right: 1rem;
+  width: 23rem;
+  z-index: 32;
+}
+
+.trophy-room-header {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 0.75rem;
+}
+
+.trophy-room-header h2 {
+  color: #172033;
+  font-size: 1.2rem;
+  margin: 0;
+}
+
+.trophy-room-actions {
+  display: inline-flex;
+  gap: 0.45rem;
+}
+
+.trophy-room-small-button {
+  background: transparent;
+  border: 1px solid rgba(23, 32, 51, 0.25);
+  border-radius: 0.35rem;
+  color: #172033;
+  font-size: 0.85rem;
+  padding: 0.25rem 0.55rem;
+}
+
+.trophy-list {
+  display: grid;
+  gap: 0.65rem;
+}
+
+.trophy-card {
+  align-items: center;
+  background: #e9eef5;
+  border: 1px solid rgba(23, 32, 51, 0.12);
+  border-radius: 0.5rem;
+  display: grid;
+  gap: 0.75rem;
+  grid-template-columns: 2rem 1fr;
+  padding: 0.7rem;
+}
+
+.trophy-card.unlocked {
+  background: #fff8d8;
+  border-color: #ffd45a;
+}
+
+.trophy-card-mark {
+  align-items: center;
+  background: #172033;
+  border-radius: 999px;
+  color: #ffffff;
+  display: inline-flex;
+  font-weight: 800;
+  height: 2rem;
+  justify-content: center;
+  width: 2rem;
+}
+
+.trophy-card.unlocked .trophy-card-mark {
+  background: #246a46;
+}
+
+.trophy-card h3 {
+  color: #172033;
+  font-size: 1rem;
+  margin: 0 0 0.1rem;
+}
+
+.trophy-card p {
+  color: #4a5567;
+  font-size: 0.88rem;
+  margin: 0;
+}
+
+.trophy-bonus-panel {
+  border-top: 1px solid rgba(23, 32, 51, 0.12);
+  display: grid;
+  gap: 0.85rem;
+  margin-top: 0.85rem;
+  padding-top: 0.85rem;
+}
+
+.blueprint-reward-row {
+  align-items: center;
+  display: flex;
+  gap: 0.85rem;
+  justify-content: space-between;
+}
+
+.trophy-room-kicker {
+  color: #4b6f90;
+  display: block;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  line-height: 1.1;
+  text-transform: uppercase;
+}
+
+.blueprint-reward-row h3 {
+  color: #172033;
+  font-size: 1rem;
+  margin: 0.1rem 0 0;
+}
+
+.blueprint-switch {
+  align-items: center;
+  background: #e4eef7;
+  border: 1px solid rgba(23, 32, 51, 0.18);
+  border-radius: 999px;
+  color: #172033;
+  display: inline-flex;
+  flex: 0 0 auto;
+  font-size: 0.82rem;
+  font-weight: 800;
+  gap: 0.42rem;
+  min-height: 2rem;
+  padding: 0.22rem 0.55rem 0.22rem 0.28rem;
+  transition: background-color 0.18s ease, border-color 0.18s ease,
+    color 0.18s ease;
+}
+
+.blueprint-switch:hover,
+.blueprint-switch:focus {
+  border-color: rgba(16, 93, 153, 0.48);
+  outline: none;
+}
+
+.blueprint-switch.active {
+  background: #0a3e6e;
+  border-color: #2ea8ff;
+  color: #ffffff;
+}
+
+.blueprint-switch-track {
+  align-items: center;
+  background: rgba(23, 32, 51, 0.24);
+  border-radius: 999px;
+  display: inline-flex;
+  height: 1.4rem;
+  padding: 0.13rem;
+  width: 2.5rem;
+}
+
+.blueprint-switch.active .blueprint-switch-track {
+  background: rgba(255, 255, 255, 0.24);
+}
+
+.blueprint-switch-thumb {
+  background: #ffffff;
+  border-radius: 999px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.28);
+  display: block;
+  height: 1.14rem;
+  transform: translateX(0);
+  transition: transform 0.18s ease;
+  width: 1.14rem;
+}
+
+.blueprint-switch.active .blueprint-switch-thumb {
+  transform: translateX(1.08rem);
+}
+
+.share-panel {
+  border-top: 1px solid rgba(23, 32, 51, 0.12);
+  display: grid;
+  gap: 0.5rem;
+  margin-top: 0.85rem;
+  padding-top: 0.85rem;
+}
+
+.share-message {
+  background: #eef6ff;
+  border: 1px solid rgba(16, 93, 153, 0.16);
+  border-radius: 0.4rem;
+  color: #26364a;
+  font-size: 0.82rem;
+  line-height: 1.35;
+  margin: 0;
+  padding: 0.55rem 0.65rem;
+}
+
+.share-actions {
+  display: grid;
+  gap: 0.45rem;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.share-button {
+  align-items: center;
+  background: #edf4fb;
+  border: 1px solid rgba(23, 32, 51, 0.14);
+  border-radius: 0.4rem;
+  color: #172033;
+  display: inline-flex;
+  flex-direction: column;
+  font-size: 0.72rem;
+  font-weight: 800;
+  gap: 0.16rem;
+  justify-content: center;
+  min-height: 3rem;
+  padding: 0.38rem 0.28rem;
+  transition: background-color 0.18s ease, border-color 0.18s ease,
+    transform 0.18s ease;
+}
+
+.share-button:hover,
+.share-button:focus {
+  background: #dff0ff;
+  border-color: rgba(16, 93, 153, 0.42);
+  outline: none;
+  transform: translateY(-1px);
+}
+
+.share-button i {
+  color: #0b65ad;
+  font-size: 1rem;
+  line-height: 1;
+}
+
+.share-status {
+  color: #246a46;
+  font-size: 0.78rem;
+  font-weight: 800;
+  min-height: 1rem;
+}
+
+@keyframes eggToastIn {
+  from {
+    opacity: 0;
+    transform: translateY(0.5rem);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 576px) {
+  .trophy-room-button {
+    bottom: 0.75rem;
+    right: 0.75rem;
+  }
+
+  .egg-toast,
+  .trophy-room-panel {
+    bottom: 3.9rem;
+    right: 0.75rem;
+  }
+
+  .share-actions {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}

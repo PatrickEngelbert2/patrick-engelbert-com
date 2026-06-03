@@ -8,6 +8,11 @@ body {
   background: #101826;
 }
 
+html.blueprint-mode,
+body.blueprint-mode {
+  background: #06345c;
+}
+
 /* Ensure the app container takes the full height of the viewport */
 .app-container {
   display: flex;
@@ -16,6 +21,10 @@ body {
   position: relative;
   isolation: isolate;
   background: rgba(8, 14, 24, 0.28);
+}
+
+.blueprint-mode .app-container {
+  background: rgba(4, 24, 46, 0.28);
 }
 
 /* Make the main content area grow to fill the available space */
@@ -41,6 +50,44 @@ body {
   z-index: -1;
 }
 
+.blueprint-mode .parallax::before {
+  background-color: #0a3e6e;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.18) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.18) 1px, transparent 1px),
+    linear-gradient(rgba(156, 217, 255, 0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(156, 217, 255, 0.1) 1px, transparent 1px),
+    linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.1) 0,
+      rgba(255, 255, 255, 0.02) 22%,
+      transparent 22%,
+      transparent 74%,
+      rgba(255, 255, 255, 0.08) 74%,
+      rgba(255, 255, 255, 0.08) 75%,
+      transparent 75%
+    ),
+    radial-gradient(circle at 72% 18%, transparent 0 4.2rem, rgba(255, 255, 255, 0.16) 4.25rem 4.32rem, transparent 4.38rem),
+    linear-gradient(160deg, #07305a 0%, #0f5088 48%, #082b50 100%);
+  background-position:
+    0 0,
+    0 0,
+    0 0,
+    0 0,
+    center center,
+    center center,
+    center center;
+  background-repeat: repeat, repeat, repeat, repeat, repeat, no-repeat, no-repeat;
+  background-size:
+    5rem 5rem,
+    5rem 5rem,
+    1.25rem 1.25rem,
+    1.25rem 1.25rem,
+    14rem 14rem,
+    34rem 34rem,
+    cover;
+}
+
 @media (max-width: 768px) {
   .parallax::before {
     position: absolute;
@@ -51,6 +98,25 @@ body {
     background-repeat: no-repeat;
     background-size: auto 150vh;
     background-size: auto 150svh;
+  }
+
+  .blueprint-mode .parallax::before {
+    background-position:
+      0 0,
+      0 0,
+      0 0,
+      0 0,
+      center top,
+      72% 4rem,
+      center center;
+    background-size:
+      4rem 4rem,
+      4rem 4rem,
+      1rem 1rem,
+      1rem 1rem,
+      12rem 12rem,
+      22rem 22rem,
+      cover;
   }
 }
 
