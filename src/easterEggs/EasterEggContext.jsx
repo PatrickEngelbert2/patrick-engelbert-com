@@ -19,16 +19,29 @@ export const EASTER_EGGS = [
     id: "liftoff",
     name: "Liftoff",
     description: "Suit up for launch.",
+    group: "Home",
+    hint: "Home page: the smallest launch control is not just decorative.",
   },
   {
     id: "commissioned",
     name: "Commissioned",
     description: "Bring the cell into RUN mode.",
+    group: "Robotics Resume",
+    hint: "Robotics resume: industrial systems like the right startup sequence.",
   },
   {
     id: "operator-mode",
     name: "Operator Mode",
     description: "Found the software-and-controls split.",
+    group: "Home",
+    hint: "Home page: the profile photo hides a software-and-controls split.",
+  },
+  {
+    id: "keyboard-wizard",
+    name: "Keyboard Wizard",
+    description: "Entered the launch-code sequence.",
+    group: "Global",
+    hint: "Any page: a classic key pattern starts with two ups.",
   },
 ];
 
@@ -79,6 +92,7 @@ export function EasterEggProvider({ children }) {
   );
   const [terminalOpen, setTerminalOpen] = useState(false);
   const [terminalFocusRequest, setTerminalFocusRequest] = useState(0);
+  const [terminalFlashRequest, setTerminalFlashRequest] = useState(0);
   const [terminalCheatUsed, setTerminalCheatUsed] = useState(
     readStoredTerminalCheat
   );
@@ -172,6 +186,12 @@ export function EasterEggProvider({ children }) {
     setTerminalFocusRequest((current) => current + 1);
   }, []);
 
+  const flashTerminal = useCallback(() => {
+    setTerminalOpen(true);
+    setTerminalFocusRequest((current) => current + 1);
+    setTerminalFlashRequest((current) => current + 1);
+  }, []);
+
   const closeTerminal = useCallback(() => {
     setTerminalOpen(false);
   }, []);
@@ -195,6 +215,7 @@ export function EasterEggProvider({ children }) {
       blueprintUnlockCount: BLUEPRINT_UNLOCK_COUNT,
       closeTerminal,
       eggs: EASTER_EGGS,
+      flashTerminal,
       grantAllEggsFromTerminal,
       unlockedEggs,
       latestUnlock,
@@ -205,6 +226,7 @@ export function EasterEggProvider({ children }) {
       resetEggs,
       spaceXVisited,
       terminalCheatUsed,
+      terminalFlashRequest,
       terminalFocusRequest,
       terminalOpen,
       toggleBlueprintMode,
@@ -215,6 +237,7 @@ export function EasterEggProvider({ children }) {
       blueprintUnlocked,
       closeTerminal,
       dismissLatestUnlock,
+      flashTerminal,
       grantAllEggsFromTerminal,
       latestUnlock,
       markSpaceXVisited,
@@ -222,6 +245,7 @@ export function EasterEggProvider({ children }) {
       resetEggs,
       spaceXVisited,
       terminalCheatUsed,
+      terminalFlashRequest,
       terminalFocusRequest,
       terminalOpen,
       toggleBlueprintMode,

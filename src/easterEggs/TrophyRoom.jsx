@@ -34,6 +34,20 @@ function TrophyIcon() {
   );
 }
 
+function groupEggsByPage(eggs) {
+  return eggs.reduce((groups, egg) => {
+    const groupName = egg.group || "Other";
+    const existingGroup = groups.find((group) => group.name === groupName);
+
+    if (existingGroup) {
+      existingGroup.eggs.push(egg);
+      return groups;
+    }
+
+    return [...groups, { name: groupName, eggs: [egg] }];
+  }, []);
+}
+
 function TrophyRoom() {
   const {
     blueprintMode,
@@ -49,9 +63,11 @@ function TrophyRoom() {
   } = useEasterEggs();
   const [isOpen, setIsOpen] = useState(false);
   const [shareStatus, setShareStatus] = useState("");
+  const [visibleHints, setVisibleHints] = useState({});
   const latestEgg = eggs.find((egg) => egg.id === latestUnlock);
   const unlockedCount = unlockedEggs.length;
   const totalEggs = eggs.length;
+  const groupedEggs = groupEggsByPage(eggs);
   const shareText = buildShareText(
     unlockedCount,
     totalEggs,
@@ -101,7 +117,15 @@ function TrophyRoom() {
   const handleReset = () => {
     resetEggs();
     setShareStatus("");
+    setVisibleHints({});
     setIsOpen(false);
+  };
+
+  const toggleHint = (id) => {
+    setVisibleHints((currentHints) => ({
+      ...currentHints,
+      [id]: !currentHints[id],
+    }));
   };
 
   const openShareWindow = (platform, url) => {
@@ -185,21 +209,63 @@ function TrophyRoom() {
             </div>
           </div>
           <div className="trophy-list">
-            {eggs.map((egg) => {
-              const unlocked = unlockedEggs.includes(egg.id);
+            {groupedEggs.map((group) => {
+              const remainingCount = group.eggs.filter(
+                (egg) => !unlockedEggs.includes(egg.id)
+              ).length;
+
               return (
-                <article
-                  className={`trophy-card${unlocked ? " unlocked" : ""}`}
-                  key={egg.id}
-                >
-                  <span className="trophy-card-mark">
-                    {unlocked ? "OK" : "?"}
-                  </span>
-                  <div>
-                    <h3>{unlocked ? egg.name : "Locked"}</h3>
-                    <p>{unlocked ? egg.description : "Keep exploring."}</p>
+                <section className="trophy-group" key={group.name}>
+                  <div className="trophy-group-header">
+                    <h3>{group.name}</h3>
+                    <span>
+                      {remainingCount === 0
+                        ? "Complete"
+                        : `${remainingCount} more to find`}
+                    </span>
                   </div>
-                </article>
+                  <div className="trophy-group-list">
+                    {group.eggs.map((egg) => {
+                      const unlocked = unlockedEggs.includes(egg.id);
+                      const hintVisible = visibleHints[egg.id];
+
+                      return (
+                        <article
+                          className={`trophy-card${
+                            unlocked ? " unlocked" : ""
+                          }`}
+                          key={egg.id}
+                        >
+                          <span className="trophy-card-mark">
+                            {unlocked ? "OK" : "?"}
+                          </span>
+                          <div>
+                            <h4>{egg.name}</h4>
+                            <p>
+                              {unlocked ? egg.description : "Undiscovered."}
+                            </p>
+                            {!unlocked && (
+                              <div className="trophy-hint-area">
+                                <button
+                                  className="trophy-hint-button"
+                                  onClick={() => toggleHint(egg.id)}
+                                  type="button"
+                                >
+                                  {hintVisible ? "Hide hint" : "Hint"}
+                                </button>
+                                {hintVisible && (
+                                  <p className="trophy-hint-text">
+                                    {egg.hint || "Keep exploring."}
+                                  </p>
+                                )}
+                              </div>
+                            )}
+                          </div>
+                        </article>
+                      );
+                    })}
+                  </div>
+                </section>
               );
             })}
           </div>

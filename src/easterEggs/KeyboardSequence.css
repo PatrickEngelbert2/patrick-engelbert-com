@@ -1,0 +1,59 @@
+.keyboard-sequence-panel {
+  background: rgba(8, 18, 33, 0.94);
+  border: 1px solid rgba(125, 211, 252, 0.36);
+  border-radius: 0.5rem;
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.32);
+  color: #ffffff;
+  display: grid;
+  gap: 0.45rem;
+  left: 50%;
+  max-width: min(24rem, calc(100vw - 2rem));
+  padding: 0.75rem 0.85rem;
+  position: fixed;
+  top: 5.15rem;
+  transform: translateX(-50%);
+  width: 24rem;
+  z-index: 34;
+}
+
+.keyboard-sequence-kicker {
+  color: #7dd3fc;
+  font-size: 0.72rem;
+  font-weight: 900;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.keyboard-sequence-panel strong {
+  font-size: 0.95rem;
+  line-height: 1.25;
+}
+
+.keyboard-sequence-steps {
+  display: grid;
+  gap: 0.28rem;
+  grid-template-columns: repeat(8, minmax(0, 1fr));
+}
+
+.keyboard-sequence-steps span {
+  align-items: center;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 0.32rem;
+  display: inline-flex;
+  font-weight: 900;
+  justify-content: center;
+  min-height: 2rem;
+}
+
+.keyboard-sequence-steps span.complete {
+  background: rgba(92, 225, 156, 0.2);
+  border-color: rgba(92, 225, 156, 0.58);
+  color: #d9ffe9;
+}
+
+@media (max-width: 576px) {
+  .keyboard-sequence-panel {
+    top: 8.35rem;
+  }
+}
