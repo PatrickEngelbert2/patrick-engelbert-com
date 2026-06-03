@@ -184,6 +184,10 @@
 }
 
 @media (max-width: 900px) {
+  .spacex-brief {
+    padding-top: 1.5rem;
+  }
+
   .spacex-hero,
   .spacex-band {
     grid-template-columns: 1fr;
@@ -202,5 +206,11 @@
 
   .spacex-systems-grid {
     grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 576px) {
+  .spacex-brief {
+    padding-top: 2.25rem;
   }
 }
