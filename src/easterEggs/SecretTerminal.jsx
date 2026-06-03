@@ -28,6 +28,7 @@ const SPACE_TERMS = [
 const HELP_LINES = [
   "help - show this command list",
   "hint - get clues for undiscovered easter eggs",
+  "sudo hire patrick - request root access",
   "cheat - grant every current easter egg",
   "spacex - open the SpaceX mission brief",
   "mars - also opens the SpaceX mission brief",
@@ -55,6 +56,10 @@ function isCheatCommand(command) {
   return ["cheat", "unlockall", "unlockeggs", "sudo"].includes(command);
 }
 
+function isHireCommand(command) {
+  return ["sudohirepatrick", "hirepatrick", "sudohire"].includes(command);
+}
+
 function isClearCommand(command) {
   return ["clear", "cls"].includes(command);
 }
@@ -76,6 +81,7 @@ function SecretTerminal() {
     terminalFlashRequest,
     terminalFocusRequest,
     terminalOpen,
+    unlockEgg,
     unlockedEggs,
   } = useEasterEggs();
   const [command, setCommand] = useState("");
@@ -171,6 +177,17 @@ function SecretTerminal() {
 
     if (isHintCommand(normalizedCommand)) {
       showHints();
+      return;
+    }
+
+    if (isHireCommand(normalizedCommand)) {
+      unlockEgg("root-access");
+      appendLines([
+        { kind: "system", text: "sudo: hiring sequence requested..." },
+        { kind: "output", text: "permission granted: recruiter_mode" },
+        { kind: "output", text: "loading references... OK" },
+        { kind: "output", text: "status: Patrick is cleared for interview." },
+      ]);
       return;
     }
 

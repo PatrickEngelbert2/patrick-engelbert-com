@@ -78,7 +78,44 @@ export const EASTER_EGGS = [
     group: "SpaceX",
     hint: "SpaceX brief: the vehicle display is not just a decoration.",
   },
+  {
+    id: "blueprint-inspector",
+    name: "Blueprint Inspector",
+    description: "Found the schematic note inside blueprint mode.",
+    group: "Trophy Room",
+    hint: "Trophy Room: after Blueprint Mode unlocks, inspect the schematic mark.",
+  },
+  {
+    id: "dual-stack",
+    name: "Dual Stack",
+    description: "Saw both sides of the machine.",
+    group: "Resumes",
+    hint: "Resumes: compare both the software side and the controls side in one session.",
+  },
+  {
+    id: "root-access",
+    name: "Root Access",
+    description: "Ran the recruiter-grade terminal command.",
+    group: "Terminal",
+    hint: "Terminal: try a confident command that starts with sudo and ends with Patrick.",
+  },
+  {
+    id: "flight-ready",
+    name: "Flight Ready",
+    description: "Completed the SpaceX launch checklist.",
+    group: "SpaceX",
+    hint: "SpaceX brief: use the action links in mission order: controls, software, contact.",
+  },
+  {
+    id: "recovered-signal",
+    name: "Recovered Signal",
+    description: "Recovered from a lost route.",
+    group: "404",
+    hint: "404 page: the lost signal panel can still route you somewhere useful.",
+  },
 ];
+
+const SPACEX_CHECKLIST_STEPS = ["controls", "software", "contact"];
 
 const EasterEggContext = createContext(null);
 
@@ -122,6 +159,11 @@ function readStoredSpaceXVisited() {
 export function EasterEggProvider({ children }) {
   const [unlockedEggs, setUnlockedEggs] = useState(readStoredEggs);
   const [latestUnlock, setLatestUnlock] = useState(null);
+  const [resumeVisits, setResumeVisits] = useState({
+    robotics: false,
+    software: false,
+  });
+  const [spaceXChecklistStep, setSpaceXChecklistStep] = useState(0);
   const [blueprintMode, setBlueprintMode] = useState(() =>
     readStoredBlueprintMode(unlockedEggs.length >= BLUEPRINT_UNLOCK_COUNT)
   );
@@ -206,6 +248,8 @@ export function EasterEggProvider({ children }) {
   const resetEggs = useCallback(() => {
     setLatestUnlock(null);
     setBlueprintMode(false);
+    setResumeVisits({ robotics: false, software: false });
+    setSpaceXChecklistStep(0);
     setTerminalCheatUsed(false);
     setUnlockedEggs([]);
   }, []);
@@ -215,6 +259,41 @@ export function EasterEggProvider({ children }) {
     setTerminalCheatUsed(true);
     setUnlockedEggs(EASTER_EGGS.map((egg) => egg.id));
   }, []);
+
+  const markResumeVisited = useCallback(
+    (resumeType) => {
+      setResumeVisits((currentVisits) => {
+        const nextVisits = { ...currentVisits, [resumeType]: true };
+        if (nextVisits.robotics && nextVisits.software) {
+          unlockEgg("dual-stack");
+        }
+
+        return nextVisits;
+      });
+    },
+    [unlockEgg]
+  );
+
+  const markSpaceXChecklistStep = useCallback(
+    (step) => {
+      setSpaceXChecklistStep((currentStep) => {
+        const expectedStep = SPACEX_CHECKLIST_STEPS[currentStep];
+
+        if (step === expectedStep) {
+          const nextStep = currentStep + 1;
+          if (nextStep === SPACEX_CHECKLIST_STEPS.length) {
+            unlockEgg("flight-ready");
+            return 0;
+          }
+
+          return nextStep;
+        }
+
+        return step === SPACEX_CHECKLIST_STEPS[0] ? 1 : 0;
+      });
+    },
+    [unlockEgg]
+  );
 
   const openTerminal = useCallback(() => {
     setTerminalOpen(true);
@@ -257,9 +336,12 @@ export function EasterEggProvider({ children }) {
       dismissLatestUnlock,
       isUnlocked: (id) => unlockedEggs.includes(id),
       markSpaceXVisited,
+      markResumeVisited,
+      markSpaceXChecklistStep,
       openTerminal,
       resetEggs,
       spaceXVisited,
+      spaceXChecklistStep,
       terminalCheatUsed,
       terminalFlashRequest,
       terminalFocusRequest,
@@ -275,9 +357,12 @@ export function EasterEggProvider({ children }) {
       flashTerminal,
       grantAllEggsFromTerminal,
       latestUnlock,
+      markResumeVisited,
+      markSpaceXChecklistStep,
       markSpaceXVisited,
       openTerminal,
       resetEggs,
+      spaceXChecklistStep,
       spaceXVisited,
       terminalCheatUsed,
       terminalFlashRequest,

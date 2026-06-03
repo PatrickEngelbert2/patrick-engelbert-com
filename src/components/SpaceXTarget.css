@@ -47,6 +47,30 @@
   margin-top: 1.4rem;
 }
 
+.spacex-launch-checklist {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin-top: 0.8rem;
+}
+
+.spacex-launch-checklist span {
+  border: 1px solid rgba(125, 211, 252, 0.24);
+  border-radius: 999px;
+  color: #dbeafe;
+  font-size: 0.74rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  padding: 0.3rem 0.55rem;
+  text-transform: uppercase;
+}
+
+.spacex-launch-checklist span.complete {
+  background: rgba(92, 225, 156, 0.16);
+  border-color: rgba(92, 225, 156, 0.55);
+  color: #d9ffe9;
+}
+
 .spacex-action {
   border: 1px solid rgba(125, 211, 252, 0.42);
   border-radius: 0.45rem;

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./Resume.css";
 import LinkedIn from "../images/linkedin.svg?react";
 import GitHub from "../images/github.svg?react";
@@ -6,9 +6,13 @@ import { Link } from "react-router-dom";
 import { useEasterEggs } from "../easterEggs/EasterEggContext";
 
 function Resume() {
-  const { unlockEgg } = useEasterEggs();
+  const { markResumeVisited, unlockEgg } = useEasterEggs();
   const myResume =
     "https://images-patrickengelbert.s3.us-east-2.amazonaws.com/Patrick+Engelbert+Resume.pdf";
+
+  useEffect(() => {
+    markResumeVisited("software");
+  }, [markResumeVisited]);
 
   return (
     <div className="resume-container">
