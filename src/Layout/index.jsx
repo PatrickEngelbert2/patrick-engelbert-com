@@ -15,6 +15,7 @@ import Resume from "../components/Resume";
 import RoboticsResume from "../components/RoboticsResume";
 import SpaceXTarget from "../components/SpaceXTarget";
 import { EasterEggProvider } from "../easterEggs/EasterEggContext";
+import KeyboardSequence from "../easterEggs/KeyboardSequence";
 import SecretTerminal from "../easterEggs/SecretTerminal";
 import SpaceXReturnButton from "../easterEggs/SpaceXReturnButton";
 import TrophyRoom from "../easterEggs/TrophyRoom";
@@ -86,6 +87,7 @@ function Layout() {
       </main>
       <Footer />
     </div>
+    <KeyboardSequence />
     <SecretTerminal />
     <SpaceXReturnButton />
     <TrophyRoom />

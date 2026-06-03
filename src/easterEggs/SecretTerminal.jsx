@@ -25,14 +25,6 @@ const SPACE_TERMS = [
   "booster",
 ];
 
-const HINTS = {
-  liftoff: "Home page: the smallest launch control is not just decorative.",
-  commissioned:
-    "Robotics resume: industrial systems like the right startup sequence.",
-  "operator-mode":
-    "Home page: the profile photo hides a software-and-controls split.",
-};
-
 const HELP_LINES = [
   "help - show this command list",
   "hint - get clues for undiscovered easter eggs",
@@ -81,11 +73,13 @@ function SecretTerminal() {
     closeTerminal,
     eggs,
     grantAllEggsFromTerminal,
+    terminalFlashRequest,
     terminalFocusRequest,
     terminalOpen,
     unlockedEggs,
   } = useEasterEggs();
   const [command, setCommand] = useState("");
+  const [terminalFlashing, setTerminalFlashing] = useState(false);
   const [lines, setLines] = useState([
     { kind: "system", text: "Terminal online." },
     { kind: "system", text: "Type help for commands." },
@@ -102,6 +96,19 @@ function SecretTerminal() {
       inputRef.current?.select();
     }, 0);
   }, [terminalFocusRequest, terminalOpen]);
+
+  useEffect(() => {
+    if (!terminalOpen || terminalFlashRequest === 0) {
+      return undefined;
+    }
+
+    setTerminalFlashing(true);
+    const timeoutId = window.setTimeout(() => {
+      setTerminalFlashing(false);
+    }, 1320);
+
+    return () => window.clearTimeout(timeoutId);
+  }, [terminalFlashRequest, terminalOpen]);
 
   if (!terminalOpen) {
     return null;
@@ -135,7 +142,7 @@ function SecretTerminal() {
       { kind: "system", text: "Remaining hints:" },
       ...remainingEggs.map((egg) => ({
         kind: "output",
-        text: HINTS[egg.id] || "Keep exploring the controls.",
+        text: egg.hint || "Keep exploring the controls.",
       })),
     ]);
   };
@@ -209,7 +216,7 @@ function SecretTerminal() {
   return (
     <aside
       aria-label="Secret terminal"
-      className="secret-terminal"
+      className={`secret-terminal${terminalFlashing ? " flashing" : ""}`}
       role="dialog"
     >
       <div className="secret-terminal-header">
