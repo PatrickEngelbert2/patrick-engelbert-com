@@ -2,6 +2,7 @@ import React from "react";
 import LinkedIn from "../images/linkedin.svg?react";
 import GitHub from "../images/github.svg?react";
 import { Link } from "react-router-dom";
+import { CONTACT_EMAIL, GITHUB_URL, LINKEDIN_URL } from "../constants/contact";
 // import FooterLinks from "../components/FooterLinks";
 import "./Footer.css";
 
@@ -12,14 +13,14 @@ function Footer() {
         {/* social media */}
         <section className="mb-2">
           <a
-            href="https://www.linkedin.com/in/patrick-engelbert/"
+            href={LINKEDIN_URL}
             target="_blank"
             rel="noopener noreferrer"
           >
             <LinkedIn className="social-icon social-icon-large social-icon-margin linkedin subtle-shadow" />
           </a>
           <a
-            href="https://github.com/PatrickEngelbert2/PatrickEngelbert2"
+            href={GITHUB_URL}
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -30,9 +31,9 @@ function Footer() {
         {/* Additional Info */}
         <section className="footer-links">
           <p>
-            Have a job oportunity, or just want to chat? Contact me via email,
+            Have a job opportunity, or just want to chat? Contact me via email,
             <a
-              href="https://www.linkedin.com/in/patrick-engelbert/"
+              href={LINKEDIN_URL}
               target="_blank"
               rel="noreferrer"
             >
@@ -40,7 +41,7 @@ function Footer() {
               LinkedIn
             </a>
             <a
-              href="https://www.linkedin.com/in/patrick-engelbert/"
+              href={LINKEDIN_URL}
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -48,7 +49,7 @@ function Footer() {
             </a>
             , or
             <a
-              href="https://github.com/PatrickEngelbert2/PatrickEngelbert2"
+              href={GITHUB_URL}
               target="_blank"
               rel="noreferrer"
             >
@@ -56,7 +57,7 @@ function Footer() {
               GitHub
             </a>
             <a
-              href="https://github.com/PatrickEngelbert2/PatrickEngelbert2"
+              href={GITHUB_URL}
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -73,10 +74,10 @@ function Footer() {
           <Link to="/contact" className="btn btn-primary btn-sm mr-2">
             Contact Me
           </Link>
-          <b> patrickengelbert2@gmail.com</b>
+          <b> {CONTACT_EMAIL}</b>
         </p>
       </div>
-      <div className="text-center">© 2022 Copyright: Patrick Inc.</div>
+      <div className="text-center">© 2026 Patrick Engelbert</div>
     </footer>
   );
 }

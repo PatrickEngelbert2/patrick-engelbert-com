@@ -6,6 +6,7 @@ import clipboardQuestion from "../images/clipboard-question.svg";
 
 function UserContactPatrickForm() {
   const history = useHistory();
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -24,6 +25,7 @@ function UserContactPatrickForm() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setIsSubmitting(true);
 
     emailjs
       .send(
@@ -34,12 +36,15 @@ function UserContactPatrickForm() {
       )
       .then((response) => {
         alert(
-          "Message sent successfully! An email was sent to Patrick with your name, email address, and message. Thank you for your time and attention."
+          "Success. Your message has been sent to Patrick. Thank you for reaching out."
         );
         setFormData({ name: "", email: "", message: "" });
       })
       .catch((error) => {
-        alert("Failed to send message. Please try again.");
+        alert("Sorry, your message could not be sent. Please try again.");
+      })
+      .finally(() => {
+        setIsSubmitting(false);
       });
   };
 
@@ -105,8 +110,8 @@ function UserContactPatrickForm() {
         ></textarea>
       </div>
       <div className="button-container">
-        <button type="submit" className="btn btn-primary">
-          Send Message
+        <button type="submit" className="btn btn-primary" disabled={isSubmitting}>
+          {isSubmitting ? "Sending..." : "Send Message"}
         </button>
         <div className="button-container"></div>
         <button type="button" className="btn btn-cancel" onClick={handleGoBack}>

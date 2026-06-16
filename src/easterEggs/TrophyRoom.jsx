@@ -1,19 +1,21 @@
 import React, { useEffect, useState } from "react";
 import { useEasterEggs } from "./EasterEggContext";
+import { PORTFOLIO_URL } from "../constants/contact";
 import "./TrophyRoom.css";
 
-const SHARE_URL = "https://patrickengelbert.com/";
+const SHARE_URL = `${PORTFOLIO_URL}/`;
+const SHARE_HOST = new URL(PORTFOLIO_URL).hostname;
 
 function buildShareText(unlockedCount, totalCount, terminalCheatUsed) {
   if (terminalCheatUsed && unlockedCount >= totalCount) {
-    return `I found a secret terminal on patrickengelbert.com and unlocked all ${totalCount} easter eggs. Can you find it?`;
+    return `I found a secret terminal on ${SHARE_HOST} and unlocked all ${totalCount} easter eggs. Can you find it?`;
   }
 
   if (unlockedCount >= totalCount) {
-    return `I found all ${totalCount} easter eggs on patrickengelbert.com! Can you find them all?`;
+    return `I found all ${totalCount} easter eggs on ${SHARE_HOST}! Can you find them all?`;
   }
 
-  return `I found ${unlockedCount} out of ${totalCount} easter eggs on patrickengelbert.com! Can you find them all?`;
+  return `I found ${unlockedCount} out of ${totalCount} easter eggs on ${SHARE_HOST}! Can you find them all?`;
 }
 
 function TrophyIcon() {
@@ -84,7 +86,7 @@ function TrophyRoom() {
       )}&title=${encodeURIComponent(
         "Patrick Engelbert Portfolio"
       )}&summary=${encodeURIComponent(shareText)}&source=${encodeURIComponent(
-        "patrickengelbert.com"
+        SHARE_HOST
       )}`,
     },
     {

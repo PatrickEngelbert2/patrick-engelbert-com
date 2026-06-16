@@ -4,6 +4,13 @@ import LinkedIn from "../images/linkedin.svg?react";
 import GitHub from "../images/github.svg?react";
 import { Link } from "react-router-dom";
 import { useEasterEggs } from "../easterEggs/EasterEggContext";
+import {
+  CONTACT_EMAIL,
+  CONTACT_LOCATION,
+  CONTACT_PHONE,
+  GITHUB_URL,
+  LINKEDIN_URL,
+} from "../constants/contact";
 
 function Resume() {
   const { markResumeVisited, unlockEgg } = useEasterEggs();
@@ -35,9 +42,9 @@ function Resume() {
       <div className="resume-section">
         <h2>Contact Information</h2>
         <p>
-          Waco, TX | patrickengelbert2@gmail.com | (785) 418-1614 |
+          {CONTACT_LOCATION} | {CONTACT_EMAIL} | {CONTACT_PHONE} |
           <a
-            href="https://www.linkedin.com/in/patrick-engelbert/"
+            href={LINKEDIN_URL}
             target="_blank"
             rel="noopener noreferrer"
             className="contact-link"
@@ -47,7 +54,7 @@ function Resume() {
           </a>{" "}
           |
           <a
-            href="https://github.com/PatrickEngelbert2/PatrickEngelbert2"
+            href={GITHUB_URL}
             target="_blank"
             rel="noopener noreferrer"
             className="contact-link"

@@ -3,6 +3,7 @@ import LinkedIn from "../images/linkedin.svg?react";
 import GitHub from "../images/github.svg?react";
 import { Link, useLocation } from "react-router-dom";
 import { useEasterEggs } from "../easterEggs/EasterEggContext";
+import { GITHUB_URL, LINKEDIN_URL } from "../constants/contact";
 import "./Header.css";
 
 function Header() {
@@ -199,14 +200,14 @@ function Header() {
           </Link>
           <section className="mb-2 social-icons">
             <a
-              href="https://www.linkedin.com/in/patrick-engelbert/"
+              href={LINKEDIN_URL}
               target="_blank"
               rel="noopener noreferrer"
             >
               <LinkedIn className="social-icon social-icon-large social-icon-margin linkedin subtle-shadow" />
             </a>
             <a
-              href="https://github.com/PatrickEngelbert2/PatrickEngelbert2"
+              href={GITHUB_URL}
               target="_blank"
               rel="noopener noreferrer"
             >

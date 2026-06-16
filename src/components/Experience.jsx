@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 function Experience() {
   return (
@@ -16,7 +17,16 @@ function Experience() {
       </div>
       <h3>My Story</h3>
       <article>
-        <p>Here is some placeholder text for my story.</p>
+        <p>
+          This page is still being shaped into a fuller career story. For now,
+          the clearest overview of my background is available through my{" "}
+          <Link to="/resume/software-engineering">software engineering resume</Link>
+          ,{" "}
+          <Link to="/resume/robotics-controls">
+            robotics and controls resume
+          </Link>
+          , and <Link to="/portfolio">portfolio</Link>.
+        </p>
       </article>
     </>
   );
