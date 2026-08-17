@@ -4,6 +4,7 @@ import { useHistory } from "react-router-dom";
 import Rocket from "../images/rocket.svg";
 import CowboyHatProfile from "../images/cowboyhat-profile.jpg";
 import { useEasterEggs } from "../easterEggs/EasterEggContext";
+import RecoilText, { useRecoilEffect } from "./RecoilText";
 
 function Home() {
   const history = useHistory();
@@ -13,6 +14,7 @@ function Home() {
   const [rocketLaunching, setRocketLaunching] = useState(false);
   const [profileSecretActive, setProfileSecretActive] = useState(false);
   const [headlineSecretActive, setHeadlineSecretActive] = useState(false);
+  const headlineRef = useRef(null);
   const profilePhotoRef = useRef(null);
   const helmetTimerRef = useRef(null);
   const rocketTimerRef = useRef(null);
@@ -20,6 +22,8 @@ function Home() {
   const headlineTapRef = useRef({ count: 0, time: 0 });
   const headlineSecretTimerRef = useRef(null);
   const terminalTriggerRef = useRef({ source: "", time: 0 });
+
+  useRecoilEffect(headlineRef);
 
   const navigateToPortfolio = () => {
     history.push("/portfolio");
@@ -126,29 +130,6 @@ function Home() {
   };
 
   useEffect(() => {
-    const handleMouseMove = (event) => {
-      const letters = document.querySelectorAll(".recoil-letter");
-      letters.forEach((letter) => {
-        const rect = letter.getBoundingClientRect();
-        const dx = event.clientX - (rect.left + rect.width / 2);
-        const dy = event.clientY - (rect.top + rect.height / 2);
-        const distance = Math.sqrt(dx * dx + dy * dy);
-        const maxDistance = 100;
-        const scale = Math.max(0, 1 - distance / maxDistance);
-        letter.style.transform = `translate(${-dx * scale}px, ${
-          -dy * scale
-        }px)`;
-      });
-    };
-
-    document.addEventListener("mousemove", handleMouseMove);
-
-    return () => {
-      document.removeEventListener("mousemove", handleMouseMove);
-    };
-  }, []);
-
-  useEffect(() => {
     return () => {
       window.clearTimeout(helmetTimerRef.current);
       window.clearTimeout(rocketTimerRef.current);
@@ -156,28 +137,6 @@ function Home() {
       window.clearTimeout(headlineSecretTimerRef.current);
     };
   }, []);
-
-  const wrapTextInSpans = (text) => {
-    return text.split(/(\s+)/).map((word, wordIndex) => {
-      if (/^\s+$/.test(word)) {
-        return (
-          <span key={wordIndex} className="recoil-space">
-            {word.replace(/ /g, "\u00A0")}
-          </span>
-        );
-      }
-
-      return (
-        <span key={wordIndex} className="recoil-word">
-          {word.split("").map((char, charIndex) => (
-            <span key={charIndex} className="recoil-letter">
-              {char}
-            </span>
-          ))}
-        </span>
-      );
-    });
-  };
 
   return (
     <>
@@ -187,24 +146,25 @@ function Home() {
             headlineSecretActive ? " headline-secret-active" : ""
           }`}
           onClick={revealHeadlineSecret}
+          ref={headlineRef}
         >
           <h1 className="header-title">
-            {wrapTextInSpans("Patrick Engelbert")}
-            <small className="header-subtitle">
-              {wrapTextInSpans(
-                "Software Engineer | Robotics & Industrial Automation"
-              )}
-            </small>
+            <RecoilText text="Patrick Engelbert" />
           </h1>
+          <p className="header-subtitle">
+            <RecoilText
+              text="Software Engineer | Robotics & Industrial Automation"
+            />
+          </p>
           <p className="header-lead home-value-statement">
-            {wrapTextInSpans(
-              "I build software and automation systems where code meets real-world machines."
-            )}
+            <RecoilText
+              text="I build software and automation systems where code meets real-world machines."
+            />
           </p>
           <p className="home-experience-statement">
-            {wrapTextInSpans(
-              "My background combines production full-stack engineering with hands-on PLC, robotics, and controls work. I am currently completing Robotics & Industrial Controls training at Texas State Technical College."
-            )}
+            <RecoilText
+              text="My background combines production full-stack engineering with hands-on PLC, robotics, and controls work. I am currently completing Robotics & Industrial Controls training at Texas State Technical College."
+            />
           </p>
         </div>
         <div className="container d-flex flex-column flex-md-row justify-content-center align-items-center section-spacing">

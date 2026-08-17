@@ -1,0 +1,63 @@
+.recoil-text {
+  display: grid;
+  position: relative;
+}
+
+.recoil-text__semantic,
+.recoil-text__visual {
+  grid-area: 1 / 1;
+  min-width: 0;
+}
+
+.recoil-text__visual {
+  pointer-events: none;
+  user-select: none;
+  visibility: hidden;
+}
+
+.recoil-text--active .recoil-text__semantic {
+  color: transparent;
+  text-shadow: none;
+}
+
+.recoil-text--active .recoil-text__visual {
+  visibility: visible;
+}
+
+.recoil-word {
+  display: inline-block;
+  white-space: nowrap;
+}
+
+.recoil-letter {
+  display: inline-block;
+  transition: transform 0.1s ease-out;
+}
+
+.recoil-text--active .recoil-letter {
+  will-change: transform;
+}
+
+.recoil-letter::before {
+  content: attr(data-character);
+}
+
+.recoil-space::before {
+  content: "\00a0";
+}
+
+@media (prefers-reduced-motion: reduce), (hover: none), (pointer: coarse) {
+  .recoil-text__semantic {
+    color: inherit !important;
+    text-shadow: inherit !important;
+  }
+
+  .recoil-text__visual {
+    display: none;
+  }
+
+  .recoil-letter {
+    transform: none !important;
+    transition: none;
+  }
+}
