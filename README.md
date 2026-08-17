@@ -4,13 +4,15 @@ Personal portfolio and resume website for [patrickengelbert.com](https://www.pat
 
 ## Features
 
-- Home page with profile photo and primary navigation
-- Portfolio page
-- Contact page and contact forms
+- Home page with profile photo, responsive navigation, and interactive profile easter eggs
+- Portfolio page with project writeups, links, screenshots, and interactive hidden details
+- Contact page with EmailJS-powered contact forms
 - Software Engineering resume page
-- Robotics & Industrial Controls resume page
-- Easter egg hunt (coming soon)
-- Bio page (coming soon)
+- Robotics & Industrial Controls resume page with controls-focused interactive elements
+- Trophy Room for discovered easter eggs, hints, progress tracking, blueprint mode, and social sharing
+- Secret terminal with forgiving commands, hints, cheat behavior, and SpaceX mission-brief access
+- SpaceX-focused hidden mission brief page
+- Custom not-found experience with a recoverable signal easter egg
 
 ## Tech Stack
 
@@ -69,6 +71,8 @@ Serves the production build locally for a final check.
 - `src/` contains the React app.
 - `src/Layout/` contains shared layout pieces such as the header, footer, routes, and page shell.
 - `src/components/` contains page-level components and resume content.
+- `src/constants/` contains shared site constants such as contact and social links.
+- `src/easterEggs/` contains the easter egg state, terminal, Trophy Room, and hidden interactions.
 - `src/images/` contains imported image and SVG assets.
 - `public/` contains static files copied directly into the production build.
 - `amplify/` contains AWS Amplify project metadata.
@@ -76,6 +80,10 @@ Serves the production build locally for a final check.
 ## Deployment
 
 AWS Amplify builds and deploys the site from the main branch. The build command is `npm run build`, and the production output folder is `build/`.
+
+## Changelog
+
+Notable project changes are documented in [CHANGELOG.md](CHANGELOG.md).
 
 ## Security
 

@@ -100,7 +100,7 @@ function Portfolio() {
           </h1>
           <p className="header-lead">
             {wrapTextInSpans(
-              "Checkout some of the apps and websites I've built over the years!"
+              "Check out some of the apps and websites I've built over the years!"
             )}
           </p>
         </div>
@@ -147,7 +147,7 @@ function Portfolio() {
                   find people and posts. The app was built with the latest
                   technologies including server-side rendering with Next.js.
                   This means it's extremely quick, secure, and compatible with
-                  even the least powerful devices. Checkout the{" "}
+                  even the least powerful devices. Check out the{" "}
                   <a
                     href="https://github.com/Jen-Pat-Multiverse-Backend-Project/tikverse"
                     target="_blank"
@@ -242,7 +242,7 @@ function Portfolio() {
                     create accounts (no email required) and post, organize,
                     sort, and filter ideas. Its open-ended design offers a wide
                     range of use cases:
-                    <ul class="custom-list">
+                    <ul className="custom-list">
                       <li>
                         <strong>Big Purchases</strong>: Add items, tag them with
                         key features, and compare them side-by-side.
@@ -258,7 +258,7 @@ function Portfolio() {
                         limit!
                       </li>
                     </ul>
-                    Built with Next.js, Knex.js, Git, DBever, MySQL, Elephant
+                    Built with Next.js, Knex.js, Git, DBeaver, MySQL, Elephant
                     SQL, and more, Stuffi showcases my programming and web
                     development skills. Want to try it out without creating an
                     account? Use the test user credentials:{" "}
@@ -316,7 +316,7 @@ function Portfolio() {
                   An app that lets you create, edit, view, seat, and cancel
                   reservations. I created the whole application, front, and
                   back-end, and deployed it with React.js, Bootstrap, Git,
-                  Node.js, Knex.js, SQL, DBever, Heroku, Jira, and more.
+                  Node.js, Knex.js, SQL, DBeaver, Heroku, Jira, and more.
                 </small>
               </h3>
             </div>
@@ -347,7 +347,7 @@ function Portfolio() {
                 <small className="text-muted">
                   An app that lets you order food and create dishes. I created
                   the back-end to this application, and deployed it with
-                  React.js, Bootstrap, Git, Node.js, Knex.js, SQL, DBever,
+                  React.js, Bootstrap, Git, Node.js, Knex.js, SQL, DBeaver,
                   Heroku, Jira, and more.
                 </small>
               </h3>

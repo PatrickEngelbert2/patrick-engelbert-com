@@ -3,9 +3,17 @@ import emailjs from "emailjs-com";
 import { useHistory } from "react-router-dom";
 import "./ContactInfoRequestForm.css";
 import clipboardQuestion from "../images/clipboard-question.svg";
+import {
+  CONTACT_EMAIL,
+  CONTACT_PHONE,
+  GITHUB_URL,
+  LINKEDIN_URL,
+  PORTFOLIO_URL,
+} from "../constants/contact";
 
 function ContactInfoRequestForm() {
   const history = useHistory();
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -18,11 +26,12 @@ function ContactInfoRequestForm() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setIsSubmitting(true);
 
     const templateParams = {
       name: formData.name,
       email: formData.email,
-      message: `Hello ${formData.name},\n\nThank you so much for your interest and attention!\n\nBest wishes,\nPatrick Engelbert\n\nEmail: patrick.engelbert@example.com\nPhone: (123) 456-7890`,
+      message: `Hello ${formData.name},\n\nThank you for your interest. Here is my current contact information:\n\nEmail: ${CONTACT_EMAIL}\nPhone: ${CONTACT_PHONE}\nWebsite: ${PORTFOLIO_URL}\nLinkedIn: ${LINKEDIN_URL}\nGitHub: ${GITHUB_URL}\n\nBest,\nPatrick Engelbert`,
     };
 
     emailjs
@@ -34,12 +43,17 @@ function ContactInfoRequestForm() {
       )
       .then((response) => {
         alert(
-          "Success! An email has been sent to you with my contact info. Feel free to reach out with any job opportunities or just to chat. Thank you for your time and attention."
+          "Success. An email has been sent with my current contact information. Thank you for reaching out."
         );
         setFormData({ name: "", email: "" });
       })
       .catch((error) => {
-        alert("Failed to send message. Please try again.");
+        alert(
+          "Sorry, the contact info email could not be sent. Please try again."
+        );
+      })
+      .finally(() => {
+        setIsSubmitting(false);
       });
   };
 
@@ -75,7 +89,7 @@ function ContactInfoRequestForm() {
           <div className="my-tooltip">
             <img src={clipboardQuestion} alt="Question mark inside clipboard" />
             <span className="tooltiptext">
-              Enter the email address that you wish to recieve my contact info.
+              Enter the email address where you want to receive my contact info.
             </span>
           </div>
           Email
@@ -90,8 +104,8 @@ function ContactInfoRequestForm() {
         />
       </div>
       <div className="button-container">
-        <button type="submit" className="btn btn-primary">
-          Request Contact Info
+        <button type="submit" className="btn btn-primary" disabled={isSubmitting}>
+          {isSubmitting ? "Sending..." : "Request Contact Info"}
         </button>
         <button type="button" className="btn btn-cancel" onClick={handleGoBack}>
           Go Back
