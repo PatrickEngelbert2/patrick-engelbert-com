@@ -37,8 +37,11 @@
 }
 
 .header-subtitle {
+  display: block;
   font-size: 1.5rem;
   font-weight: 300;
+  line-height: 1.35;
+  margin: 0.35rem 0 0;
 }
 
 .header-lead {
@@ -198,11 +201,6 @@
 
 .max-size {
   max-height: 20em;
-}
-
-.recoil-letter {
-  display: inline-block;
-  transition: transform 0.1s ease-out;
 }
 
 @media (max-width: 767px) {

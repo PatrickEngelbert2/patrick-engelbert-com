@@ -2,6 +2,7 @@ import React, { useCallback, useEffect, useRef, useState } from "react";
 import "./Portfolio.css";
 import { useEasterEggs } from "../easterEggs/EasterEggContext";
 import walkTheRosaryPreview from "../images/walk-the-rosary.png";
+import RecoilText, { useRecoilEffect } from "./RecoilText";
 
 const PROJECT_INSPECTION_TARGET = 3;
 
@@ -9,29 +10,9 @@ function Portfolio() {
   const { unlockEgg } = useEasterEggs();
   const [inspectedProjects, setInspectedProjects] = useState([]);
   const inspectedProjectsRef = useRef([]);
+  const recoilHeaderRef = useRef(null);
 
-  useEffect(() => {
-    const handleMouseMove = (event) => {
-      const letters = document.querySelectorAll(".recoil-letter");
-      letters.forEach((letter) => {
-        const rect = letter.getBoundingClientRect();
-        const dx = event.clientX - (rect.left + rect.width / 2);
-        const dy = event.clientY - (rect.top + rect.height / 2);
-        const distance = Math.sqrt(dx * dx + dy * dy);
-        const maxDistance = 100;
-        const scale = Math.max(0, 1 - distance / maxDistance);
-        letter.style.transform = `translate(${-dx * scale}px, ${
-          -dy * scale
-        }px)`;
-      });
-    };
-
-    document.addEventListener("mousemove", handleMouseMove);
-
-    return () => {
-      document.removeEventListener("mousemove", handleMouseMove);
-    };
-  }, []);
+  useRecoilEffect(recoilHeaderRef);
 
   const inspectProject = useCallback((projectId) => {
     if (inspectedProjectsRef.current.includes(projectId)) {
@@ -81,28 +62,20 @@ function Portfolio() {
       inspectedProjects.includes(projectId) ? " portfolio-inspected" : ""
     }`;
 
-  const wrapTextInSpans = (text) => {
-    return text.split("").map((char, index) => (
-      <span key={index} className="recoil-letter">
-        {char === " " ? "\u00A0" : char}
-      </span>
-    ));
-  };
-
   return (
     <>
       <div className="container">
-        <div className="header-internal-content">
+        <div className="header-internal-content" ref={recoilHeaderRef}>
           <h1 className="header-title">
-            {wrapTextInSpans("Portfolio: ")}
-            <small className="header-subtitle">
-              {wrapTextInSpans("Creations worth sharing")}
-            </small>
+            <RecoilText text="Portfolio:" />
           </h1>
+          <p className="header-subtitle">
+            <RecoilText text="Creations worth sharing" />
+          </p>
           <p className="header-lead">
-            {wrapTextInSpans(
-              "Check out some of the apps and websites I've built over the years!"
-            )}
+            <RecoilText
+              text="Check out some of the apps and websites I've built over the years!"
+            />
           </p>
         </div>
         <div className="container">

@@ -53,7 +53,7 @@
   font-size: 1.5rem;
   font-weight: 300;
   line-height: 1.35;
-  margin-top: 0.35rem;
+  margin: 0.35rem 0 0;
 }
 
 .header-lead {
@@ -586,20 +586,6 @@ img {
   box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
 }
 
-.recoil-letter {
-  display: inline-block;
-  transition: transform 0.1s ease-out;
-}
-
-.recoil-word {
-  display: inline-block;
-  white-space: nowrap;
-}
-
-.recoil-space {
-  display: inline;
-}
-
 @media (max-width: 768px) {
   .header-internal-content {
     margin: 0 0.75rem;
@@ -709,13 +695,6 @@ img {
 
   .home-capability h3 {
     font-size: 1.05rem;
-  }
-}
-
-@media (hover: none), (pointer: coarse) {
-  .recoil-letter {
-    transform: none !important;
-    transition: none;
   }
 }
 
