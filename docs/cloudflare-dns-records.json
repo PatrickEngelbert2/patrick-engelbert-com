@@ -1,0 +1,67 @@
+{
+  "snapshotDate": "2026-08-17",
+  "zone": {
+    "name": "patrickengelbert.com",
+    "status": "active",
+    "plan": "free",
+    "nameservers": [
+      "cosmin.ns.cloudflare.com",
+      "ivy.ns.cloudflare.com"
+    ],
+    "dnssec": {
+      "enabled": false,
+      "preCutoverDsRecords": []
+    }
+  },
+  "records": [
+    {
+      "name": "patrickengelbert.com",
+      "type": "CNAME",
+      "content": "d1rdjyqzbz8rsj.cloudfront.net",
+      "proxied": true,
+      "ttl": "auto",
+      "purpose": "Proxied apex for canonical redirect rules and AWS rollback origin"
+    },
+    {
+      "name": "www.patrickengelbert.com",
+      "type": "CNAME",
+      "content": "patrick-engelbert-com.pages.dev",
+      "proxied": true,
+      "ttl": "auto",
+      "purpose": "Cloudflare Pages production hostname"
+    },
+    {
+      "name": "_8a2cb37a6bfb7bdb5e9d61c6b6653023.patrickengelbert.com",
+      "type": "CNAME",
+      "content": "_383530f4f9d9d028294096b2e0206b0e.xdvyhgsvzs.acm-validations.aws",
+      "proxied": false,
+      "ttl": "auto",
+      "purpose": "AWS certificate validation retained for rollback"
+    }
+  ],
+  "redirectRules": [
+    {
+      "name": "Canonical apex to www (HTTP)",
+      "source": "http://patrickengelbert.com/*",
+      "target": "https://www.patrickengelbert.com/${1}",
+      "statusCode": 301,
+      "preserveQueryString": true,
+      "enabled": true
+    },
+    {
+      "name": "Canonical apex to www (HTTPS)",
+      "source": "https://patrickengelbert.com/*",
+      "target": "https://www.patrickengelbert.com/${1}",
+      "statusCode": 301,
+      "preserveQueryString": true,
+      "enabled": true
+    }
+  ],
+  "pages": {
+    "project": "patrick-engelbert-com",
+    "fallbackUrl": "https://patrick-engelbert-com.pages.dev",
+    "productionDomain": "www.patrickengelbert.com",
+    "productionDomainStatus": "active",
+    "sslStatus": "enabled"
+  }
+}

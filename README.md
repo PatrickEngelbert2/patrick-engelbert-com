@@ -1,6 +1,6 @@
 # Patrick Engelbert Personal Website
 
-Personal portfolio and resume website for [patrickengelbert.com](https://www.patrickengelbert.com). The app is built with React, bundled with Vite, and deployed with AWS Amplify.
+Personal portfolio and resume website for [patrickengelbert.com](https://www.patrickengelbert.com). The app is built with React, bundled with Vite, and deployed through Git-connected Cloudflare Pages.
 
 ## Features
 
@@ -20,7 +20,8 @@ Personal portfolio and resume website for [patrickengelbert.com](https://www.pat
 - React Router 5
 - Vite
 - Vitest and Testing Library
-- AWS Amplify hosting
+- Cloudflare Pages and Cloudflare DNS
+- AWS S3 for legacy portfolio images and the software resume PDF
 
 ## Requirements
 
@@ -79,18 +80,20 @@ Serves the production build locally for a final check.
 
 ## Deployment
 
-Production currently remains on AWS Amplify, which builds and deploys the site
-from the `main` branch. The build command is `npm run build`, and the production
-output folder is `build/`.
+Cloudflare Pages builds and deploys the production site automatically from the
+`main` branch. The build command is `npm run build`, the output directory is
+`build/`, and no deployment environment variables are required.
 
-A migration to Git-connected Cloudflare Pages is being prepared without
-changing production DNS. The audited architecture, DNS snapshot, build settings,
-verification checklist, and zero-downtime cutover plan are documented in
+- Production: [www.patrickengelbert.com](https://www.patrickengelbert.com)
+- Pages fallback: [patrick-engelbert-com.pages.dev](https://patrick-engelbert-com.pages.dev)
+- Canonical behavior: the apex domain redirects permanently to `www` while
+  preserving paths and query strings
+
+Route 53 remains the registrar. AWS Amplify, CloudFront, and the original Route
+53 hosted zone are temporarily retained as rollback resources. The complete
+architecture, DNS snapshots, production verification, rollback instructions,
+and Phase 3 cleanup criteria are documented in
 [`docs/aws-cloudflare-migration.md`](docs/aws-cloudflare-migration.md).
-
-The verified Phase 1 deployment is available at
-[patrick-engelbert-com.pages.dev](https://patrick-engelbert-com.pages.dev).
-This temporary hostname is not yet connected to the production domain.
 
 ## Changelog
 
