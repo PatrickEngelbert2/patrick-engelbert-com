@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import "./Portfolio.css";
 import { useEasterEggs } from "../easterEggs/EasterEggContext";
+import walkTheRosaryPreview from "../images/walk-the-rosary.png";
 
 const PROJECT_INSPECTION_TARGET = 3;
 
@@ -106,6 +107,101 @@ function Portfolio() {
         </div>
         <div className="container">
           <div className="row">
+            <article
+              className={projectCardClass(
+                "walk-the-rosary",
+                "col-12 attention-border card-background portfolio-project-card portfolio-featured-card"
+              )}
+              data-project-id="walk-the-rosary"
+              onMouseEnter={() => inspectProject("walk-the-rosary")}
+            >
+              <div className="portfolio-featured-heading">
+                <div>
+                  <span className="featured-project-label">
+                    Featured Project
+                  </span>
+                  <h2>
+                    <a
+                      href="https://walktherosary.vercel.app/"
+                      onFocus={() => inspectProject("walk-the-rosary")}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Walk the Rosary
+                    </a>
+                  </h2>
+                </div>
+                <span className="featured-project-type">
+                  Full-featured web application
+                </span>
+              </div>
+
+              <a
+                href="https://walktherosary.vercel.app/"
+                className="portfolio-featured-preview-link"
+                onFocus={() => inspectProject("walk-the-rosary")}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <div className="hover">
+                  <img
+                    src={walkTheRosaryPreview}
+                    className="img-thumbnail portfolio-featured-preview"
+                    alt="Walk the Rosary application interface"
+                  />
+                </div>
+              </a>
+
+              <div className="portfolio-featured-copy">
+                <p>
+                  Walk the Rosary is a local-first Catholic Rosary application
+                  that combines guided prayer with tools for creating,
+                  customizing, saving, and printing complete prayer guides. It
+                  supports day-aware mystery selection, beginner-friendly quick
+                  building, detailed guide editing, and responsive step-by-step
+                  prayer flows designed for desktop and mobile use.
+                </p>
+                <p>
+                  The application keeps its builder, guided experience, and
+                  printable front-and-back guide cards aligned through shared
+                  structured content and transformation logic. Users can choose
+                  English, Latin, or Spanish prayer text, customize card layouts
+                  and content, save guides locally, and export or validate JSON
+                  backups without creating an account or sending data to a
+                  backend.
+                </p>
+              </div>
+
+              <ul className="portfolio-tech-list" aria-label="Technology stack">
+                <li>Next.js 16</li>
+                <li>React 19</li>
+                <li>TypeScript</li>
+                <li>Tailwind CSS 4</li>
+                <li>Vitest</li>
+                <li>Vercel</li>
+              </ul>
+
+              <div className="portfolio-featured-actions">
+                <a
+                  className="btn btn-primary"
+                  href="https://walktherosary.vercel.app/"
+                  onFocus={() => inspectProject("walk-the-rosary")}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Open Walk the Rosary
+                </a>
+                <a
+                  className="btn btn-outline-primary"
+                  href="https://github.com/PatrickEngelbert2/RosaryApp"
+                  onFocus={() => inspectProject("walk-the-rosary")}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  View Source Code
+                </a>
+              </div>
+            </article>
             <div
               className={projectCardClass(
                 "tikverse",
