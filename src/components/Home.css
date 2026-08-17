@@ -15,7 +15,7 @@
   padding: 10px; /* Add some padding for the content against the transparent backgrouns */
   animation: popOut 0.5s ease-out;
   transition: color 0.2s ease-in-out;
-  max-width: 58rem;
+  max-width: 64rem;
   margin-left: auto;
   margin-right: auto;
 }
@@ -49,13 +49,28 @@
 }
 
 .header-subtitle {
+  display: block;
   font-size: 1.5rem;
   font-weight: 300;
+  line-height: 1.35;
+  margin-top: 0.35rem;
 }
 
 .header-lead {
   font-size: 1.25rem;
   margin-top: 1rem;
+}
+
+.home-value-statement {
+  font-weight: 600;
+  margin-bottom: 0.45rem;
+}
+
+.home-experience-statement {
+  font-size: 1rem;
+  line-height: 1.55;
+  margin: 0 auto 0.35rem;
+  max-width: 52rem;
 }
 
 .img-thumbnail {
@@ -160,12 +175,12 @@
 
 .software-btn {
   animation: expand 0.5s ease-in-out forwards, changeColor2 0.5s ease-in-out forwards;
-  animation-delay: 1s, 1s;
+  animation-delay: 1.5s, 1.5s;
 }
 
 .robotics-btn {
   animation: expand 0.5s ease-in-out forwards, changeColor3 0.5s ease-in-out forwards;
-  animation-delay: 1.5s, 1.5s;
+  animation-delay: 1s, 1s;
 }
 
 .contact-btn {
@@ -512,6 +527,58 @@ img {
   margin: 2rem auto; /* Center the container horizontally */
 }
 
+.home-capabilities {
+  background-color: rgba(255, 255, 255, 0.9);
+  border-bottom: 2px solid rgba(0, 86, 179, 0.45);
+  border-top: 3px solid #007bff;
+  margin: 0 auto 2.5rem;
+  max-width: 68rem;
+  padding: 1.5rem;
+}
+
+.home-capabilities-heading {
+  margin-bottom: 1.25rem;
+  text-align: center;
+}
+
+.home-capabilities-heading h2 {
+  color: #16324a;
+  font-size: 1.8rem;
+  margin-bottom: 0.35rem;
+}
+
+.home-capabilities-heading p {
+  color: #405467;
+  margin: 0 auto;
+  max-width: 46rem;
+}
+
+.home-capability-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.home-capability {
+  min-width: 0;
+  padding: 0.25rem 1.25rem;
+}
+
+.home-capability + .home-capability {
+  border-left: 1px solid rgba(31, 78, 121, 0.25);
+}
+
+.home-capability h3 {
+  color: #0056b3;
+  font-size: 1.15rem;
+  margin-bottom: 0.45rem;
+}
+
+.home-capability p {
+  color: #34495e;
+  line-height: 1.55;
+  margin-bottom: 0;
+}
+
 /* Hover effect for buttons inside button-container */
 .button-container .btn:hover {
   background-color: #003d80;
@@ -554,6 +621,11 @@ img {
   .header-lead {
     font-size: 1rem;
     line-height: 1.45;
+  }
+
+  .home-experience-statement {
+    font-size: 0.92rem;
+    line-height: 1.5;
   }
 
   .section-spacing {
@@ -607,6 +679,36 @@ img {
 
   .profile-secret-action {
     font-size: 0.72rem;
+  }
+
+  .home-capabilities {
+    margin: 0 0.75rem 1.5rem;
+    padding: 1.15rem;
+  }
+
+  .home-capabilities-heading {
+    margin-bottom: 0.8rem;
+  }
+
+  .home-capabilities-heading h2 {
+    font-size: 1.5rem;
+  }
+
+  .home-capability-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .home-capability {
+    padding: 0.85rem 0;
+  }
+
+  .home-capability + .home-capability {
+    border-left: 0;
+    border-top: 1px solid rgba(31, 78, 121, 0.25);
+  }
+
+  .home-capability h3 {
+    font-size: 1.05rem;
   }
 }
 
