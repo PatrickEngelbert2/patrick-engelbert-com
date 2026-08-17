@@ -79,7 +79,18 @@ Serves the production build locally for a final check.
 
 ## Deployment
 
-AWS Amplify builds and deploys the site from the main branch. The build command is `npm run build`, and the production output folder is `build/`.
+Production currently remains on AWS Amplify, which builds and deploys the site
+from the `main` branch. The build command is `npm run build`, and the production
+output folder is `build/`.
+
+A migration to Git-connected Cloudflare Pages is being prepared without
+changing production DNS. The audited architecture, DNS snapshot, build settings,
+verification checklist, and zero-downtime cutover plan are documented in
+[`docs/aws-cloudflare-migration.md`](docs/aws-cloudflare-migration.md).
+
+The verified Phase 1 deployment is available at
+[patrick-engelbert-com.pages.dev](https://patrick-engelbert-com.pages.dev).
+This temporary hostname is not yet connected to the production domain.
 
 ## Changelog
 
