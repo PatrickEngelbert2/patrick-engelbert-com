@@ -189,14 +189,21 @@ function Home() {
           onClick={revealHeadlineSecret}
         >
           <h1 className="header-title">
-            {wrapTextInSpans("Patrick Engelbert:")}
+            {wrapTextInSpans("Patrick Engelbert")}
             <small className="header-subtitle">
-              {wrapTextInSpans(" A Full-Stack Software Engineer")}
+              {wrapTextInSpans(
+                "Software Engineer | Robotics & Industrial Automation"
+              )}
             </small>
           </h1>
-          <p className="header-lead">
+          <p className="header-lead home-value-statement">
             {wrapTextInSpans(
-              "Welcome! This is my personal website - created using React, and deployed via AWS."
+              "I build software and automation systems where code meets real-world machines."
+            )}
+          </p>
+          <p className="home-experience-statement">
+            {wrapTextInSpans(
+              "My background combines production full-stack engineering with hands-on PLC, robotics, and controls work. I am currently completing Robotics & Industrial Controls training at Texas State Technical College."
             )}
           </p>
         </div>
@@ -390,16 +397,16 @@ function Home() {
               </button>
             </div>
             <button
-              className="btn btn-primary btn-animations-plus software-btn btn-lg mb-3"
-              onClick={navigateToResume}
-            >
-              Software Engineering Resume
-            </button>
-            <button
               className="btn btn-primary btn-animations-plus robotics-btn btn-lg mb-3"
               onClick={navigateToRoboticsResume}
             >
               Robotics & Controls Resume
+            </button>
+            <button
+              className="btn btn-primary btn-animations-plus software-btn btn-lg mb-3"
+              onClick={navigateToResume}
+            >
+              Software Engineering Resume
             </button>
             <button
               className="btn btn-primary btn-animations-plus contact-btn btn-lg"
@@ -409,6 +416,41 @@ function Home() {
             </button>
           </div>
         </div>
+        <section
+          className="home-capabilities"
+          aria-labelledby="home-capabilities-title"
+        >
+          <div className="home-capabilities-heading">
+            <h2 id="home-capabilities-title">What I bring</h2>
+            <p>
+              Production engineering experience and hands-on controls training
+              applied as one connected problem-solving skill set.
+            </p>
+          </div>
+          <div className="home-capability-grid">
+            <article className="home-capability">
+              <h3>Software Engineering</h3>
+              <p>
+                Production full-stack development, APIs, frontend systems,
+                debugging, testing, and maintainable application design.
+              </p>
+            </article>
+            <article className="home-capability">
+              <h3>Industrial Automation</h3>
+              <p>
+                PLC programming, industrial I/O, sensors, motor controls, VFDs,
+                troubleshooting, and control logic.
+              </p>
+            </article>
+            <article className="home-capability">
+              <h3>Robotics &amp; Integration</h3>
+              <p>
+                FANUC and Universal Robots, motion and tooling logic, sensing,
+                and robot-to-system integration.
+              </p>
+            </article>
+          </div>
+        </section>
       </div>
     </>
   );
