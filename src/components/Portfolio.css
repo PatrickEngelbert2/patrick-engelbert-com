@@ -75,6 +75,100 @@
     0 0 10px rgba(0, 0, 0, 0.1);
 }
 
+.portfolio-featured-card {
+  background-color: rgba(255, 255, 255, 0.96);
+  border-color: #164b7a;
+  box-shadow: 0 0.5rem 1.25rem rgba(11, 42, 72, 0.2);
+  padding: 1.25rem;
+}
+
+.portfolio-featured-heading {
+  align-items: flex-start;
+  display: flex;
+  gap: 1rem;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.portfolio-featured-heading h2 {
+  font-size: 2rem;
+  line-height: 1.2;
+  margin: 0.45rem 0 0;
+}
+
+.featured-project-label,
+.featured-project-type {
+  border-radius: 4px;
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0;
+  padding: 0.35rem 0.55rem;
+}
+
+.featured-project-label {
+  background-color: #164b7a;
+  color: #ffffff;
+  text-transform: uppercase;
+}
+
+.featured-project-type {
+  background-color: #eef4f8;
+  border: 1px solid #b9cad8;
+  color: #25394a;
+  margin-top: 0.15rem;
+}
+
+.portfolio-featured-preview-link {
+  display: block;
+  margin-bottom: 1.15rem;
+}
+
+.img-thumbnail.portfolio-featured-preview {
+  aspect-ratio: 16 / 9;
+  display: block;
+  height: clamp(12rem, 42vw, 26rem);
+  max-height: 26rem;
+  object-fit: cover;
+  object-position: top center;
+  width: 100%;
+}
+
+.portfolio-featured-copy {
+  color: #34495e;
+  font-size: 1rem;
+  line-height: 1.65;
+}
+
+.portfolio-featured-copy p:last-child {
+  margin-bottom: 0;
+}
+
+.portfolio-tech-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  list-style: none;
+  margin: 1.15rem 0;
+  padding: 0;
+}
+
+.portfolio-tech-list li {
+  background-color: #f3f6f8;
+  border: 1px solid #c5d1da;
+  border-radius: 4px;
+  color: #263b4c;
+  font-size: 0.82rem;
+  font-weight: 600;
+  padding: 0.35rem 0.55rem;
+}
+
+.portfolio-featured-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+}
+
 .custom-list {
   margin-top: 5px; /* Adjust this value to increase spacing before the list */
   margin-bottom: 0px; /* Adjust this value to reduce spacing after the list */
@@ -109,4 +203,36 @@
 .recoil-letter {
   display: inline-block;
   transition: transform 0.1s ease-out;
+}
+
+@media (max-width: 767px) {
+  .portfolio-featured-card {
+    padding: 1rem;
+  }
+
+  .portfolio-featured-heading {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 0.55rem;
+  }
+
+  .portfolio-featured-heading h2 {
+    font-size: 1.65rem;
+  }
+
+  .img-thumbnail.portfolio-featured-preview {
+    aspect-ratio: 16 / 10;
+  }
+}
+
+@media (max-width: 480px) {
+  .portfolio-featured-actions {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .portfolio-featured-actions .btn {
+    white-space: normal;
+    width: 100%;
+  }
 }
