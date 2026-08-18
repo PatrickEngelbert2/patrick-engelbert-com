@@ -14,6 +14,15 @@ deployment impact.
 
 ### Added
 
+- Added a production hosting audit covering Amplify, its empty Gen 1 backend,
+  Route 53, CloudFront, S3 dependencies, build settings, and current AWS costs.
+- Added a machine-readable snapshot of all Route 53 records and a documented
+  zero-downtime procedure for a later Cloudflare DNS cutover.
+- Added Cloudflare Pages migration documentation with the Git-connected build
+  contract, temporary-preview verification checklist, rollback guidance, and
+  AWS decommissioning guardrails.
+- Added a Git-connected Cloudflare Pages project and verified temporary
+  `pages.dev` deployment while leaving the production domain on AWS.
 - Added this changelog to document the portfolio site's evolution in a
   professional, release-oriented format.
 - Added centralized contact and social-link constants so the site uses one
@@ -62,6 +71,12 @@ deployment impact.
 
 ### Verified
 
+- Cloudflare Pages production-branch build and deployment from `main`.
+- Direct navigation and refresh behavior for all public nested routes on the
+  temporary Pages hostname.
+- Desktop and mobile parity between the Pages deployment and AWS production,
+  including images, downloadable resumes, external links, contact-form render
+  states, and representative easter eggs.
 - `npm test`
 - `npm run build`
 - `npm audit`
