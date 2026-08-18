@@ -2,13 +2,18 @@
 
 ## Status
 
-Phase 1 was audited and prepared on August 17, 2026. Production remains on AWS
-Amplify and Route 53. No production DNS records or AWS resources were changed
-during this phase.
+Phase 1 was audited and prepared on August 17, 2026. Phase 2 was completed the
+same day. Production DNS is now authoritative on Cloudflare, and the canonical
+`www` hostname is served by the Git-connected Cloudflare Pages project.
 
-The Git-connected Cloudflare Pages project is deployed and verified at
-[`https://patrick-engelbert-com.pages.dev`](https://patrick-engelbert-com.pages.dev).
-No custom domain has been added to the Pages project.
+- Production: [`https://www.patrickengelbert.com`](https://www.patrickengelbert.com)
+- Apex: redirects permanently to the matching `www` path
+- Pages project: `patrick-engelbert-com`
+- Pages fallback URL:
+  [`https://patrick-engelbert-com.pages.dev`](https://patrick-engelbert-com.pages.dev)
+- Registrar: Route 53 Registrar (unchanged)
+- AWS hosting and DNS resources: retained as rollback targets
+- Required S3 asset bucket: retained and still used by the live application
 
 ## Current Architecture
 
@@ -16,13 +21,20 @@ No custom domain has been added to the Pages project.
 GitHub main branch
        |
        v
-AWS Amplify Hosting (build and deploy)
+Cloudflare Pages (build and deploy)
        |
        v
-CloudFront distribution
+www.patrickengelbert.com
+
+Route 53 Registrar
        |
        v
-Route 53 hosted zone for patrickengelbert.com
+Cloudflare authoritative DNS
+       |-- apex -> Cloudflare Redirect Rules -> www
+       |-- www -> Cloudflare Pages
+       `-- ACM validation CNAME retained for AWS rollback
+
+AWS Amplify + CloudFront + Route 53 hosted zone (retained, not authoritative)
 ```
 
 The site is a React 18 single-page application bundled with Vite. React Router
@@ -44,8 +56,8 @@ The site is a React 18 single-page application bundled with Vite. React Router
 Cloudflare Pages serves a single-page application fallback when the deployment
 does not contain a top-level `404.html`. This repository intentionally has no
 top-level `404.html`, so an additional `_redirects` file is not required. Direct
-loads of nested routes must still be verified on the Pages preview before DNS
-cutover.
+loads and refreshes of nested routes were verified on both the Pages fallback
+hostname and the production custom domain.
 
 EmailJS identifiers are currently embedded in the client bundle. They are not
 Amplify environment variables and do not require Cloudflare build variables.
@@ -107,6 +119,10 @@ this S3 dependency.
 - Record count: 5
 - Registrar: Route 53 Registrar
 
+The hosted zone remains intact but is no longer authoritative. The registrar
+now delegates the domain to Cloudflare. The original five-record snapshot is
+retained in [`route53-records.json`](route53-records.json) for rollback.
+
 The machine-readable audit snapshot is in
 [`route53-records.json`](route53-records.json).
 
@@ -130,7 +146,7 @@ Amplify charges vary with builds, bandwidth, and storage. Domain registration
 is a separate annual cost and should remain in place unless the registrar is
 deliberately migrated later.
 
-## Cloudflare Pages Target
+## Cloudflare Pages Configuration
 
 The Pages project must use Git integration, not Direct Upload, so pushes and
 pull requests continue to produce automatic deployments and previews.
@@ -143,7 +159,7 @@ pull requests continue to produce automatic deployments and previews.
 | Build output directory | `build` |
 | Root directory | `/` |
 | Environment variables | None |
-| Custom domains | None in Phase 1 |
+| Custom domains | `www.patrickengelbert.com` |
 
 Only the website repository should be granted to the Cloudflare GitHub App.
 The initial deployment must use a temporary `pages.dev` hostname. Production
@@ -165,7 +181,7 @@ custom domains are explicitly deferred to Phase 2.
 | Build output directory | `build` |
 | Root directory | Repository root |
 | Variables and secrets | None |
-| Custom domains | None |
+| Custom domains | `www.patrickengelbert.com` (Active, SSL enabled) |
 
 ## Phase 1 Verification
 
@@ -208,41 +224,159 @@ were byte-for-byte equal to those served by the AWS production hostname at the
 time of comparison. Normalized desktop and mobile screenshots showed no
 material visual difference. Production remained available throughout testing.
 
-## Phase 2: Zero-Downtime Cutover
+## Phase 2 Cutover Record
 
-1. Re-run the Route 53 record and AWS resource audits. Export a fresh DNS
-   snapshot before making any change.
-2. Add `patrickengelbert.com` to Cloudflare on the Free plan. Do not change the
-   registrar or nameservers yet.
-3. Recreate every non-NS/non-SOA Route 53 record in Cloudflare. Preserve the ACM
-   validation CNAME. Temporarily point both the apex and `www` through DNS-only
-   records to the existing CloudFront target so both DNS providers still serve
-   AWS during nameserver propagation.
-4. Compare the Cloudflare record set with the fresh Route 53 export. Pay special
-   attention to any email records added after this Phase 1 audit.
-5. At Route 53 Registrar, replace only the authoritative nameservers with the
-   two nameservers assigned by Cloudflare.
-6. Wait for the Cloudflare zone to become active and verify DNS from multiple
-   resolvers. Traffic should continue reaching AWS throughout propagation.
-7. Add `www.patrickengelbert.com` and `patrickengelbert.com` to the verified
-   Pages project. Configure the apex-to-`www` redirect so canonical URL behavior
-   matches production.
-8. Replace the temporary AWS origin records with the Pages custom-domain
-   records. Verify TLS, redirects, all application routes, assets, forms, and
-   mobile behavior.
-9. Monitor production for at least 48-72 hours. Keep Amplify and the Route 53
-   hosted zone intact as rollback targets during this window.
-10. After the monitoring window, disable Amplify automatic builds, remove its
-    custom domain, and retire the hosting app and empty backend stack. Delete the
-    Route 53 hosted zone only after Cloudflare is authoritative and stable.
-11. Keep the registered domain and `images-patrickengelbert` bucket. Retire that
-    S3 bucket only in a separate asset-migration project after all source URLs
-    and downloadable files have been replaced and verified.
+### Pre-change audit and DNSSEC
 
-### Rollback
+The Route 53 zone was re-audited immediately before the cutover. Its five
+records matched the Phase 1 snapshot exactly. There were still no AAAA, MX, TXT,
+CAA, SPF, DKIM, DMARC, or other email records.
 
-Before AWS decommissioning, rollback is straightforward: restore the Cloudflare
-DNS records to the existing CloudFront target, or restore the Route 53
-nameservers at the registrar if the issue is with Cloudflare DNS itself. Retain
-the fresh Route 53 export, Amplify app, custom domain, and S3 assets until the
-monitoring window has passed.
+DNSSEC was not enabled:
+
+- Route 53 hosted-zone signing status: `Not signing`
+- Route 53 key-signing keys: none
+- Route 53 Registrar DNSSEC status: `Not configured`
+- Registrar DNSSEC keys: none
+- Public parent-zone DS lookup: no DS records
+
+No DNSSEC or DS change was required. Cloudflare DNSSEC remains disabled for the
+initial monitoring period and can be enabled in a separate follow-up after the
+new authoritative DNS configuration is stable.
+
+### Delegation
+
+The registrar nameserver change was made on August 17, 2026 at approximately
+16:10 CDT (21:10 UTC). The domain remains registered with Route 53 Registrar.
+
+Previous Route 53 nameservers:
+
+- `ns-1937.awsdns-50.co.uk`
+- `ns-1496.awsdns-59.org`
+- `ns-828.awsdns-39.net`
+- `ns-166.awsdns-20.com`
+
+Current Cloudflare nameservers:
+
+- `cosmin.ns.cloudflare.com`
+- `ivy.ns.cloudflare.com`
+
+Google Public DNS and Cloudflare's public resolver both returned the new
+delegation. The Cloudflare zone subsequently reported `Active`.
+
+### Current Cloudflare DNS
+
+Cloudflare contains three user-managed records. Provider-generated NS and SOA
+records are not counted here. A machine-readable snapshot is in
+[`cloudflare-dns-records.json`](cloudflare-dns-records.json).
+
+| Name | Type | Target | Proxy | TTL | Purpose |
+| --- | --- | --- | --- | --- | --- |
+| `patrickengelbert.com` | CNAME | `d1rdjyqzbz8rsj.cloudfront.net` | Proxied | Auto | Gives Redirect Rules a proxied apex; AWS remains the fallback origin |
+| `www` | CNAME | `patrick-engelbert-com.pages.dev` | Proxied | Auto | Cloudflare Pages production hostname |
+| `_8a2cb37a6bfb7bdb5e9d61c6b6653023` | CNAME | `_383530f4f9d9d028294096b2e0206b0e.xdvyhgsvzs.acm-validations.aws` | DNS only | Auto | Preserves AWS certificate validation for rollback |
+
+The apex differs from the Route 53 `A` alias because Cloudflare uses a flattened
+CNAME at the zone root. No mail records were created because the previous zone
+did not contain or require them.
+
+### Zero-downtime sequence
+
+1. Cloudflare was populated with DNS-only apex, `www`, and validation records
+   pointing to the existing AWS configuration.
+2. The registrar delegation was changed to Cloudflare.
+3. Independent DNS checks confirmed Cloudflare authority, while HTTP headers
+   still showed CloudFront and Amazon S3. The site and nested routes remained
+   available during this intermediate state.
+4. `www.patrickengelbert.com` was attached through the Pages custom-domain
+   workflow, which replaced the `www` target with
+   `patrick-engelbert-com.pages.dev` and enabled proxying.
+5. The apex record was proxied and two native Single Redirect rules were
+   deployed: one for HTTP and one for HTTPS. Both return `301`, preserve the
+   path and query string, and target the canonical `www` hostname.
+6. Pages reported the custom domain as `Active` with `SSL enabled`.
+
+The explicit HTTP and HTTPS rules avoid relying on a combined wildcard pattern
+whose behavior was inconsistent during validation.
+
+### Production verification
+
+The live production domain was verified after the switch:
+
+- `http://patrickengelbert.com`, `https://patrickengelbert.com`, and
+  `http://www.patrickengelbert.com` each reach the canonical HTTPS `www` URL in
+  one redirect, with path and query string preserved and no loop.
+- `https://www.patrickengelbert.com` returns HTTP 200 from Cloudflare. Response
+  headers include `Server: cloudflare` and `CF-RAY` and no longer include the
+  CloudFront `Via` or `X-Amz-Cf-*` headers seen before the hosting switch.
+- The production HTML and hashed CSS/JavaScript asset names are byte-for-byte
+  identical to the verified `pages.dev` deployment.
+- Direct navigation and browser refresh passed for `/portfolio`, `/contact`,
+  `/contact/message`, `/contact/request-contact-info`,
+  `/resume/software-engineering`, `/resume/robotics-controls`, `/spacex`, and an
+  invalid route that rendered the React lost-signal 404 experience.
+- Local profile, rocket, and Walk the Rosary assets loaded with valid rendered
+  dimensions. All S3-hosted portfolio images also loaded successfully.
+- The bundled robotics resume and S3-hosted software resume returned HTTP 200
+  with `application/pdf` content types.
+- GitHub, Walk the Rosary, Tikverse, Pomodoro Timer, and Stuffi returned HTTP
+  200. LinkedIn returned its normal automated-client `999` response; the link
+  target is unchanged and correct in the rendered site.
+- Both EmailJS forms rendered with their expected required inputs and submit
+  controls. No test email was sent.
+- Liftoff, Operator Mode, Trophy Room, terminal help, lost-signal recovery,
+  robotics commissioning, and SpaceX Orbit Check were exercised successfully.
+- A fresh production browser tab reported no console warnings or errors.
+- At 390 x 844, the home and SpaceX pages rendered without header overlap,
+  horizontal overflow, or broken assets.
+
+### Preserved AWS rollback resources
+
+No AWS resource was deleted, disabled, detached, or transferred. The following
+were rechecked after production moved to Pages:
+
+- Amplify app `patrick-engelbert-com` (`d385lcla48w64c`) still exists with its
+  `main` branch, and its `amplifyapp.com` URL returns HTTP 200.
+- Route 53 hosted zone `Z07780862CMV5DTRBAIND` still exists with all five
+  original records.
+- The `images-patrickengelbert` bucket still exists with all nine objects and
+  remains a live application dependency.
+- The ACM validation CNAME remains present in both Route 53 and Cloudflare.
+- The existing CloudFront hostname still resolves and responds. The direct
+  distribution hostname expects the configured application host, while the
+  Amplify hostname remains the simplest end-to-end rollback health check.
+
+The ACM console did not expose account-owned certificates in `us-east-1` or
+`us-east-2`; Amplify manages the custom-domain certificate relationship. No
+certificate resource or validation record was removed.
+
+### Exact rollback procedure
+
+For a Pages-only problem while Cloudflare DNS is healthy:
+
+1. In Cloudflare DNS, edit the `www` CNAME target from
+   `patrick-engelbert-com.pages.dev` to `d1rdjyqzbz8rsj.cloudfront.net`.
+2. Set the `www` record to `DNS only`, matching the tested intermediate state.
+3. Leave the two apex-to-`www` Redirect Rules active. They will continue to
+   canonicalize both protocols while `www` serves AWS.
+4. Verify `/`, `/portfolio`, both resumes, `/contact`, and `/spacex`; confirm
+   CloudFront/Amazon S3 headers on `www`.
+
+For a Cloudflare DNS or account-wide problem:
+
+1. In Route 53 Registrar, restore all four previous Route 53 nameservers listed
+   above, exactly as recorded.
+2. Do not edit or recreate the Route 53 hosted-zone records; the complete
+   five-record rollback zone is already intact.
+3. Monitor Google Public DNS and Cloudflare public DNS until they return the
+   Route 53 nameservers.
+4. Verify the AWS apex-to-`www` redirect, TLS, routes, PDFs, and S3 assets.
+
+### Phase 3 eligibility
+
+Monitor production for at least 72 hours after the Phase 2 cutover. If DNS,
+redirects, Pages deployments, contact forms, and external assets remain stable,
+Phase 3 may retire Amplify hosting and then delete the non-authoritative Route
+53 hosted zone. Keep Route 53 domain registration and the
+`images-patrickengelbert` bucket. Migrating those S3 URLs is a separate project
+and must happen before that bucket can be considered for removal.

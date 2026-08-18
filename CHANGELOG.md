@@ -14,6 +14,11 @@ deployment impact.
 
 ### Added
 
+- Added a machine-readable Cloudflare DNS snapshot covering authoritative
+  nameservers, production records, redirect rules, Pages custom-domain status,
+  and retained AWS validation data.
+- Added exact Pages-only and DNS-provider rollback procedures for restoring the
+  retained Amplify and Route 53 configuration.
 - Added a production hosting audit covering Amplify, its empty Gen 1 backend,
   Route 53, CloudFront, S3 dependencies, build settings, and current AWS costs.
 - Added a machine-readable snapshot of all Route 53 records and a documented
@@ -37,6 +42,15 @@ deployment impact.
 
 ### Changed
 
+- Migrated authoritative DNS from Route 53 to Cloudflare while keeping Route 53
+  as the registrar and preserving the original hosted zone for rollback.
+- Moved `www.patrickengelbert.com` production hosting from AWS Amplify and
+  CloudFront to the Git-connected `patrick-engelbert-com` Pages project.
+- Replaced the AWS apex redirect with explicit Cloudflare HTTP and HTTPS `301`
+  rules that preserve paths and query strings.
+- Updated the README and migration runbook to describe the live Cloudflare
+  architecture, retained AWS dependencies, monitoring period, and Phase 3
+  eligibility.
 - Updated contact and social links across the header, footer, resumes, contact
   form, and Trophy Room to use the centralized constants.
 - Updated the generated contact-info email to send Patrick's real contact
@@ -71,6 +85,17 @@ deployment impact.
 
 ### Verified
 
+- Cloudflare authority through Google Public DNS and Cloudflare's public
+  resolver, with `cosmin.ns.cloudflare.com` and `ivy.ns.cloudflare.com` serving
+  the domain.
+- Production Pages TLS, Cloudflare response headers, canonical redirects for
+  both protocols, path/query preservation, and absence of redirect loops.
+- Live production routes and direct refreshes, local and S3 assets, both resume
+  PDFs, external project links, contact-form render states, representative
+  easter eggs, a clean browser console, and mobile layout at 390 x 844.
+- AWS rollback resources after cutover: the Amplify app and branch, all five
+  Route 53 hosted-zone records, the ACM validation CNAME, the CloudFront
+  relationship, and all nine objects in `images-patrickengelbert`.
 - Cloudflare Pages production-branch build and deployment from `main`.
 - Direct navigation and refresh behavior for all public nested routes on the
   temporary Pages hostname.
