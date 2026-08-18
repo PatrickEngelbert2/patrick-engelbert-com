@@ -14,6 +14,14 @@ deployment impact.
 
 ### Added
 
+- Added route-specific build-time metadata for public, utility, thin-content,
+  and hidden routes so titles, descriptions, canonicals, crawler directives,
+  Open Graph tags, and Twitter/X cards exist before React executes.
+- Added a production sitemap, crawler policy, conservative homepage Person and
+  WebSite structured data, a branded social-preview image, and automated SEO
+  output validation.
+- Added branded manifest and Apple touch icons derived from the site's existing
+  favicon.
 - Added a machine-readable Cloudflare DNS snapshot covering authoritative
   nameservers, production records, redirect rules, Pages custom-domain status,
   and retained AWS validation data.
@@ -42,6 +50,10 @@ deployment impact.
 
 ### Changed
 
+- Updated the web app manifest and canonical portfolio URL to use the live
+  `www.patrickengelbert.com` identity consistently.
+- Added client-side metadata synchronization for in-app route changes while
+  retaining build-time metadata as the crawler-facing source of truth.
 - Migrated authoritative DNS from Route 53 to Cloudflare while keeping Route 53
   as the registrar and preserving the original hosted zone for rollback.
 - Moved `www.patrickengelbert.com` production hosting from AWS Amplify and
