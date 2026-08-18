@@ -19,6 +19,7 @@ import KeyboardSequence from "../easterEggs/KeyboardSequence";
 import SecretTerminal from "../easterEggs/SecretTerminal";
 import SpaceXReturnButton from "../easterEggs/SpaceXReturnButton";
 import TrophyRoom from "../easterEggs/TrophyRoom";
+import RouteMetadata from "../seo/RouteMetadata";
 
 function Layout() {
   const [isSticky, setSticky] = useState(false);
@@ -39,7 +40,8 @@ function Layout() {
 
   return (
     <EasterEggProvider>
-    <div className="app-container parallax">
+      <RouteMetadata />
+      <div className="app-container parallax">
       {/* Added container for flexbox layout */}
       <div className={`sticky-wrapper${isSticky ? " sticky" : ""}`} ref={ref}>
         <Header />
@@ -86,11 +88,11 @@ function Layout() {
           </Switch>
       </main>
       <Footer />
-    </div>
-    <KeyboardSequence />
-    <SecretTerminal />
-    <SpaceXReturnButton />
-    <TrophyRoom />
+      </div>
+      <KeyboardSequence />
+      <SecretTerminal />
+      <SpaceXReturnButton />
+      <TrophyRoom />
     </EasterEggProvider>
   );
 }

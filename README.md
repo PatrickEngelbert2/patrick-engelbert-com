@@ -13,6 +13,8 @@ Personal portfolio and resume website for [patrickengelbert.com](https://www.pat
 - Secret terminal with forgiving commands, hints, cheat behavior, and SpaceX mission-brief access
 - SpaceX-focused hidden mission brief page
 - Custom not-found experience with a recoverable signal easter egg
+- Route-specific canonical, search, and social metadata generated into the
+  initial production HTML, plus a sitemap and structured data
 
 ## Tech Stack
 
@@ -61,6 +63,16 @@ npm run build
 
 Creates a production build in the `build/` folder.
 
+The build also generates route-specific HTML metadata and validates the SEO
+output.
+
+```bash
+npm run validate:seo
+```
+
+Validates metadata, crawler files, and social-preview assets in an existing
+production build.
+
 ```bash
 npm run preview
 ```
@@ -74,8 +86,10 @@ Serves the production build locally for a final check.
 - `src/components/` contains page-level components and resume content.
 - `src/constants/` contains shared site constants such as contact and social links.
 - `src/easterEggs/` contains the easter egg state, terminal, Trophy Room, and hidden interactions.
+- `src/seo/` contains the shared route metadata and in-app metadata synchronization.
 - `src/images/` contains imported image and SVG assets.
 - `public/` contains static files copied directly into the production build.
+- `scripts/` contains build-time route generation, SEO validation, and brand-asset tooling.
 - `amplify/` contains AWS Amplify project metadata.
 
 ## Deployment
