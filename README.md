@@ -116,3 +116,7 @@ Notable project changes are documented in [CHANGELOG.md](CHANGELOG.md).
 ## Security
 
 Run `npm audit` before opening a PR when dependency changes are involved. This project was migrated away from Create React App because `react-scripts` pulled in outdated transitive packages with security advisories.
+
+The latest dependency, CDN, EmailJS, secret-scan, and public-repository review is
+documented in
+[`docs/dependency-security-audit.md`](docs/dependency-security-audit.md).

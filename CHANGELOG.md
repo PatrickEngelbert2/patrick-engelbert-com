@@ -50,6 +50,13 @@ deployment impact.
 
 ### Changed
 
+- Updated four vulnerable transitive development dependencies to compatible
+  patched releases without changing direct dependency ranges.
+- Replaced the mobile navbar's Bootstrap JavaScript collapse behavior with
+  equivalent React state, allowing the site to stop loading jQuery, Popper,
+  Bootstrap JavaScript, and the unused Open Iconic stylesheet.
+- Expanded environment-file ignore rules to reduce the risk of accidentally
+  committing local secrets.
 - Updated the web app manifest and canonical portfolio URL to use the live
   `www.patrickengelbert.com` identity consistently.
 - Added client-side metadata synchronization for in-app route changes while
@@ -80,6 +87,7 @@ deployment impact.
 
 ### Fixed
 
+- Resolved all npm audit findings in the development and build dependency tree.
 - Fixed fake placeholder contact information that was included in the hidden
   body of generated contact-info emails.
 - Fixed the footer typo "job oportunity" to "job opportunity."

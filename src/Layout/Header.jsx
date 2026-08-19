@@ -9,6 +9,7 @@ import "./Header.css";
 function Header() {
   const location = useLocation();
   const { unlockEgg } = useEasterEggs();
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [resumeMenuOpen, setResumeMenuOpen] = useState(false);
   const [brandPingActive, setBrandPingActive] = useState(false);
   const resumeMenuRef = useRef(null);
@@ -49,6 +50,7 @@ function Header() {
   };
 
   useEffect(() => {
+    setMobileMenuOpen(false);
     setResumeMenuOpen(false);
   }, [location.pathname]);
 
@@ -100,15 +102,17 @@ function Header() {
         <button
           className="navbar-toggler"
           type="button"
-          data-toggle="collapse"
-          data-target="#navbarNavAltMarkup"
+          onClick={() => setMobileMenuOpen((current) => !current)}
           aria-controls="navbarNavAltMarkup"
-          aria-expanded="false"
+          aria-expanded={mobileMenuOpen}
           aria-label="Toggle navigation"
         >
           <span className="navbar-toggler-icon"></span>
         </button>
-        <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div
+          className={`collapse navbar-collapse${mobileMenuOpen ? " show" : ""}`}
+          id="navbarNavAltMarkup"
+        >
           <div className="navbar-nav">
             <Link
               className={`nav-item nav-link ${
