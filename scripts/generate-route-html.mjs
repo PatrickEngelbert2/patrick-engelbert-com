@@ -14,6 +14,8 @@ const buildDirectory = path.join(projectRoot, "build");
 const templatePath = path.join(buildDirectory, "index.html");
 const startMarker = "<!-- SEO:START -->";
 const endMarker = "<!-- SEO:END -->";
+const homePreloadPattern =
+  /\s*<!-- HOME-PRELOAD:START -->[\s\S]*?<!-- HOME-PRELOAD:END -->/;
 
 function escapeHtml(value) {
   return value
@@ -69,7 +71,11 @@ for (const metadata of ROUTE_METADATA) {
     metadata.path === "/"
       ? templatePath
       : path.join(buildDirectory, `${metadata.path.slice(1)}.html`);
-  const routeHtml = template.replace(markerPattern, renderMetadata(metadata));
+  let routeHtml = template.replace(markerPattern, renderMetadata(metadata));
+
+  if (metadata.path !== "/") {
+    routeHtml = routeHtml.replace(homePreloadPattern, "");
+  }
 
   await mkdir(path.dirname(outputPath), { recursive: true });
   await writeFile(outputPath, routeHtml);

@@ -13,18 +13,28 @@ function Footer() {
         {/* social media */}
         <section className="mb-2">
           <a
+            aria-label="Patrick Engelbert on LinkedIn"
             href={LINKEDIN_URL}
             target="_blank"
             rel="noopener noreferrer"
           >
-            <LinkedIn className="social-icon social-icon-large social-icon-margin linkedin subtle-shadow" />
+            <LinkedIn
+              aria-hidden="true"
+              focusable="false"
+              className="social-icon social-icon-large social-icon-margin linkedin subtle-shadow"
+            />
           </a>
           <a
+            aria-label="Patrick Engelbert on GitHub"
             href={GITHUB_URL}
             target="_blank"
             rel="noopener noreferrer"
           >
-            <GitHub className="social-icon social-icon-large github subtle-shadow" />
+            <GitHub
+              aria-hidden="true"
+              focusable="false"
+              className="social-icon social-icon-large github subtle-shadow"
+            />
           </a>
         </section>
 
@@ -41,11 +51,16 @@ function Footer() {
               LinkedIn
             </a>
             <a
+              aria-label="Patrick Engelbert on LinkedIn"
               href={LINKEDIN_URL}
               target="_blank"
               rel="noopener noreferrer"
             >
-              <LinkedIn style={{ backgroundColor: "white" }} />
+              <LinkedIn
+                aria-hidden="true"
+                focusable="false"
+                style={{ backgroundColor: "white" }}
+              />
             </a>
             , or
             <a
@@ -57,11 +72,12 @@ function Footer() {
               GitHub
             </a>
             <a
+              aria-label="Patrick Engelbert on GitHub"
               href={GITHUB_URL}
               target="_blank"
               rel="noopener noreferrer"
             >
-              <GitHub />
+              <GitHub aria-hidden="true" focusable="false" />
             </a>
             .
           </p>

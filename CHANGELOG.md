@@ -14,6 +14,14 @@ deployment impact.
 
 ### Added
 
+- Added a measured mobile and desktop performance/accessibility audit with
+  before-and-after Lighthouse, network, bundle, keyboard, and regression data.
+- Added a keyboard-visible skip link, consistent focus indicators, accessible
+  inline form status messages, and EmailJS submission tests.
+- Added responsive 640 px and 1200/1280 px WebP portfolio image candidates and
+  a home-only preload for the profile LCP image.
+- Added Cloudflare Pages cache headers for immutable fingerprinted assets, PDFs,
+  and the social preview.
 - Added route-specific build-time metadata for public, utility, thin-content,
   and hidden routes so titles, descriptions, canonicals, crawler directives,
   Open Graph tags, and Twitter/X cards exist before React executes.
@@ -50,6 +58,16 @@ deployment impact.
 
 ### Changed
 
+- Re-encoded the fixed background and profile photo as optimized WebP assets,
+  reducing their combined production weight from about 1.9 MB to about 100 kB.
+- Replaced eager S3 portfolio screenshots with optimized responsive local
+  assets and lazy loading while retaining the existing project presentation.
+- Deferred secondary routes, including EmailJS forms and the SpaceX/404 pages,
+  while keeping primary routes synchronous to avoid layout shift.
+- Replaced Bootstrap Icons with lightweight existing/CSS assets, reducing the
+  main CSS bundle from 123.51 kB to 38.81 kB and removing the icon font.
+- Improved resume and Portfolio contrast without changing the established
+  palette, and added a global reduced-motion guard for significant animations.
 - Updated four vulnerable transitive development dependencies to compatible
   patched releases without changing direct dependency ranges.
 - Replaced the mobile navbar's Bootstrap JavaScript collapse behavior with
@@ -87,6 +105,10 @@ deployment impact.
 
 ### Fixed
 
+- Fixed unnamed shared social-icon links, invalid nested resume download
+  controls, color-only Portfolio links, and distorted project screenshots.
+- Fixed late profile-image discovery and oversized/eager image loading that
+  produced 7.3-11.8 second mobile LCP measurements at baseline.
 - Resolved all npm audit findings in the development and build dependency tree.
 - Fixed fake placeholder contact information that was included in the hidden
   body of generated contact-info emails.
@@ -105,6 +127,11 @@ deployment impact.
 
 ### Verified
 
+- Lighthouse 12.8.2 final scores of 97-98 Performance and 100 Accessibility,
+  Best Practices, and SEO on all five mobile core routes; all four categories
+  scored 100 on the desktop core routes.
+- Final mobile core-route LCP of 2.1-2.4 seconds, CLS of 0-0.008, TBT of 0,
+  clean browser console, direct-route refreshes, and representative easter eggs.
 - Cloudflare authority through Google Public DNS and Cloudflare's public
   resolver, with `cosmin.ns.cloudflare.com` and `ivy.ns.cloudflare.com` serving
   the domain.

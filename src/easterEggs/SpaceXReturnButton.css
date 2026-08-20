@@ -26,10 +26,10 @@
   transform: translateY(-1px);
 }
 
-.spacex-return-button i {
-  color: #fb923c;
-  font-size: 1.05rem;
-  line-height: 1;
+.spacex-return-button img {
+  height: 1.05rem;
+  object-fit: contain;
+  width: 1.05rem;
 }
 
 .spacex-return-button span {

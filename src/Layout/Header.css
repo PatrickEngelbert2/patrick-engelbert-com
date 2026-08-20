@@ -92,13 +92,19 @@ header {
   outline: none;
 }
 
-.resume-nav-toggle i {
-  font-size: 0.72rem;
+.resume-nav-chevron {
+  border-bottom: 2px solid currentColor;
+  border-right: 2px solid currentColor;
+  height: 0.45rem;
+  margin-top: -0.2rem;
   transition: transform 0.18s ease;
+  transform: rotate(45deg);
+  width: 0.45rem;
 }
 
-.resume-nav-menu.open .resume-nav-toggle i {
-  transform: rotate(180deg);
+.resume-nav-menu.open .resume-nav-chevron {
+  margin-top: 0.2rem;
+  transform: rotate(225deg);
 }
 
 .resume-nav-dropdown {

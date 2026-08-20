@@ -68,8 +68,8 @@
   justify-content: flex-end;
 }
 
-.btn-primary {
-  background-color: #007bff;
+.contact-form .btn-primary {
+  background-color: #0056b3;
   border: none;
   color: white;
   padding: 0.75rem 1.5rem;
@@ -79,8 +79,8 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add subtle shadow for depth */
 }
 
-.btn-primary:hover {
-  background-color: #0056b3;
+.contact-form .btn-primary:hover {
+  background-color: #004085;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* More prominent shadow on hover */
 }
 
@@ -99,4 +99,23 @@
 .btn-cancel:hover {
   background-color: #c82333;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* More prominent shadow on hover */
+}
+
+.form-status {
+  border-left: 4px solid;
+  margin: 0 0 1rem;
+  padding: 0.75rem;
+  text-shadow: none;
+}
+
+.form-status--success {
+  background: #e8f5ec;
+  border-color: #237a3b;
+  color: #174f27;
+}
+
+.form-status--error {
+  background: #fbeaec;
+  border-color: #b02a37;
+  color: #7b1d27;
 }
