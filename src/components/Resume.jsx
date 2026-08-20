@@ -24,15 +24,22 @@ function Resume() {
   return (
     <div className="resume-container">
       <div className="resume-button">
-        <a href={myResume} target="_blank" rel="noopener noreferrer">
-          <button className="btn btn-secondary">
-            View as Downloadable PDF
-          </button>
+        <a
+          className="btn btn-secondary"
+          href={myResume}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          View as Downloadable PDF
         </a>
       </div>
       <h1 className="resume-title">Software Engineering Resume</h1>
       <div className="resume-switcher">
-        <Link className="resume-switcher-link active" to="/resume/software-engineering">
+        <Link
+          aria-current="page"
+          className="resume-switcher-link active"
+          to="/resume/software-engineering"
+        >
           Software Engineering
         </Link>
         <Link className="resume-switcher-link" to="/resume/robotics-controls">
@@ -50,7 +57,11 @@ function Resume() {
             className="contact-link"
           >
             LinkedIn{" "}
-            <LinkedIn className="social-icon social-icon-resume linkedin subtle-shadow" />
+            <LinkedIn
+              aria-hidden="true"
+              focusable="false"
+              className="social-icon social-icon-resume linkedin subtle-shadow"
+            />
           </a>{" "}
           |
           <a
@@ -60,7 +71,11 @@ function Resume() {
             className="contact-link"
           >
             GitHub{" "}
-            <GitHub className="social-icon social-icon-resume github subtle-shadow" />
+            <GitHub
+              aria-hidden="true"
+              focusable="false"
+              className="social-icon social-icon-resume github subtle-shadow"
+            />
           </a>
         </p>
       </div>

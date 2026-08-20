@@ -15,6 +15,8 @@ Personal portfolio and resume website for [patrickengelbert.com](https://www.pat
 - Custom not-found experience with a recoverable signal easter egg
 - Route-specific canonical, search, and social metadata generated into the
   initial production HTML, plus a sitemap and structured data
+- Optimized responsive WebP images, route-level loading for secondary pages,
+  reduced-motion support, skip navigation, and accessible form status feedback
 
 ## Tech Stack
 
@@ -120,3 +122,7 @@ Run `npm audit` before opening a PR when dependency changes are involved. This p
 The latest dependency, CDN, EmailJS, secret-scan, and public-repository review is
 documented in
 [`docs/dependency-security-audit.md`](docs/dependency-security-audit.md).
+
+The latest measured mobile/desktop performance and accessibility review is
+documented in
+[`docs/performance-accessibility-audit.md`](docs/performance-accessibility-audit.md).

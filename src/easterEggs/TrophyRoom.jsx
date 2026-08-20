@@ -79,7 +79,8 @@ function TrophyRoom() {
   );
   const shareLinks = [
     {
-      icon: "bi-linkedin",
+      icon: "in",
+      iconClass: "linkedin",
       label: "LinkedIn",
       url: `https://www.linkedin.com/shareArticle?mini=true&url=${encodeURIComponent(
         SHARE_URL
@@ -90,14 +91,16 @@ function TrophyRoom() {
       )}`,
     },
     {
-      icon: "bi-twitter-x",
+      icon: "X",
+      iconClass: "x",
       label: "X",
       url: `https://twitter.com/intent/tweet?text=${encodeURIComponent(
         shareText
       )}&url=${encodeURIComponent(SHARE_URL)}`,
     },
     {
-      icon: "bi-facebook",
+      icon: "f",
+      iconClass: "facebook",
       label: "Facebook",
       url: `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(
         SHARE_URL
@@ -336,7 +339,12 @@ function TrophyRoom() {
                   title={`Share on ${link.label}`}
                   type="button"
                 >
-                  <i className={`bi ${link.icon}`} aria-hidden="true" />
+                  <span
+                    aria-hidden="true"
+                    className={`share-icon share-icon--${link.iconClass}`}
+                  >
+                    {link.icon}
+                  </span>
                   <span>{link.label}</span>
                 </button>
               ))}
@@ -347,7 +355,10 @@ function TrophyRoom() {
                 title="Copy share text"
                 type="button"
               >
-                <i className="bi bi-link-45deg" aria-hidden="true" />
+                <span
+                  aria-hidden="true"
+                  className="share-icon share-icon--link"
+                />
                 <span>Copy</span>
               </button>
             </div>

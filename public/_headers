@@ -1,0 +1,8 @@
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/social-preview.png
+  Cache-Control: public, max-age=86400
+
+/*.pdf
+  Cache-Control: public, max-age=86400

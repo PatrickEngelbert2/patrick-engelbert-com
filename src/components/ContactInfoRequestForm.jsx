@@ -14,6 +14,7 @@ import {
 function ContactInfoRequestForm() {
   const history = useHistory();
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submissionStatus, setSubmissionStatus] = useState(null);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -27,6 +28,7 @@ function ContactInfoRequestForm() {
   const handleSubmit = (e) => {
     e.preventDefault();
     setIsSubmitting(true);
+    setSubmissionStatus(null);
 
     const templateParams = {
       name: formData.name,
@@ -41,16 +43,20 @@ function ContactInfoRequestForm() {
         templateParams,
         "kCF5yg38mVA4ty81a"
       )
-      .then((response) => {
-        alert(
-          "Success. An email has been sent with my current contact information. Thank you for reaching out."
-        );
+      .then(() => {
+        setSubmissionStatus({
+          type: "success",
+          message:
+            "An email has been sent with my current contact information. Thank you for reaching out.",
+        });
         setFormData({ name: "", email: "" });
       })
-      .catch((error) => {
-        alert(
-          "Sorry, the contact info email could not be sent. Please try again."
-        );
+      .catch(() => {
+        setSubmissionStatus({
+          type: "error",
+          message:
+            "The contact information email could not be sent. Please try again.",
+        });
       })
       .finally(() => {
         setIsSubmitting(false);
@@ -63,7 +69,11 @@ function ContactInfoRequestForm() {
   };
 
   return (
-    <form className="simple-contact-form" onSubmit={handleSubmit}>
+    <form
+      aria-busy={isSubmitting}
+      className="simple-contact-form"
+      onSubmit={handleSubmit}
+    >
       <div className="form-group">
         <label htmlFor="name" title="Enter your full name">
           <div className="my-tooltip">
@@ -103,6 +113,14 @@ function ContactInfoRequestForm() {
           required
         />
       </div>
+      {submissionStatus && (
+        <p
+          className={`form-status form-status--${submissionStatus.type}`}
+          role={submissionStatus.type === "error" ? "alert" : "status"}
+        >
+          {submissionStatus.message}
+        </p>
+      )}
       <div className="button-container">
         <button type="submit" className="btn btn-primary" disabled={isSubmitting}>
           {isSubmitting ? "Sending..." : "Request Contact Info"}

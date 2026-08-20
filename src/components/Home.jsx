@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import "./Home.css";
 import { useHistory } from "react-router-dom";
 import Rocket from "../images/rocket.svg";
-import CowboyHatProfile from "../images/cowboyhat-profile.jpg";
+import CowboyHatProfile from "../images/cowboyhat-profile.webp";
 import { useEasterEggs } from "../easterEggs/EasterEggContext";
 import RecoilText, { useRecoilEffect } from "./RecoilText";
 
@@ -64,9 +64,12 @@ function Home() {
 
     const shouldScrollToProfile = window.matchMedia("(max-width: 768px)")
       .matches;
+    const prefersReducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    ).matches;
     if (shouldScrollToProfile && profilePhotoRef.current) {
       profilePhotoRef.current.scrollIntoView({
-        behavior: "smooth",
+        behavior: prefersReducedMotion ? "auto" : "smooth",
         block: "center",
       });
     }
@@ -185,6 +188,10 @@ function Home() {
                 src={selfImageUrl}
                 className="profile-photo img-thumbnail rounded max-size subtle-shadow"
                 alt="Patrick Engelbert"
+                decoding="async"
+                fetchPriority="high"
+                height="960"
+                width="720"
               />
               <svg
                 className="astronaut-helmet-sketch"

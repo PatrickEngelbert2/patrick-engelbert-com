@@ -13,7 +13,7 @@ test("renders accessible semantic homepage text and preserves the headline secre
     </MemoryRouter>
   );
 
-  const heading = screen.getByRole("heading", {
+  const heading = await screen.findByRole("heading", {
     level: 1,
     name: "Patrick Engelbert",
   });
@@ -44,14 +44,14 @@ test("renders accessible semantic homepage text and preserves the headline secre
   ).toBeInTheDocument();
 });
 
-test("renders accessible semantic portfolio introduction text", () => {
+test("renders accessible semantic portfolio introduction text", async () => {
   render(
     <MemoryRouter initialEntries={["/portfolio"]}>
       <App />
     </MemoryRouter>
   );
 
-  const heading = screen.getByRole("heading", {
+  const heading = await screen.findByRole("heading", {
     level: 1,
     name: "Portfolio:",
   });

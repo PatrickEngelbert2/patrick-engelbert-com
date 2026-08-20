@@ -21,7 +21,7 @@ body {
   text-align: center;
   font-size: 2.5em;
   margin-bottom: 20px;
-  color: #007bff;
+  color: #0056b3;
 }
 
 .resume-title-control {
@@ -158,9 +158,9 @@ body {
 }
 
 .resume-switcher-link {
-  border: 1px solid #007bff;
+  border: 1px solid #0056b3;
   border-radius: 0.5rem;
-  color: #007bff;
+  color: #0056b3;
   font-weight: 600;
   padding: 0.5rem 0.85rem;
   text-decoration: none;
@@ -169,7 +169,7 @@ body {
 
 .resume-switcher-link:hover,
 .resume-switcher-link.active {
-  background-color: #007bff;
+  background-color: #0056b3;
   color: #ffffff;
   text-decoration: none;
 }
@@ -180,8 +180,8 @@ body {
 
 .resume-section h2 {
   font-size: 1.5em;
-  color: #007bff;
-  border-bottom: 2px solid #007bff;
+  color: #0056b3;
+  border-bottom: 2px solid #0056b3;
   padding-bottom: 5px;
   margin-bottom: 6px;
 }
@@ -217,7 +217,7 @@ body {
 }
 
 .resume-section ul li strong {
-  color: #007bff;
+  color: #0056b3;
 }
 
 .resume-section ul ul {
@@ -247,7 +247,7 @@ body {
 
 /* Contact Links */
 .contact-link {
-  color: #007bff;
+  color: #0056b3;
   text-decoration: none;
   margin: 0 5px;
   display: inline-flex;

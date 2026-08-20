@@ -7,6 +7,7 @@ import clipboardQuestion from "../images/clipboard-question.svg";
 function UserContactPatrickForm() {
   const history = useHistory();
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submissionStatus, setSubmissionStatus] = useState(null);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -26,6 +27,7 @@ function UserContactPatrickForm() {
   const handleSubmit = (e) => {
     e.preventDefault();
     setIsSubmitting(true);
+    setSubmissionStatus(null);
 
     emailjs
       .send(
@@ -34,14 +36,19 @@ function UserContactPatrickForm() {
         formData,
         "kCF5yg38mVA4ty81a"
       )
-      .then((response) => {
-        alert(
-          "Success. Your message has been sent to Patrick. Thank you for reaching out."
-        );
+      .then(() => {
+        setSubmissionStatus({
+          type: "success",
+          message:
+            "Your message has been sent to Patrick. Thank you for reaching out.",
+        });
         setFormData({ name: "", email: "", message: "" });
       })
-      .catch((error) => {
-        alert("Sorry, your message could not be sent. Please try again.");
+      .catch(() => {
+        setSubmissionStatus({
+          type: "error",
+          message: "Your message could not be sent. Please try again.",
+        });
       })
       .finally(() => {
         setIsSubmitting(false);
@@ -49,7 +56,11 @@ function UserContactPatrickForm() {
   };
 
   return (
-    <form className="contact-form" onSubmit={handleSubmit}>
+    <form
+      aria-busy={isSubmitting}
+      className="contact-form"
+      onSubmit={handleSubmit}
+    >
       <div className="form-group">
         <label htmlFor="name" title="Enter your full name">
           <div className="my-tooltip">
@@ -109,6 +120,14 @@ function UserContactPatrickForm() {
           required
         ></textarea>
       </div>
+      {submissionStatus && (
+        <p
+          className={`form-status form-status--${submissionStatus.type}`}
+          role={submissionStatus.type === "error" ? "alert" : "status"}
+        >
+          {submissionStatus.message}
+        </p>
+      )}
       <div className="button-container">
         <button type="submit" className="btn btn-primary" disabled={isSubmitting}>
           {isSubmitting ? "Sending..." : "Send Message"}

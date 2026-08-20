@@ -168,7 +168,7 @@ function Header() {
                 type="button"
               >
                 Resumes
-                <i className="bi bi-chevron-down" aria-hidden="true" />
+                <span className="resume-nav-chevron" aria-hidden="true" />
               </button>
               <div
                 className="resume-nav-dropdown"
@@ -202,22 +202,32 @@ function Header() {
           >
             Contact Me
           </Link>
-          <section className="mb-2 social-icons">
+          <div className="mb-2 social-icons">
             <a
+              aria-label="Patrick Engelbert on LinkedIn"
               href={LINKEDIN_URL}
               target="_blank"
               rel="noopener noreferrer"
             >
-              <LinkedIn className="social-icon social-icon-large social-icon-margin linkedin subtle-shadow" />
+              <LinkedIn
+                aria-hidden="true"
+                focusable="false"
+                className="social-icon social-icon-large social-icon-margin linkedin subtle-shadow"
+              />
             </a>
             <a
+              aria-label="Patrick Engelbert on GitHub"
               href={GITHUB_URL}
               target="_blank"
               rel="noopener noreferrer"
             >
-              <GitHub className="social-icon social-icon-large github subtle-shadow" />
+              <GitHub
+                aria-hidden="true"
+                focusable="false"
+                className="social-icon social-icon-large github subtle-shadow"
+              />
             </a>
-          </section>
+          </div>
         </div>
       </nav>
     </header>

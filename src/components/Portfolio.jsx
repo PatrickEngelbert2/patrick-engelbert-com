@@ -1,10 +1,23 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import "./Portfolio.css";
 import { useEasterEggs } from "../easterEggs/EasterEggContext";
-import walkTheRosaryPreview from "../images/walk-the-rosary.png";
+import grubDashPreview from "../images/grub-dash-better.webp";
+import grubDashPreviewSmall from "../images/grub-dash-better-640.webp";
+import periodicReservationsPreview from "../images/periodic-reservations.webp";
+import periodicReservationsPreviewSmall from "../images/periodic-reservations-640.webp";
+import pomodoroTimerPreview from "../images/pomodoro-timer-better.webp";
+import pomodoroTimerPreviewSmall from "../images/pomodoro-timer-better-640.webp";
+import stuffiPreview from "../images/stuffi-better.webp";
+import stuffiPreviewSmall from "../images/stuffi-better-640.webp";
+import tikversePreview from "../images/tikverse-better.webp";
+import tikversePreviewSmall from "../images/tikverse-better-640.webp";
+import walkTheRosaryPreview from "../images/walk-the-rosary.webp";
+import walkTheRosaryPreviewSmall from "../images/walk-the-rosary-640.webp";
 import RecoilText, { useRecoilEffect } from "./RecoilText";
 
 const PROJECT_INSPECTION_TARGET = 3;
+const PROJECT_IMAGE_SIZES =
+  "(max-width: 767px) calc(100vw - 4rem), 1064px";
 
 function Portfolio() {
   const { unlockEgg } = useEasterEggs();
@@ -121,6 +134,12 @@ function Portfolio() {
                     src={walkTheRosaryPreview}
                     className="img-thumbnail portfolio-featured-preview"
                     alt="Walk the Rosary application interface"
+                    decoding="async"
+                    fetchPriority="high"
+                    height="506"
+                    sizes="(max-width: 767px) calc(100vw - 4rem), 1064px"
+                    srcSet={`${walkTheRosaryPreviewSmall} 640w, ${walkTheRosaryPreview} 1200w`}
+                    width="1200"
                   />
                 </div>
               </a>
@@ -191,9 +210,15 @@ function Portfolio() {
               >
                 <div className="hover">
                   <img
-                    src="https://images-patrickengelbert.s3.us-east-2.amazonaws.com/tikverse-better.png"
+                    src={tikversePreview}
                     className="img-thumbnail rounded max-size mx-auto d-block"
                     alt="Dashboard for my Tikverse app"
+                    decoding="async"
+                    height="720"
+                    loading="lazy"
+                    sizes={PROJECT_IMAGE_SIZES}
+                    srcSet={`${tikversePreviewSmall} 640w, ${tikversePreview} 1280w`}
+                    width="1280"
                   />
                 </div>
               </a>
@@ -245,9 +270,15 @@ function Portfolio() {
                 >
                   <div className="hover">
                     <img
-                      src="https://images-patrickengelbert.s3.us-east-2.amazonaws.com/pomodoro-timer-better.png"
+                      src={pomodoroTimerPreview}
                       className="img-thumbnail rounded max-size"
                       alt="Dashboard for my Timer app"
+                      decoding="async"
+                      height="155"
+                      loading="lazy"
+                      sizes={PROJECT_IMAGE_SIZES}
+                      srcSet={`${pomodoroTimerPreviewSmall} 640w, ${pomodoroTimerPreview} 1280w`}
+                      width="1280"
                     />
                   </div>
                 </a>
@@ -292,9 +323,15 @@ function Portfolio() {
                 >
                   <div className="hover">
                     <img
-                      src="https://images-patrickengelbert.s3.us-east-2.amazonaws.com/stuffi-better.png"
+                      src={stuffiPreview}
                       className="img-thumbnail rounded max-size"
                       alt="Dashboard for my Stuffi app"
+                      decoding="async"
+                      height="400"
+                      loading="lazy"
+                      sizes={PROJECT_IMAGE_SIZES}
+                      srcSet={`${stuffiPreviewSmall} 640w, ${stuffiPreview} 1280w`}
+                      width="1280"
                     />
                   </div>
                 </a>
@@ -350,7 +387,7 @@ function Portfolio() {
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    Learn More
+                    Learn about the Heroku security incident
                   </a>
                 </h3>
               </div>
@@ -373,9 +410,15 @@ function Portfolio() {
               >
                 <div className="hover">
                   <img
-                    src="https://images-patrickengelbert.s3.us-east-2.amazonaws.com/periodic-reservations.png"
+                    src={periodicReservationsPreview}
                     className="img-thumbnail rounded max-size"
                     alt="Dashboard for my Periodic Reservations app"
+                    decoding="async"
+                    height="720"
+                    loading="lazy"
+                    sizes={PROJECT_IMAGE_SIZES}
+                    srcSet={`${periodicReservationsPreviewSmall} 640w, ${periodicReservationsPreview} 1280w`}
+                    width="1280"
                   />
                 </div>
               </a>
@@ -405,9 +448,15 @@ function Portfolio() {
               >
                 <div className="hover">
                   <img
-                    src="https://images-patrickengelbert.s3.us-east-2.amazonaws.com/grub-dash-better.png"
+                    src={grubDashPreview}
                     className="img-thumbnail rounded max-size"
                     alt="Dashboard for my Grub Dash app"
+                    decoding="async"
+                    height="720"
+                    loading="lazy"
+                    sizes={PROJECT_IMAGE_SIZES}
+                    srcSet={`${grubDashPreviewSmall} 640w, ${grubDashPreview} 1280w`}
+                    width="1280"
                   />
                 </div>
               </a>

@@ -70,10 +70,13 @@ function RoboticsResume() {
   return (
     <div className="resume-container">
       <div className="resume-button">
-        <a href={roboticsResumePdf} target="_blank" rel="noopener noreferrer">
-          <button className="btn btn-secondary">
-            View Robotics & Controls PDF
-          </button>
+        <a
+          className="btn btn-secondary"
+          href={roboticsResumePdf}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          View Robotics & Controls PDF
         </a>
       </div>
       <div className="resume-title-control">
@@ -119,7 +122,11 @@ function RoboticsResume() {
         <Link className="resume-switcher-link" to="/resume/software-engineering">
           Software Engineering
         </Link>
-        <Link className="resume-switcher-link active" to="/resume/robotics-controls">
+        <Link
+          aria-current="page"
+          className="resume-switcher-link active"
+          to="/resume/robotics-controls"
+        >
           Robotics & Industrial Controls
         </Link>
       </div>
@@ -135,7 +142,11 @@ function RoboticsResume() {
             className="contact-link"
           >
             LinkedIn{" "}
-            <LinkedIn className="social-icon social-icon-resume linkedin subtle-shadow" />
+            <LinkedIn
+              aria-hidden="true"
+              focusable="false"
+              className="social-icon social-icon-resume linkedin subtle-shadow"
+            />
           </a>{" "}
           |
           <a
@@ -145,7 +156,11 @@ function RoboticsResume() {
             className="contact-link"
           >
             GitHub{" "}
-            <GitHub className="social-icon social-icon-resume github subtle-shadow" />
+            <GitHub
+              aria-hidden="true"
+              focusable="false"
+              className="social-icon social-icon-resume github subtle-shadow"
+            />
           </a>
         </p>
       </div>

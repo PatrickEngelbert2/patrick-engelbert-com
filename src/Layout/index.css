@@ -33,6 +33,39 @@ body.blueprint-mode {
   padding-top: 5rem;
 }
 
+:focus-visible {
+  box-shadow: 0 0 0 2px #0b4fa3 !important;
+  outline: 3px solid #ffdd57 !important;
+  outline-offset: 3px !important;
+}
+
+.skip-link {
+  background: #ffffff;
+  border: 2px solid #0b4fa3;
+  color: #0b4fa3;
+  font-weight: 700;
+  left: 0.75rem;
+  padding: 0.65rem 0.9rem;
+  position: fixed;
+  top: 0.75rem;
+  transform: translateY(-200%);
+  z-index: 2000;
+}
+
+.skip-link:focus {
+  color: #0b4fa3;
+  outline: 3px solid #ffdd57;
+  outline-offset: 2px;
+  transform: translateY(0);
+}
+
+.route-loading {
+  color: #ffffff;
+  min-height: 12rem;
+  padding: 3rem 1rem;
+  text-align: center;
+}
+
 .parallax {
   position: relative;
   height: auto;
@@ -43,7 +76,7 @@ body.blueprint-mode {
   content: '';
   position: fixed;
   inset: 0;
-  background-image: linear-gradient(rgba(8, 14, 24, 0.18), rgba(8, 14, 24, 0.28)), url('../images/Design.png');
+  background-image: linear-gradient(rgba(8, 14, 24, 0.18), rgba(8, 14, 24, 0.28)), url('../images/Design.webp');
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -172,4 +205,15 @@ footer {
   left: 0;
   right: 0;
   z-index: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
 }

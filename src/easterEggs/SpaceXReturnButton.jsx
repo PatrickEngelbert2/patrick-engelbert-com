@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useHistory, useLocation } from "react-router-dom";
 import { useEasterEggs } from "./EasterEggContext";
+import Rocket from "../images/rocket.svg";
 import "./SpaceXReturnButton.css";
 
 const SPACEX_PATH = "/spacex";
@@ -27,7 +28,7 @@ function SpaceXReturnButton() {
       onClick={() => history.push(SPACEX_PATH)}
       type="button"
     >
-      <i className="bi bi-rocket-takeoff-fill" aria-hidden="true" />
+      <img alt="" aria-hidden="true" src={Rocket} />
       <span>Mission Brief</span>
     </button>
   );
