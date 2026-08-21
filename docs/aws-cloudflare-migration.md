@@ -6,7 +6,8 @@ Phase 1 was audited and prepared on August 17, 2026. Phase 2 was completed the
 same day, and Phase 3 retired the obsolete AWS hosting and hosted-zone rollback
 resources on August 21, 2026. Production DNS is authoritative on Cloudflare,
 and the canonical `www` hostname is served by the Git-connected Cloudflare
-Pages project.
+Pages project. Cloudflare DNSSEC was enabled and registered with Route 53
+Registrar later that day as a separate post-migration hardening step.
 
 - Production: [`https://www.patrickengelbert.com`](https://www.patrickengelbert.com)
 - Apex: redirects permanently to the matching `www` path
@@ -107,8 +108,9 @@ when its custom-domain association was detached.
 The original five-record hosted-zone snapshot remains in
 [`route53-records.json`](route53-records.json) as historical migration evidence.
 The final pre-deletion check confirmed no MX, TXT, SPF, DKIM, DMARC, CAA, AAAA,
-or other newly added records. DNSSEC signing was `Not signing`, no KSK existed,
-the registrar had no DNSSEC keys, and public resolvers returned no DS record.
+or other newly added records. At that checkpoint, DNSSEC signing was `Not
+signing`, no KSK existed, the registrar had no DNSSEC keys, and public resolvers
+returned no DS record. DNSSEC was enabled after Phase 3 as documented below.
 
 ## Cost Baseline
 
@@ -371,3 +373,41 @@ The AWS rollback path documented during Phase 2 is now intentionally retired.
 Future production rollback or disaster recovery must use Cloudflare Pages
 deployments, Git history, and the recorded DNS snapshots rather than the former
 Amplify or Route 53 hosted-zone resources.
+
+## Post-Migration DNSSEC Hardening
+
+DNSSEC was enabled on August 21, 2026 at approximately 15:05 CDT after the AWS
+retirement completed and the Cloudflare-only production architecture passed its
+final checks.
+
+| Setting | Value |
+| --- | --- |
+| DNSSEC signing provider | Cloudflare |
+| Registrar and parent-key publisher | Route 53 Registrar |
+| Key type | KSK, flags `257` |
+| Algorithm | `13` (`ECDSAP256SHA256`) |
+| Digest type | `2` (`SHA-256`) |
+| Key tag | `2371` |
+| Route 53 registrar status | `Configured` |
+| Cloudflare status | Active |
+
+Cloudflare first published the signed zone and displayed the registrar DS
+details. The exact Cloudflare public key was then added through Route 53's
+registrar-level **DNSSEC keys** workflow; no hosted zone was recreated. Route 53
+accepted the request, initially reported the registry operation as in progress,
+and then showed one configured key with matching algorithm, digest type, key
+tag, and digest.
+
+Google Public DNS and Cloudflare's resolver both returned the matching parent
+`.com` DS and Cloudflare DNSKEY with the authenticated-data (`AD`) flag set.
+AdGuard independently returned the same DS with `AD` set. Signed `www` address
+lookups also validated through Google and Cloudflare without `SERVFAIL`.
+
+After activation, the HTTPS apex continued to return a single `301` redirect to
+the canonical `www` hostname. The homepage, portfolio, software engineering
+resume, and robotics and controls resume all returned HTTP 200 from Cloudflare
+Pages with SSL healthy.
+
+DNSSEC rollback must remove the registrar key and wait for the parent DS to
+expire before Cloudflare signing is disabled. Disabling Cloudflare first would
+leave a stale parent DS and could make the domain fail on validating resolvers.
