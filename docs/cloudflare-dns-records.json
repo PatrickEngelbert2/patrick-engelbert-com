@@ -1,5 +1,5 @@
 {
-  "snapshotDate": "2026-08-17",
+  "snapshotDate": "2026-08-21",
   "zone": {
     "name": "patrickengelbert.com",
     "status": "active",
@@ -16,11 +16,11 @@
   "records": [
     {
       "name": "patrickengelbert.com",
-      "type": "CNAME",
-      "content": "d1rdjyqzbz8rsj.cloudfront.net",
+      "type": "A",
+      "content": "192.0.2.1",
       "proxied": true,
       "ttl": "auto",
-      "purpose": "Proxied apex for canonical redirect rules and AWS rollback origin"
+      "purpose": "Proxied redirect-only apex placeholder for canonical redirect rules"
     },
     {
       "name": "www.patrickengelbert.com",
@@ -29,14 +29,6 @@
       "proxied": true,
       "ttl": "auto",
       "purpose": "Cloudflare Pages production hostname"
-    },
-    {
-      "name": "_8a2cb37a6bfb7bdb5e9d61c6b6653023.patrickengelbert.com",
-      "type": "CNAME",
-      "content": "_383530f4f9d9d028294096b2e0206b0e.xdvyhgsvzs.acm-validations.aws",
-      "proxied": false,
-      "ttl": "auto",
-      "purpose": "AWS certificate validation retained for rollback"
     }
   ],
   "redirectRules": [
@@ -63,5 +55,19 @@
     "productionDomain": "www.patrickengelbert.com",
     "productionDomainStatus": "active",
     "sslStatus": "enabled"
+  },
+  "phase3": {
+    "completedAt": "2026-08-21T14:45:00-05:00",
+    "removed": [
+      "Amplify app d385lcla48w64c",
+      "Amplify main backend environment and owned infrastructure",
+      "Amplify-managed CloudFront distribution",
+      "AWS ACM validation CNAME",
+      "Route 53 hosted zone Z07780862CMV5DTRBAIND"
+    ],
+    "retained": [
+      "Route 53 registration for patrickengelbert.com",
+      "S3 bucket images-patrickengelbert"
+    ]
   }
 }

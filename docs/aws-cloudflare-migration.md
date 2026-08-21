@@ -3,8 +3,10 @@
 ## Status
 
 Phase 1 was audited and prepared on August 17, 2026. Phase 2 was completed the
-same day. Production DNS is now authoritative on Cloudflare, and the canonical
-`www` hostname is served by the Git-connected Cloudflare Pages project.
+same day, and Phase 3 retired the obsolete AWS hosting and hosted-zone rollback
+resources on August 21, 2026. Production DNS is authoritative on Cloudflare,
+and the canonical `www` hostname is served by the Git-connected Cloudflare
+Pages project.
 
 - Production: [`https://www.patrickengelbert.com`](https://www.patrickengelbert.com)
 - Apex: redirects permanently to the matching `www` path
@@ -12,7 +14,7 @@ same day. Production DNS is now authoritative on Cloudflare, and the canonical
 - Pages fallback URL:
   [`https://patrick-engelbert-com.pages.dev`](https://patrick-engelbert-com.pages.dev)
 - Registrar: Route 53 Registrar (unchanged)
-- AWS hosting and DNS resources: retained as rollback targets
+- Former AWS hosting and hosted zone: retired after final verification
 - Required S3 asset bucket: retained and still used by the live application
 
 ## Current Architecture
@@ -31,10 +33,10 @@ Route 53 Registrar
        v
 Cloudflare authoritative DNS
        |-- apex -> Cloudflare Redirect Rules -> www
-       |-- www -> Cloudflare Pages
-       `-- ACM validation CNAME retained for AWS rollback
+       `-- www -> Cloudflare Pages
 
-AWS Amplify + CloudFront + Route 53 hosted zone (retained, not authoritative)
+AWS Route 53 Registrar (registration only)
+AWS S3 images-patrickengelbert (retained production assets)
 ```
 
 The site is a React 18 single-page application bundled with Vite. React Router
@@ -66,85 +68,63 @@ the EmailJS dashboard where supported.
 
 ## AWS Inventory
 
-### Amplify Hosting
+### Retired Amplify resources
 
-- App: `patrick-engelbert-com`
-- App ID: `d385lcla48w64c`
-- Region: `us-east-2`
-- Repository: `PatrickEngelbert2/patrick-engelbert-com`
-- Production branch: `main`
-- Automatic builds: enabled
-- Access: public
-- Amplify URL: `https://main.d385lcla48w64c.amplifyapp.com`
-- Custom domain: `patrickengelbert.com`
-- Canonical behavior: apex redirects to `www`; `www` serves `main`
-- Custom headers: none
-- Incoming webhooks: none
-- Secrets: none
+Amplify Hosting app `d385lcla48w64c` in `us-east-2` was deleted during Phase 3.
+Its custom-domain association was removed first. The empty Gen 1 `main` backend
+environment was then deleted through Amplify, which removed CloudFormation stack
+`amplify-patrickengelbertcom-main-3bd30`, its deployment bucket and bucket
+policy, and the generated authenticated and unauthenticated IAM roles. Deleting
+the Hosting app subsequently removed its branch, Amplify hostname, and managed
+CloudFront distribution.
 
-The Amplify build runs `amplifyPush --simple`, then `npm ci` and
-`npm run build`, and publishes `build/`. The only branch-level variables are
-Amplify metadata (`AMPLIFY_BACKEND_APP_ID`, `USER_BRANCH`, and
-`_LIVE_UPDATES`); the frontend has no required runtime variables.
-
-### Amplify Gen 1 backend
-
-The `main` backend environment has no configured Auth, API, Storage, Analytics,
-or Function categories. Its CloudFormation stack,
-`amplify-patrickengelbertcom-main-3bd30`, contains only the Amplify deployment
-bucket, its bucket policy, and the generated authenticated and unauthenticated
-IAM roles.
-
-The tracked `amplify/team-provider-info.json` references a separate historical
-`staging` environment and App ID `d2ufynu2v3fn7v`. It does not describe the live
-hosting app. It is retained during Phase 1 so migration preparation does not
-silently remove project metadata; it should be reviewed before final AWS
-decommissioning.
+Post-deletion checks found zero Amplify apps, CloudFront distributions,
+CloudFormation stacks, and account-managed ACM certificates. Historical App ID
+`d2ufynu2v3fn7v` did not exist and was not part of the cleanup. The tracked
+`amplify/` directory remains repository history and is not used by the
+Cloudflare Pages build.
 
 ### S3
 
-| Bucket | Purpose | Phase 2 action |
+| Bucket | Purpose | Final status |
 | --- | --- | --- |
-| `amplify-patrickengelbertcom-main-3bd30-deployment` | Amplify deployment artifacts | Remove only with the retired Amplify backend stack |
-| `images-patrickengelbert` | Public images and a software resume PDF used by the live app | Keep until every referenced asset is migrated and verified |
+| `amplify-patrickengelbertcom-main-3bd30-deployment` | Former Amplify deployment artifacts | Deleted with the Gen 1 backend stack |
+| `images-patrickengelbert` | Public images and a software resume PDF used by the live app | Retained; nine objects verified after Phase 3 |
 
 The application currently references `images-patrickengelbert` directly from
-`Bio.jsx`, `Portfolio.jsx`, and `Resume.jsx`. Moving web hosting does not remove
-this S3 dependency.
+`Bio.jsx` and `Resume.jsx`. The live background image and software resume PDF
+returned HTTP 200 after every destructive Phase 3 step.
 
 ## Route 53 Inventory
 
-- Public hosted zone: `patrickengelbert.com`
-- Hosted zone ID: `Z07780862CMV5DTRBAIND`
-- Record count: 5
-- Registrar: Route 53 Registrar
+Route 53 continues to register `patrickengelbert.com`, with auto-renew enabled
+and the registrar nameservers unchanged at `cosmin.ns.cloudflare.com` and
+`ivy.ns.cloudflare.com`. Non-authoritative hosted zone
+`Z07780862CMV5DTRBAIND` was deleted during Phase 3 after its only non-default
+record was removed. Amplify had already removed the old apex and `www` records
+when its custom-domain association was detached.
 
-The hosted zone remains intact but is no longer authoritative. The registrar
-now delegates the domain to Cloudflare. The original five-record snapshot is
-retained in [`route53-records.json`](route53-records.json) for rollback.
-
-The machine-readable audit snapshot is in
-[`route53-records.json`](route53-records.json).
-
-There are currently no MX, TXT, SPF, DKIM, DMARC, CAA, AAAA, or email-related
-records in this hosted zone. This must be checked again immediately before a
-nameserver change because DNS records can be added after this audit.
+The original five-record hosted-zone snapshot remains in
+[`route53-records.json`](route53-records.json) as historical migration evidence.
+The final pre-deletion check confirmed no MX, TXT, SPF, DKIM, DMARC, CAA, AAAA,
+or other newly added records. DNSSEC signing was `Not signing`, no KSK existed,
+the registrar had no DNSSEC keys, and public resolvers returned no DS record.
 
 ## Cost Baseline
 
-AWS estimated charges for August 1-17, 2026 were:
+AWS estimated charges refreshed on August 21, 2026 after Phase 3 were:
 
 | Service | Estimated cost | Detail |
 | --- | ---: | --- |
-| Route 53 | $0.50 | One hosted zone; queries were within no-charge usage |
-| Amplify | $0.05 | $0.03 build time and $0.02 bandwidth |
+| Route 53 | $0.50 | Hosted-zone charge already incurred before deletion |
+| Amplify | $0.12 | Build, hosting, and bandwidth usage already incurred before deletion |
 | S3 and other observed services | $0.00 | Current estimated usage |
-| **Total** | **$0.55** | Month-to-date estimate at audit time |
+| **Total** | **$0.62** | Month-to-date estimate; prior charges remain billable |
 
-The Route 53 hosted zone is the recurring approximately $0.50 monthly charge.
-Amplify charges vary with builds, bandwidth, and storage. Domain registration
-is a separate annual cost and should remain in place unless the registrar is
-deliberately migrated later.
+No future Amplify hosting/build charge or Route 53 hosted-zone charge should
+recur after Phase 3. Already-incurred August charges will not be reversed.
+Domain registration remains a separate annual cost, and retained S3 usage
+continues to be billed normally if it rises above the free tier.
 
 ## Cloudflare Pages Configuration
 
@@ -266,19 +246,19 @@ delegation. The Cloudflare zone subsequently reported `Active`.
 
 ### Current Cloudflare DNS
 
-Cloudflare contains three user-managed records. Provider-generated NS and SOA
+Cloudflare contains two user-managed records. Provider-generated NS and SOA
 records are not counted here. A machine-readable snapshot is in
 [`cloudflare-dns-records.json`](cloudflare-dns-records.json).
 
 | Name | Type | Target | Proxy | TTL | Purpose |
 | --- | --- | --- | --- | --- | --- |
-| `patrickengelbert.com` | CNAME | `d1rdjyqzbz8rsj.cloudfront.net` | Proxied | Auto | Gives Redirect Rules a proxied apex; AWS remains the fallback origin |
+| `patrickengelbert.com` | A | `192.0.2.1` | Proxied | Auto | Originless placeholder that allows the apex Redirect Rules to execute |
 | `www` | CNAME | `patrick-engelbert-com.pages.dev` | Proxied | Auto | Cloudflare Pages production hostname |
-| `_8a2cb37a6bfb7bdb5e9d61c6b6653023` | CNAME | `_383530f4f9d9d028294096b2e0206b0e.xdvyhgsvzs.acm-validations.aws` | DNS only | Auto | Preserves AWS certificate validation for rollback |
 
-The apex differs from the Route 53 `A` alias because Cloudflare uses a flattened
-CNAME at the zone root. No mail records were created because the previous zone
-did not contain or require them.
+The apex uses the TEST-NET address recommended by Cloudflare for a proxied,
+redirect-only hostname; requests are redirected at Cloudflare and do not reach
+that address. The ACM validation CNAME was removed after its Amplify domain and
+certificate relationship was deleted. No mail records were removed or created.
 
 ### Zero-downtime sequence
 
@@ -330,53 +310,64 @@ The live production domain was verified after the switch:
 - At 390 x 844, the home and SpaceX pages rendered without header overlap,
   horizontal overflow, or broken assets.
 
-### Preserved AWS rollback resources
+## Phase 3 Completion Record
 
-No AWS resource was deleted, disabled, detached, or transferred. The following
-were rechecked after production moved to Pages:
+Phase 3 ran on August 21, 2026 at approximately 14:45 CDT, after more than 72
+hours of stable Cloudflare production operation.
 
-- Amplify app `patrick-engelbert-com` (`d385lcla48w64c`) still exists with its
-  `main` branch, and its `amplifyapp.com` URL returns HTTP 200.
-- Route 53 hosted zone `Z07780862CMV5DTRBAIND` still exists with all five
-  original records.
-- The `images-patrickengelbert` bucket still exists with all nine objects and
-  remains a live application dependency.
-- The ACM validation CNAME remains present in both Route 53 and Cloudflare.
-- The existing CloudFront hostname still resolves and responds. The direct
-  distribution hostname expects the configured application host, while the
-  Amplify hostname remains the simplest end-to-end rollback health check.
+### Retirement sequence
 
-The ACM console did not expose account-owned certificates in `us-east-1` or
-`us-east-2`; Amplify manages the custom-domain certificate relationship. No
-certificate resource or validation record was removed.
+1. Replaced the proxied apex CloudFront CNAME with proxied `A` record
+   `192.0.2.1`, retaining TTL Auto and both canonical Redirect Rules.
+2. Verified all HTTP/HTTPS apex and `www` variants, path and query preservation,
+   TLS, Pages headers, and nested routes before touching AWS.
+3. Removed the Amplify `patrickengelbert.com` custom-domain association and
+   confirmed Pages remained Active with SSL enabled.
+4. Deleted the empty Gen 1 `main` backend environment. AWS removed its
+   CloudFormation stack, deployment bucket and policy, and both generated IAM
+   roles.
+5. Deleted Amplify app `d385lcla48w64c`. Post-deletion inventory showed zero
+   Amplify apps, CloudFront distributions, CloudFormation stacks, and ACM
+   certificates in both checked regions.
+6. Removed the obsolete ACM validation CNAME from Cloudflare after confirming
+   its only dependency was gone.
+7. Reconfirmed registrar delegation, public Cloudflare authority, absent email
+   records, and disabled DNSSEC signing. Removed the hosted zone's final
+   non-default CNAME, then deleted `Z07780862CMV5DTRBAIND` without changing the
+   registered domain.
 
-### Exact rollback procedure
+### Final verification
 
-For a Pages-only problem while Cloudflare DNS is healthy:
+- Google Public DNS, Cloudflare, and AdGuard returned only
+  `cosmin.ns.cloudflare.com` and `ivy.ns.cloudflare.com`, with Cloudflare SOA
+  data and Cloudflare proxy addresses.
+- HTTP apex, HTTPS apex, and HTTP `www` returned one-hop `301` redirects to
+  HTTPS `www`. Paths and query strings were preserved with no loops.
+- HTTPS `www` returned HTTP 200 with `Server: cloudflare`; Pages custom-domain
+  status remained `Active` with `SSL enabled`.
+- Direct loads and browser refreshes passed for the homepage, portfolio,
+  contact routes, both resumes, `/spacex`, and the custom React 404. The browser
+  console remained clear.
+- JavaScript, CSS, bundled and lazy images, both resume PDFs, `robots.txt`,
+  `sitemap.xml`, and `social-preview.png` returned successfully.
+- Both EmailJS forms rendered with enabled required inputs and submit controls;
+  no test email was sent.
+- `images-patrickengelbert` retained all nine objects. Its live background image
+  and software resume PDF returned HTTP 200 after the final deletion.
 
-1. In Cloudflare DNS, edit the `www` CNAME target from
-   `patrick-engelbert-com.pages.dev` to `d1rdjyqzbz8rsj.cloudfront.net`.
-2. Set the `www` record to `DNS only`, matching the tested intermediate state.
-3. Leave the two apex-to-`www` Redirect Rules active. They will continue to
-   canonicalize both protocols while `www` serves AWS.
-4. Verify `/`, `/portfolio`, both resumes, `/contact`, and `/spacex`; confirm
-   CloudFront/Amazon S3 headers on `www`.
+### Final AWS state
 
-For a Cloudflare DNS or account-wide problem:
+| Resource | Final state |
+| --- | --- |
+| Route 53 registration `patrickengelbert.com` | Retained; auto-renew on; Cloudflare nameservers unchanged |
+| S3 bucket `images-patrickengelbert` | Retained; nine objects; active production dependency |
+| Amplify app `d385lcla48w64c` | Deleted |
+| Amplify Gen 1 backend and owned stack resources | Deleted |
+| Amplify-managed CloudFront distribution | Deleted; account distribution count zero |
+| ACM validation CNAME and account certificates | Deleted/no certificates present |
+| Route 53 hosted zone `Z07780862CMV5DTRBAIND` | Deleted; account hosted-zone count zero |
 
-1. In Route 53 Registrar, restore all four previous Route 53 nameservers listed
-   above, exactly as recorded.
-2. Do not edit or recreate the Route 53 hosted-zone records; the complete
-   five-record rollback zone is already intact.
-3. Monitor Google Public DNS and Cloudflare public DNS until they return the
-   Route 53 nameservers.
-4. Verify the AWS apex-to-`www` redirect, TLS, routes, PDFs, and S3 assets.
-
-### Phase 3 eligibility
-
-Monitor production for at least 72 hours after the Phase 2 cutover. If DNS,
-redirects, Pages deployments, contact forms, and external assets remain stable,
-Phase 3 may retire Amplify hosting and then delete the non-authoritative Route
-53 hosted zone. Keep Route 53 domain registration and the
-`images-patrickengelbert` bucket. Migrating those S3 URLs is a separate project
-and must happen before that bucket can be considered for removal.
+The AWS rollback path documented during Phase 2 is now intentionally retired.
+Future production rollback or disaster recovery must use Cloudflare Pages
+deployments, Git history, and the recorded DNS snapshots rather than the former
+Amplify or Route 53 hosted-zone resources.

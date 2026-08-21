@@ -22,6 +22,9 @@ deployment impact.
   a home-only preload for the profile LCP image.
 - Added Cloudflare Pages cache headers for immutable fingerprinted assets, PDFs,
   and the social preview.
+- Added a Phase 3 migration completion record covering final Cloudflare DNS,
+  retired AWS hosting resources, retained resources, billing, and production
+  verification.
 - Added route-specific build-time metadata for public, utility, thin-content,
   and hidden routes so titles, descriptions, canonicals, crawler directives,
   Open Graph tags, and Twitter/X cards exist before React executes.
@@ -102,6 +105,20 @@ deployment impact.
   shared constants.
 - Updated social sharing text to derive the site host from the centralized
   portfolio URL.
+- Replaced the apex CloudFront target with Cloudflare's proxied `192.0.2.1`
+  redirect-only placeholder while preserving the canonical `301` rules.
+- Updated deployment documentation to describe the final Cloudflare Pages and
+  Cloudflare DNS architecture after the AWS rollback window closed.
+
+### Removed
+
+- Removed the obsolete Amplify custom-domain association, empty Gen 1 backend
+  environment, deployment bucket, generated IAM roles, Hosting app
+  `d385lcla48w64c`, and Amplify-managed CloudFront distribution.
+- Removed the obsolete ACM validation CNAME after its Amplify certificate
+  dependency was retired.
+- Deleted non-authoritative Route 53 hosted zone `Z07780862CMV5DTRBAIND` while
+  retaining the Route 53 domain registration and its Cloudflare nameservers.
 
 ### Fixed
 
@@ -140,9 +157,10 @@ deployment impact.
 - Live production routes and direct refreshes, local and S3 assets, both resume
   PDFs, external project links, contact-form render states, representative
   easter eggs, a clean browser console, and mobile layout at 390 x 844.
-- AWS rollback resources after cutover: the Amplify app and branch, all five
-  Route 53 hosted-zone records, the ACM validation CNAME, the CloudFront
-  relationship, and all nine objects in `images-patrickengelbert`.
+- Final Phase 3 AWS inventory: no Amplify apps, CloudFront distributions,
+  CloudFormation stacks, account-managed ACM certificates, or Route 53 hosted
+  zones remain; the registered domain and all nine
+  `images-patrickengelbert` objects remain intact.
 - Cloudflare Pages production-branch build and deployment from `main`.
 - Direct navigation and refresh behavior for all public nested routes on the
   temporary Pages hostname.
