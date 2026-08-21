@@ -25,6 +25,8 @@ deployment impact.
 - Added a Phase 3 migration completion record covering final Cloudflare DNS,
   retired AWS hosting resources, retained resources, billing, and production
   verification.
+- Enabled Cloudflare DNSSEC after the migration monitoring period and registered
+  its KSK with Route 53 Registrar to establish a public chain of trust.
 - Added route-specific build-time metadata for public, utility, thin-content,
   and hidden routes so titles, descriptions, canonicals, crawler directives,
   Open Graph tags, and Twitter/X cards exist before React executes.
@@ -161,6 +163,9 @@ deployment impact.
   CloudFormation stacks, account-managed ACM certificates, or Route 53 hosted
   zones remain; the registered domain and all nine
   `images-patrickengelbert` objects remain intact.
+- End-to-end DNSSEC validation through Google Public DNS, Cloudflare, and
+  AdGuard, including a matching parent DS, signed DNSKEY, authenticated address
+  responses, and healthy production HTTPS routes.
 - Cloudflare Pages production-branch build and deployment from `main`.
 - Direct navigation and refresh behavior for all public nested routes on the
   temporary Pages hostname.

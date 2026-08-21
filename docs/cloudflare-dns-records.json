@@ -9,7 +9,25 @@
       "ivy.ns.cloudflare.com"
     ],
     "dnssec": {
-      "enabled": false,
+      "enabled": true,
+      "status": "active",
+      "provider": "Cloudflare",
+      "registrar": "Route 53 Registrar",
+      "keyType": "KSK",
+      "flags": 257,
+      "algorithm": 13,
+      "algorithmName": "ECDSAP256SHA256",
+      "digestType": 2,
+      "digestName": "SHA-256",
+      "keyTag": 2371,
+      "activatedAt": "2026-08-21T15:05:00-05:00",
+      "parentDsPublished": true,
+      "endToEndValidation": true,
+      "validatedBy": [
+        "Google Public DNS",
+        "Cloudflare DNS",
+        "AdGuard DNS"
+      ],
       "preCutoverDsRecords": []
     }
   },
