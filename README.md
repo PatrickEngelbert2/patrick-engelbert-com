@@ -105,10 +105,13 @@ Cloudflare Pages builds and deploys the production site automatically from the
 - Canonical behavior: the apex domain redirects permanently to `www` while
   preserving paths and query strings
 
-Route 53 remains the registrar. AWS Amplify, CloudFront, and the original Route
-53 hosted zone are temporarily retained as rollback resources. The complete
-architecture, DNS snapshots, production verification, rollback instructions,
-and Phase 3 cleanup criteria are documented in
+Route 53 remains the registrar, while Cloudflare provides authoritative DNS and
+Pages hosting. The former AWS Amplify app, its managed backend resources and
+CloudFront distribution, and the non-authoritative Route 53 hosted zone were
+retired after the migration monitoring period. The independent
+`images-patrickengelbert` S3 bucket remains a production dependency. The
+complete architecture, DNS snapshots, production verification, and Phase 3
+retirement record are documented in
 [`docs/aws-cloudflare-migration.md`](docs/aws-cloudflare-migration.md).
 
 ## Changelog
