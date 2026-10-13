@@ -41,9 +41,10 @@ function SpaceXTarget() {
           <span className="spacex-kicker">Hidden mission brief</span>
           <h1>SpaceX Mission Brief</h1>
           <p>
-            Patrick Engelbert: software engineer, robotics student, and
-            controls-minded builder targeting automation work where code meets
-            machines.
+            Patrick Engelbert: former Citizens Bank full-stack software engineer
+            and current Facilities & Maintenance Intern (Engineering Projects)
+            at MP Materials. Completing an AAS in Robotics & Industrial Controls
+            Technology, expected December 2026.
           </p>
           <div className="spacex-actions">
             <Link

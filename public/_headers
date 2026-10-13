@@ -4,5 +4,8 @@
 /social-preview.png
   Cache-Control: public, max-age=86400
 
-/*.pdf
-  Cache-Control: public, max-age=86400
+/resumes/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/Patrick_Engelbert_Robotics_Controls_Resume.pdf
+  Cache-Control: public, max-age=0, must-revalidate

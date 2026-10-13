@@ -166,7 +166,7 @@ function Home() {
           </p>
           <p className="home-experience-statement">
             <RecoilText
-              text="My background combines production full-stack engineering with hands-on PLC, robotics, and controls work. I am currently completing Robotics & Industrial Controls training at Texas State Technical College."
+              text="I work with engineering teams at MP Materials as a Facilities & Maintenance Intern (Engineering Projects), building on my production full-stack experience at Citizens Bank. I am completing an AAS in Robotics & Industrial Controls Technology at Texas State Technical College, with graduation expected December 2026."
             />
           </p>
         </div>
