@@ -82,17 +82,18 @@ function Resume() {
       <div className="resume-section">
         <h2>Summary</h2>
         <p>
-          I am a Full-Stack Software Engineer with over 3 years of experience in
-          the field who is also well-versed in computer hardware and networking.
+          I am a Full-Stack Software Engineer with production development
+          experience at Citizens Bank and a background in computer hardware and networking.
           I’ve created advanced algorithms using cutting-edge technologies, and
           am always learning. I've professionally leveraged React, Angular,
           TypeScript, JavaScript ES6+, Node.js, and more, creating responsive
           websites on both front and back ends. I have extensive experience in
           customer service, collaborating as a team, and manipulating complex
-          data structures. I am also studying Robotics & Industrial Controls,
-          which adds hands-on perspective with PLCs, sensors, VFDs, computer
-          vision, robot interfacing, and troubleshooting systems that bridge
-          software with physical devices.
+          data structures. I currently work with engineering teams at MP Materials
+          as a Facilities & Maintenance Intern (Engineering Projects) and am
+          completing an AAS in Robotics & Industrial Controls Technology,
+          expected December 2026. This adds hands-on perspective with PLCs,
+          sensors, VFDs, robot interfacing, and industrial troubleshooting.
         </p>
       </div>
       <div className="resume-section">
@@ -109,8 +110,8 @@ function Resume() {
       <div className="resume-section">
         <h2>Systems & Controls Perspective</h2>
         <p>
-          Current robotics and industrial controls training strengthens my
-          software work by adding practical experience with physical systems,
+          Engineering project work at MP Materials and current robotics and
+          industrial controls training strengthen my software work through physical systems,
           device behavior, structured troubleshooting, schematics, technical
           documentation, and logic that must interact reliably with real-world
           inputs and outputs. That background is especially useful for software
@@ -198,6 +199,18 @@ function Resume() {
       <div className="resume-section">
         <h2>Experience</h2>
         <ul>
+          <li>
+            <strong>Facilities & Maintenance Intern (Engineering Projects)</strong>,
+            MP Materials. Fort Worth, TX (August 2026 - Present)
+            <ul>
+              <li>
+                Work directly with engineering teams on equipment design,
+                automation programming, implementation, and maintenance;
+                program and test industrial robotic systems and support
+                manufacturing equipment troubleshooting.
+              </li>
+            </ul>
+          </li>
           <li>
             <strong>Full-Stack Software Engineer</strong>, Citizens Bank.
             Johnston, RI (Mar 2022 – Nov 2024)
@@ -296,6 +309,10 @@ function Resume() {
       <div className="resume-section">
         <h2>Education</h2>
         <ul>
+          <li>
+            <strong>Associate of Applied Science - Robotics & Industrial Controls Technology</strong>,
+            Texas State Technical College, Waco, TX. In progress; expected December 2026.
+          </li>
           <li>
             <strong>Software Engineering Student</strong>, Thinkful. Remote (Sep
             2021 – Feb 2022)

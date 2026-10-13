@@ -12,6 +12,29 @@ deployment impact.
 
 ## [Unreleased]
 
+### October 2026 Resume Update
+
+- Refreshed the robotics, automation, and industrial controls web resume from the
+  supplied October 2026 PDF, prioritizing MP Materials' Facilities & Maintenance
+  Intern (Engineering Projects) role and Citizens Bank software engineering work.
+- Organized technical strengths, education, four selected automation projects,
+  additional work history, and credentials for recruiter scanning. The TSTC AAS
+  remains in progress with expected December 2026 graduation; the integrated
+  PLC/HMI/VFD/sensor/robot capstone is explicitly in progress.
+- Bundled the exact two-page PDF under a content-specific static URL, added
+  separate View PDF and Download PDF actions, and updated the original PDF URL
+  for compatibility. The Software Engineering PDF is unchanged.
+- Added cache policies for the versioned PDF and legacy compatibility URL.
+- Updated the homepage, software resume introduction and current experience,
+  SpaceX brief, and relevant metadata to reflect the internship and degree status.
+- Added regression coverage for resume content, PDF actions, commissioning
+  faults/RUN/reset, and resume navigation with Dual Stack discovery.
+- Verified all eight automated tests, the production build, and SEO validation;
+  checked browser layouts at 1440, 768, 390, and 320 px, direct-route refresh,
+  mobile navigation, commissioning, Dual Stack, and a clean browser console.
+  Both built PDF copies and the browser download match the supplied document's
+  SHA-256 hash; the document retains both pages and October 2026 metadata.
+
 ### Added
 
 - Added a measured mobile and desktop performance/accessibility audit with

@@ -20,7 +20,8 @@ const commissioningSteps = [
 ];
 
 function RoboticsResume() {
-  const roboticsResumePdf = "/Patrick_Engelbert_Robotics_Controls_Resume.pdf";
+  const roboticsResumePdf =
+    "/resumes/Patrick_Engelbert_Automation_Controls_Resume_2026-10_b84c91dbf624.pdf";
   const { isUnlocked, markResumeVisited, unlockEgg } = useEasterEggs();
   const commissioned = isUnlocked("commissioned");
   const [panelOpen, setPanelOpen] = useState(false);
@@ -69,18 +70,25 @@ function RoboticsResume() {
 
   return (
     <div className="resume-container">
-      <div className="resume-button">
+      <div className="resume-button resume-pdf-actions">
         <a
           className="btn btn-secondary"
           href={roboticsResumePdf}
           target="_blank"
           rel="noopener noreferrer"
         >
-          View Robotics & Controls PDF
+          View PDF
+        </a>
+        <a
+          className="btn btn-secondary"
+          href={roboticsResumePdf}
+          download="Patrick_Engelbert_Automation_Controls_Resume_October_2026.pdf"
+        >
+          Download PDF
         </a>
       </div>
       <div className="resume-title-control">
-        <h1 className="resume-title">Robotics & Industrial Controls Resume</h1>
+        <h1 className="resume-title">Robotics, Automation & Industrial Controls Resume</h1>
         <div className={`commissioning-console${commissioned ? " run" : ""}`}>
           <button
             aria-expanded={panelOpen}
@@ -166,154 +174,43 @@ function RoboticsResume() {
       </div>
 
       <div className="resume-section">
-        <h2>Profile</h2>
+        <h2>Professional Profile</h2>
         <p>
-          Robotics & Industrial Controls student at Texas State Technical
-          College focused on PLC programming, robot programming, and industrial
-          automation integration. Hands-on training includes Studio 5000 ladder
-          logic, FANUC and Universal Robots, robot-to-PLC interfacing, VFDs,
-          computer vision, sensors, motor controls, AC/DC circuits, and
-          maintenance-ready documentation. Prior production software engineering
-          experience adds disciplined troubleshooting, structured logic,
-          documentation, and careful execution in systems where reliability
-          matters.
+          Automation and industrial controls professional working directly with
+          engineering teams at MP Materials on programming, design, maintenance,
+          and troubleshooting. Former full-stack software engineer with production
+          development experience at Citizens Bank. Completing an Associate of
+          Applied Science in Robotics & Industrial Controls Technology at Texas
+          State Technical College, with graduation expected December 2026.
         </p>
       </div>
 
       <div className="resume-section">
-        <h2>Core Capabilities</h2>
+        <h2>Technical Strengths</h2>
         <ul>
           <li>
-            <strong>PLC Programming & Troubleshooting:</strong> Build,
-            document, and troubleshoot ladder logic using timers, latching,
-            sequencing, interlocks, industrial I/O, and sensor-driven behavior.
+            <strong>PLC Programming & Industrial Controls:</strong> Rockwell
+            Studio 5000, ladder logic, relay circuits, industrial I/O, timers,
+            interlocks, sequencing, and troubleshooting.
           </li>
           <li>
-            <strong>Robot Programming & Integration:</strong> Program robot
-            motion, validate repeatability, work with teach pendants and
-            position data, and connect robot behavior with PLCs and external
-            controls.
+            <strong>Robotics & Integration:</strong> FANUC 200i, Universal Robots /
+            PolyScope, teach pendants, position registers, motion offsets,
+            robotic pick-and-place, and sensors.
           </li>
           <li>
-            <strong>Maintenance & Electrical Readiness:</strong> Read
-            schematics, reason through AC/DC circuits, sensors, motor controls,
-            VFDs, relays, and electro-mechanical devices, and create clear
-            documentation for upkeep and troubleshooting.
+            <strong>Electrical Systems & Devices:</strong> AC/DC circuits,
+            motor controls, VFDs, sensors, and electromechanical devices.
           </li>
           <li>
-            <strong>Software-Backed Automation Thinking:</strong> Apply
-            production software habits such as Git-based change tracking,
-            structured debugging, secure data handling, testing discipline, and
-            clear technical communication.
-          </li>
-        </ul>
-      </div>
-
-      <div className="resume-section">
-        <h2>Technical Skills</h2>
-        <ul>
-          <li>
-            <strong>PLC & Controls:</strong> Rockwell Studio 5000, ladder
-            logic, relays, start/stop latching, timers, sequencing, interlocks,
-            troubleshooting, industrial I/O, PLC-to-device interfacing.
+            <strong>Design & Automation Integration:</strong> HMIs, schematic
+            reading, AutoCAD, system integration, and maintenance-oriented
+            technical documentation.
           </li>
           <li>
-            <strong>Robotics & Integration:</strong> FANUC 200i, Universal
-            Robots, teach pendant operation, position registers, offset-based
-            motion, pick-and-place sequencing, auto-mode validation,
-            robot-to-PLC integration concepts.
-          </li>
-          <li>
-            <strong>Maintenance & Electrical:</strong> AC/DC circuits, VFDs,
-            sensors, motor controls, relays, electro-mechanical devices,
-            schematic reading, fault isolation, parts lists, sequence of
-            operation.
-          </li>
-          <li>
-            <strong>Vision & Interfacing:</strong> Computer vision concepts,
-            robot-to-PLC communication, sensors, electromechanical controls,
-            and integration with industrial devices.
-          </li>
-          <li>
-            <strong>Documentation & Tools:</strong> AutoCAD, technical
-            documentation, JavaScript, TypeScript, Python, Git/GitHub.
-          </li>
-        </ul>
-      </div>
-
-      <div className="resume-section">
-        <h2>Selected Automation Projects</h2>
-        <ul>
-          <li>
-            <strong>Conveyor Control Circuit</strong> - Start/stop latch,
-            inductive sensor, documentation.
-            <ul>
-              <li>
-                Designed a conveyor control circuit with start/stop latch logic
-                and an inductive-sensor interlock that pauses movement when a
-                target is detected and resumes when clear.
-              </li>
-              <li>
-                Created maintenance-ready documentation including project
-                purpose, circuit diagram, parts list, sequence of operation,
-                and troubleshooting context.
-              </li>
-            </ul>
-          </li>
-          <li>
-            <strong>PLC Arcade Machine</strong> - Rockwell Studio 5000.
-            <ul>
-              <li>
-                Programmed an 8-light reflex game with operator pushbutton
-                input, timer-based sequencing, and six selectable difficulty
-                modes.
-              </li>
-              <li>
-                Added randomized turbo-speed logic to demonstrate timing
-                variation, state control, fault-aware sequencing, and
-                responsive operator interaction.
-              </li>
-            </ul>
-          </li>
-          <li>
-            <strong>FANUC 200i Pick-and-Place Program</strong> - Offset-based
-            robot programming.
-            <ul>
-              <li>
-                Reduced teach time by manually teaching one reference point and
-                calculating the remaining eight slot positions in-program using
-                offsets and position registers.
-              </li>
-              <li>
-                Validated repeatability by running the 9-slot pick-and-place
-                sequence overnight in auto mode with no crashes or faults.
-              </li>
-            </ul>
-          </li>
-        </ul>
-      </div>
-
-      <div className="resume-section">
-        <h2>Education</h2>
-        <ul>
-          <li>
-            <strong>Robotics & Industrial Controls</strong>, Texas State
-            Technical College. Expected Dec 2026.
-            <ul>
-              <li>
-                Coursework: Robotics, DC Circuits, AutoCAD, AC Circuits, Motor
-                Controls, Electro-Mechanical Devices, Robot Programming,
-                Sensors, PLC Programming, VFDs, Computer Vision, and Robot
-                Interfacing.
-              </li>
-            </ul>
-          </li>
-          <li>
-            <strong>Software Engineering Program</strong>, Thinkful. 2021-2022.
-          </li>
-          <li>
-            <strong>Associate of Science; Associate of Arts</strong>, Neosho
-            County Community College. 2020.
+            <strong>Software Development & Collaboration:</strong> Python,
+            JavaScript, TypeScript, Angular, React, Node.js, SQL, Git, Agile
+            development, technical documentation, and cross-functional collaboration.
           </li>
         </ul>
       </div>
@@ -322,23 +219,45 @@ function RoboticsResume() {
         <h2>Professional Experience</h2>
         <ul>
           <li>
-            <strong>Full-Stack Software Engineer</strong>, Citizens Bank.
-            Johnston, RI (Mar 2022 - Nov 2024)
+            <strong>Facilities & Maintenance Intern (Engineering Projects)</strong>
+            {" "}| MP Materials - Fort Worth, TX
+            <span className="resume-entry-dates">August 2026 - Present</span>
             <ul>
               <li>
-                Built and supported customer-facing web components using
-                Angular, TypeScript, and Node.js within an Agile development
-                team.
+                Work directly with engineering teams daily, contributing to
+                equipment design, automation programming, system implementation,
+                and maintenance activities.
               </li>
               <li>
-                Worked in production environments requiring careful testing,
-                secure data handling, change discipline, and collaboration
-                across teams.
+                Program and test industrial robotic systems, developing logic for
+                sensing, positioning, automated handling, and repeatable motion sequences.
               </li>
               <li>
-                Developed habits directly relevant to controls work: traceable
-                changes, clear documentation, state-based reasoning, and careful
-                troubleshooting under real delivery constraints.
+                Participate in engineering planning and design meetings;
+                contribute ideas on system architecture, equipment functionality,
+                and practical implementation.
+              </li>
+              <li>
+                Support troubleshooting and maintenance of manufacturing equipment
+                and automation systems through hands-on diagnostics and problem solving.
+              </li>
+            </ul>
+          </li>
+          <li>
+            <strong>Full-Stack Software Engineer</strong> | Citizens Bank - Johnston, RI
+            <span className="resume-entry-dates">March 2022 - November 2024</span>
+            <ul>
+              <li>
+                Developed and maintained production web applications and
+                customer-facing components using Angular, TypeScript, and Node.js.
+              </li>
+              <li>
+                Built proprietary functionality for secure collection of customer
+                data and contributed core components to citizensbank.com.
+              </li>
+              <li>
+                Collaborated on an Agile engineering team to design, review, test,
+                document, and deliver software under production requirements.
               </li>
             </ul>
           </li>
@@ -346,18 +265,144 @@ function RoboticsResume() {
       </div>
 
       <div className="resume-section">
-        <h2>Additional Experience</h2>
-        <p>
-          Pharmacy Technician, Cosentino's Price Chopper (2021); After School
-          Teacher, RFTS (2019-2020); Sales Associate, Walmart SuperCenter
-          (2015-2019); Bank Teller, Kansas State Bank (2014-2015).
-        </p>
-        <p>
-          Earlier roles strengthened accuracy, customer interaction,
-          organization, communication, and dependable execution in fast-paced
-          environments.
-        </p>
+        <h2>Education & Current Capstone</h2>
+        <ul>
+          <li>
+            <strong>Associate of Applied Science - Robotics & Industrial Controls Technology</strong>
+            {" "}| Texas State Technical College - Waco, TX
+            <span className="resume-entry-dates">In progress - Expected December 2026</span>
+            <ul>
+              <li>
+                Final-semester integrated automation capstone (in progress):
+                combining a PLC, HMI, VFD, sensors, and industrial robot into one
+                coordinated control system.
+              </li>
+            </ul>
+          </li>
+        </ul>
       </div>
+
+      <div className="resume-section">
+        <h2>Selected Automation Projects</h2>
+        <ul>
+          <li>
+            <strong>FANUC 200i - Nine-Position Pick-and-Place</strong> | Robotics / TSTC
+            <ul>
+              <li>
+                Programmed one reference position and computed the remaining eight
+                positions with offsets and position registers, reducing manual teaching.
+              </li>
+              <li>
+                Verified repeatability by running the full nine-position sequence
+                overnight in automatic mode without faults or collisions.
+              </li>
+            </ul>
+          </li>
+          <li>
+            <strong>Studio 5000 PLC Arcade</strong> | Rockwell / Ladder Logic
+            <ul>
+              <li>
+                Programmed an eight-light reflex game with operator pushbuttons,
+                timer-driven sequencing, and six selectable difficulty
+                modes.
+              </li>
+              <li>
+                Implemented randomized timing in turbo modes to demonstrate state
+                management, dynamic sequencing, and reliable I/O logic.
+              </li>
+            </ul>
+          </li>
+          <li>
+            <strong>Sensor-Controlled Conveyor</strong> | Industrial Circuits / Documentation
+            <ul>
+              <li>
+                Designed a start/stop latch and inductive-sensor interlock to pause
+                conveyor motion on detection and resume automatically when clear.
+              </li>
+              <li>
+                Prepared circuit schematics, parts list, system purpose, and
+                sequence-of-operation documentation for maintenance and troubleshooting.
+              </li>
+            </ul>
+          </li>
+          <li>
+            <strong>Universal Robots - Automated Workpiece Handling</strong> | Industrial Robotics
+            <ul>
+              <li>
+                Programmed robotic motion and feedback-driven handling sequences
+                using tool I/O, position sensing, and vacuum pickup verification.
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+
+      <div className="resume-section">
+        <h2>Additional Work Experience</h2>
+        <ul>
+          <li>
+            <strong>Pharmacy Technician</strong> | Cosentino's Price Chopper - Ottawa, KS
+            <span className="resume-entry-dates">June - September 2021</span>
+            <ul>
+              <li>
+                Coordinated with pharmacy personnel to dispense medications
+                accurately while safeguarding sensitive customer information.
+              </li>
+            </ul>
+          </li>
+          <li>
+            <strong>After-School Teacher</strong> | RFTS / USD 290 - Ottawa, KS
+            <span className="resume-entry-dates">August 2019 - April 2020</span>
+            <ul>
+              <li>
+                Planned and delivered instruction; collaborated with colleagues
+                on lessons, projects, and clear learning objectives.
+              </li>
+            </ul>
+          </li>
+          <li>
+            <strong>Sales Associate</strong> | Walmart Supercenter - Ottawa / Salina, KS
+            <span className="resume-entry-dates">April 2015 - June 2019</span>
+            <ul>
+              <li>
+                Maintained nearly four years of retail employment, supporting
+                customer needs, product operations, inventory, and team coordination.
+              </li>
+            </ul>
+          </li>
+          <li>
+            <strong>Bank Teller</strong> | Kansas State Bank - Ottawa, KS
+            <span className="resume-entry-dates">April 2014 - March 2015</span>
+            <ul>
+              <li>
+                Handled financial transactions accurately and built dependable
+                relationships with individual and business customers.
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+
+      <div className="resume-section">
+        <h2>Additional Education & Credentials</h2>
+        <ul>
+          <li>
+            <strong>Software Engineering Program</strong> | Thinkful | 2021-2022
+          </li>
+          <li>
+            <strong>Software Engineering Certificates</strong> | Three completed certificates
+          </li>
+          <li>
+            <strong>Associate of Science & Associate of Arts, Philosophy</strong>
+            {" "}| Neosho County Community College | 2020
+          </li>
+          <li>
+            <strong>Undergraduate Studies, Philosophy / Theological Studies</strong>
+            {" "}| Newman University | 2020-2021
+          </li>
+        </ul>
+      </div>
+
     </div>
   );
 }

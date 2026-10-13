@@ -8,7 +8,9 @@ Personal portfolio and resume website for [patrickengelbert.com](https://www.pat
 - Portfolio page with project writeups, links, screenshots, and interactive hidden details
 - Contact page with EmailJS-powered contact forms
 - Software Engineering resume page
-- Robotics & Industrial Controls resume page with controls-focused interactive elements
+- Robotics, Automation & Industrial Controls resume with current MP Materials
+  engineering internship experience, an in-progress capstone, four automation
+  projects, PDF viewing/downloading, and the commissioning easter egg
 - Trophy Room for discovered easter eggs, hints, progress tracking, blueprint mode, and social sharing
 - Secret terminal with forgiving commands, hints, cheat behavior, and SpaceX mission-brief access
 - SpaceX-focused hidden mission brief page
@@ -26,6 +28,23 @@ Personal portfolio and resume website for [patrickengelbert.com](https://www.pat
 - Vitest and Testing Library
 - Cloudflare Pages and Cloudflare DNS
 - AWS S3 for legacy portfolio images and the software resume PDF
+
+## Resume Documents
+
+The robotics web resume at `/resume/robotics-controls` reflects the October 2026
+resume. Both **View PDF** and **Download PDF** use
+`/resumes/Patrick_Engelbert_Automation_Controls_Resume_2026-10_b84c91dbf624.pdf`.
+This is the supplied two-page document, copied unchanged into `public/resumes/`
+and included in the Pages build. Its content-specific filename prevents a cached
+older resume from being served through the new actions.
+
+The existing `/Patrick_Engelbert_Robotics_Controls_Resume.pdf` URL remains available
+with the same updated document and a revalidation cache policy. A browser with a
+previously cached copy of that legacy URL may retain it until its old cache
+lifetime expires; use the versioned URL for the October update. For later updates,
+commit the exact source PDF under a new version/content-specific filename,
+replace the compatibility copy, and update both page actions and their regression
+test. The Software Engineering PDF remains at its existing S3 URL.
 
 ## Requirements
 

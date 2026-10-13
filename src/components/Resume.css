@@ -149,6 +149,19 @@ body {
   margin-bottom: 10px;
 }
 
+.resume-pdf-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: center;
+}
+
+.resume-entry-dates {
+  display: block;
+  font-size: 0.95em;
+  margin: 0.15rem 0 0.35rem;
+}
+
 .resume-switcher {
   display: flex;
   flex-wrap: wrap;
@@ -176,6 +189,7 @@ body {
 
 .resume-section {
   margin-bottom: 12px;
+  overflow-wrap: anywhere;
 }
 
 .resume-section h2 {

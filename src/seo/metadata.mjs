@@ -20,9 +20,9 @@ export const HOME_STRUCTURED_DATA = {
         "https://www.linkedin.com/in/patrick-engelbert/",
         "https://github.com/PatrickEngelbert2",
       ],
-      jobTitle: "Software Engineer",
+      jobTitle: "Facilities & Maintenance Intern (Engineering Projects)",
       description:
-        "Software engineer with professional full-stack experience and hands-on work in robotics, controls, and industrial automation.",
+        "Former Citizens Bank full-stack software engineer and MP Materials Facilities & Maintenance Intern (Engineering Projects), completing an AAS in Robotics & Industrial Controls Technology in December 2026 (expected).",
       knowsAbout: [
         "Software Engineering",
         "Full-Stack Development",
@@ -42,7 +42,7 @@ export const ROUTE_METADATA = [
     path: "/",
     title: "Patrick Engelbert | Software Engineer & Industrial Automation",
     description:
-      "Software engineer with professional full-stack experience and hands-on work in PLC programming, robotics, controls, and industrial automation.",
+      "Patrick Engelbert combines Citizens Bank software engineering experience with engineering project work at MP Materials and robotics and controls training.",
     robots: "index, follow",
     sitemap: true,
     structuredData: HOME_STRUCTURED_DATA,
@@ -67,7 +67,7 @@ export const ROUTE_METADATA = [
     path: "/resume/robotics-controls",
     title: "Robotics & Controls Resume | Patrick Engelbert",
     description:
-      "Robotics and industrial controls resume for Patrick Engelbert, covering PLC programming, FANUC and Universal Robots, industrial automation, sensors, VFDs, and control systems.",
+      "Patrick Engelbert's controls resume: MP Materials engineering internship, Citizens Bank software experience, PLCs, FANUC, Universal Robots, and automation integration.",
     robots: "index, follow",
     sitemap: true,
   },
